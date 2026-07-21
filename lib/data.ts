@@ -195,7 +195,10 @@ export async function getVigieData(): Promise<VigieData> {
   // une période reste null (pointillé/absence) — jamais un score emprunté.
   const dates = distinctDates(wp.first);
   const labels = dates.map(frDate);
-  const aggregates = buildAggregatesFromPolls(wp.first, dates, labels);
+  // Fenêtre de fraîcheur ancrée sur aujourd'hui (minuit UTC) : un candidat sans
+  // sondage récent est marqué « daté » et relégué au classement.
+  const todayMs = Math.floor(Date.now() / 86400000) * 86400000;
+  const aggregates = buildAggregatesFromPolls(wp.first, dates, labels, todayMs);
 
   // Vagues brutes 1er tour (filtre par institut du baromètre, calculé côté
   // client) + instituts réellement présents, ordonnés par nombre de vagues puis

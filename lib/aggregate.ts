@@ -115,23 +115,54 @@ export function duelAggregate(polls: Poll[], candidate: CandidateId): number | n
 }
 
 /**
- * Construit les séries agrégées à partir de sondages bruts, par hypothèse.
- * `dates` = ancres temporelles (ISO) auxquelles on échantillonne la fenêtre.
- * `labels` = étiquettes d'axe correspondantes.
+ * Fenêtre de fraîcheur ≈ 4 semaines glissantes, ancrée sur AUJOURD'HUI (choix
+ * produit — pas la date du dernier sondage). Borne à 27 j : un candidat dont le
+ * dernier sondage remonte à 27 jours ou plus est marqué « daté » et relégué
+ * derrière les candidats à jour. (27 et non 28 pour que la vague ~4 semaines —
+ * ex. RN du 24 juin, à 27 j du 21/07 — soit reléguée, la vague du 8–10 juillet
+ * restant fraîche ; se durcit naturellement les jours suivants.)
+ */
+export const FRESH_WINDOW_DAYS = 27;
+
+/**
+ * Construit les séries agrégées à partir de sondages bruts (toutes hypothèses).
+ * `dates` = ancres temporelles (ISO), `labels` = étiquettes d'axe.
+ * `todayMs` = date du jour (ms) pour juger la fraîcheur.
+ *
+ * Fenêtre souple : la courbe d'un candidat S'ARRÊTE après son dernier sondage
+ * réel (aucune prolongation trompeuse) ; un candidat sans sondage récent garde
+ * sa dernière valeur connue mais est marqué `stale` (daté) pour être relégué au
+ * classement. Aucun score n'est emprunté à une autre hypothèse.
  */
 export function buildAggregatesFromPolls(
   polls: Poll[],
   dates: string[],
   labels: string[],
+  todayMs: number,
 ): Aggregate[] {
   const anchors = dates.map(toTime);
 
   return CANDIDATE_ORDER.map((candidate) => {
+    // Dernier terrain réel où ce candidat est mesuré.
+    let lastPollMs = -Infinity;
+    for (const p of polls) {
+      if (typeof p.scores[candidate] === "number") {
+        const t = pollDate(p);
+        if (t > lastPollMs) lastPollMs = t;
+      }
+    }
+    if (lastPollMs === -Infinity) {
+      return finalizeAggregate(candidate, []); // jamais mesuré → filtré ensuite
+    }
     const series: SeriesPoint[] = anchors.map((asOf, i) => ({
       date: labels[i],
-      value: round1(aggregateAt(polls, candidate, asOf)),
+      // Pas de prolongation : null pour toute ancre postérieure au dernier terrain.
+      value: asOf > lastPollMs ? null : round1(aggregateAt(polls, candidate, asOf)),
     }));
-    return finalizeAggregate(candidate, series);
+    const gapDays = Math.round((todayMs - lastPollMs) / 86400000);
+    const stale = gapDays >= FRESH_WINDOW_DAYS;
+    const lastPollDate = new Date(lastPollMs).toISOString().slice(0, 10);
+    return { ...finalizeAggregate(candidate, series), stale, lastPollDate };
   }).filter((agg) => agg.series.some((p) => p.value != null));
 }
 
@@ -165,6 +196,8 @@ function finalizeAggregate(
     series,
     current: round1(current) ?? 0,
     delta: round1(current - prev) ?? 0,
+    stale: false, // par défaut « à jour » ; surchargé par buildAggregatesFromPolls
+    lastPollDate: "",
   };
 }
 

@@ -45,8 +45,10 @@ export interface SeriesPoint {
 export interface Aggregate {
   candidate: CandidateId;
   series: SeriesPoint[];
-  current: number; // dernière valeur agrégée
+  current: number; // dernière valeur agrégée retenue
   delta: number; // écart vs échéance précédente
+  stale: boolean; // dernier sondage hors fenêtre de fraîcheur → « daté », relégué
+  lastPollDate: string; // ISO du dernier sondage retenu (libellé « datant du… »)
 }
 
 export interface Poll {

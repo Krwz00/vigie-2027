@@ -18,6 +18,16 @@ import {
 
 const ALL = "all"; // valeur du sélecteur « Tous les instituts »
 
+/** Date courte FR (ex. « 24 juin ») pour l'étiquette de fin de courbe datée. */
+function frDay(iso: string): string {
+  if (!iso) return "";
+  return new Date(iso + "T00:00:00Z").toLocaleDateString("fr-FR", {
+    day: "numeric",
+    month: "short",
+    timeZone: "UTC",
+  });
+}
+
 interface Props {
   aggregates: Aggregate[];
   milestones: string[];
@@ -36,6 +46,8 @@ interface Line {
   values: (number | null)[];
   last: Pt;
   current: number;
+  stale: boolean;
+  lastPollDate: string;
 }
 
 export default function AggregateChart({
@@ -88,14 +100,20 @@ export default function AggregateChart({
           values: agg.series.map((p) => p.value),
           last: pts[pts.length - 1],
           current: agg.current,
+          stale: agg.stale,
+          lastPollDate: agg.lastPollDate,
         } as Line;
       })
       .filter((l): l is Line => l !== null);
   }, [activeAggregates, g, n]);
 
-  // Classement courant : leader + duo de tête (rendus plus visibles).
+  // Classement courant : candidats à jour d'abord, puis datés (un score daté ne
+  // coiffe jamais un frais). Sert au leader + duo de tête mis en avant.
   const rankedIds = useMemo(
-    () => [...lines].sort((a, b) => b.current - a.current).map((l) => l.id),
+    () =>
+      [...lines]
+        .sort((a, b) => (a.stale !== b.stale ? (a.stale ? 1 : -1) : b.current - a.current))
+        .map((l) => l.id),
     [lines],
   );
   const leader = lines.find((l) => l.id === rankedIds[0]);
@@ -351,7 +369,10 @@ export default function AggregateChart({
                 strokeWidth={highlighted ? 3.4 : lead ? 3 : 2}
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                opacity={dimmed ? 0.09 : 1}
+                // Candidat daté : courbe atténuée + pointillé (elle s'arrête déjà à
+                // son dernier terrain réel, aucune prolongation).
+                strokeDasharray={l.stale ? "5 4" : undefined}
+                opacity={dimmed ? 0.09 : l.stale ? 0.4 : 1}
                 filter={highlighted ? "url(#halo)" : undefined}
               />
             );
@@ -424,7 +445,7 @@ export default function AggregateChart({
             const showPhoto = c.photo && !failedPhotos.has(l.id);
             const rank = rankedIds.indexOf(l.id) + 1;
             return (
-              <g key={l.id} opacity={dimmed ? 0.18 : 1}>
+              <g key={l.id} opacity={dimmed ? 0.18 : l.stale ? 0.55 : 1}>
                 {/* Connecteur Bézier depuis le dernier point */}
                 <path
                   d={`M ${l.last.x} ${l.last.y} C ${l.last.x + 12} ${l.last.y}, ${
@@ -494,7 +515,7 @@ export default function AggregateChart({
                   )}
                   <text
                     x={r + 5}
-                    y={3.5}
+                    y={l.stale ? 0.5 : 3.5}
                     className="mono"
                     fontSize={lead ? 13 : 11}
                     fontWeight={lead ? 700 : 600}
@@ -502,6 +523,18 @@ export default function AggregateChart({
                   >
                     {l.current.toFixed(0)}
                   </text>
+                  {/* Candidat daté : date du dernier terrain sous le score */}
+                  {l.stale && !dimmed && (
+                    <text
+                      x={r + 5}
+                      y={9.5}
+                      className="mono"
+                      fontSize={7.5}
+                      fill="#5f748f"
+                    >
+                      {frDay(l.lastPollDate)}
+                    </text>
+                  )}
                 </g>
               </g>
             );

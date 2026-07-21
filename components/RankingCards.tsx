@@ -16,11 +16,36 @@ function Delta({ delta }: { delta: number }) {
   );
 }
 
-/** Classement des candidats — duo de tête mis en avant, puis grille. */
+function frDay(iso: string): string {
+  if (!iso) return "";
+  return new Date(iso + "T00:00:00Z").toLocaleDateString("fr-FR", {
+    day: "numeric",
+    month: "long",
+    timeZone: "UTC",
+  });
+}
+
+/** Marqueur « daté » : dernier sondage hors fenêtre de fraîcheur. */
+function DatedTag({ date }: { date: string }) {
+  return (
+    <div className="mono text-[10.5px] font-semibold text-ink-faint">
+      datant du {frDay(date)}
+    </div>
+  );
+}
+
+/**
+ * Classement des candidats. Ordre = candidats À JOUR par score décroissant, PUIS
+ * candidats DATÉS (dernier sondage hors fenêtre de 4 semaines), atténués et
+ * étiquetés de leur date. Un score daté ne peut jamais coiffer un score frais.
+ */
 export default function RankingCards({ aggregates }: { aggregates: Aggregate[] }) {
   const ranked = [...aggregates]
     .filter((a) => a.current > 0)
-    .sort((a, b) => b.current - a.current);
+    .sort((a, b) => {
+      if (a.stale !== b.stale) return a.stale ? 1 : -1; // à jour avant datés
+      return b.current - a.current;
+    });
   const top = ranked.slice(0, 2);
   const rest = ranked.slice(2);
 
@@ -38,6 +63,7 @@ export default function RankingCards({ aggregates }: { aggregates: Aggregate[] }
                 borderColor: "rgba(216,178,74,.45)",
                 background:
                   "linear-gradient(180deg, rgba(216,178,74,.06), rgba(9,21,40,.9))",
+                opacity: agg.stale ? 0.55 : 1,
               }}
             >
               <div
@@ -71,7 +97,7 @@ export default function RankingCards({ aggregates }: { aggregates: Aggregate[] }
                 <div className="mono text-3xl font-bold text-gold">
                   {agg.current.toFixed(0)}
                 </div>
-                <Delta delta={agg.delta} />
+                {agg.stale ? <DatedTag date={agg.lastPollDate} /> : <Delta delta={agg.delta} />}
               </div>
             </div>
           );
@@ -83,7 +109,11 @@ export default function RankingCards({ aggregates }: { aggregates: Aggregate[] }
         {rest.map((agg, i) => {
           const c = CANDIDATES[agg.candidate];
           return (
-            <div key={agg.candidate} className="panel flex items-center gap-3 p-3.5">
+            <div
+              key={agg.candidate}
+              className="panel flex items-center gap-3 p-3.5"
+              style={{ opacity: agg.stale ? 0.5 : 1 }}
+            >
               <div className="mono w-6 text-center text-lg font-semibold text-ink-faint">
                 {i + 3}
               </div>
@@ -93,11 +123,11 @@ export default function RankingCards({ aggregates }: { aggregates: Aggregate[] }
                 <div className="truncate text-[11px] text-ink-faint">{c.party}</div>
               </div>
               <Sparkline values={agg.series.map((p) => p.value)} color={c.color} />
-              <div className="w-14 text-right">
+              <div className="w-16 text-right">
                 <div className="mono text-xl font-bold text-ink">
                   {agg.current.toFixed(0)}
                 </div>
-                <Delta delta={agg.delta} />
+                {agg.stale ? <DatedTag date={agg.lastPollDate} /> : <Delta delta={agg.delta} />}
               </div>
             </div>
           );
