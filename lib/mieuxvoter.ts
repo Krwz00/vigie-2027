@@ -86,6 +86,28 @@ function round(poll: RawPoll): 1 | 2 {
   return (poll.tour || "").includes("2") ? 2 : 1;
 }
 
+// Canonicalise le nom d'institut (le dépôt mélange les casses : ELABE, verian…).
+const INSTITUTE_CANON: [RegExp, string][] = [
+  [/^elabe/i, "Elabe"],
+  [/^ifop/i, "Ifop"],
+  [/^opinion\s?way/i, "OpinionWay"],
+  [/^cluster\s?17/i, "Cluster17"],
+  [/harris/i, "Harris Interactive"],
+  [/^odoxa/i, "Odoxa"],
+  [/^ipsos\s?bva/i, "Ipsos-BVA"],
+  [/^ipsos/i, "Ipsos"],
+  [/^bva/i, "BVA"],
+  [/^verian/i, "Verian"],
+  [/^csa/i, "CSA"],
+];
+
+function canonicalInstitute(name: string | undefined): string {
+  const n = (name || "").trim();
+  if (!n) return "Institut";
+  for (const [re, canon] of INSTITUTE_CANON) if (re.test(n)) return canon;
+  return n;
+}
+
 function sampleOf(v: number | string | undefined): number {
   if (typeof v === "number") return v;
   if (typeof v === "string") return parseInt(v.replace(/\D/g, ""), 10) || 0;
@@ -148,7 +170,7 @@ export async function fetchMieuxVoter(): Promise<MVData | null> {
       pollId: p.poll_id,
       hypothesisId: p.hypothese || "",
       round: round(p),
-      institute: p.institut || "Institut",
+      institute: canonicalInstitute(p.institut),
       sponsor: p.commanditaire || "—",
       publishedAt: fin || (p.debut_enquete || "").slice(0, 10),
       fieldStart: (p.debut_enquete || fin).slice(0, 10),

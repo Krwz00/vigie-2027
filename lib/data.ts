@@ -155,7 +155,7 @@ function buildFeed(first: MVPoll[]): Poll[] {
   );
   const latest = surveys[0]?.publishedAt ?? "";
   const latestMs = latest ? Date.parse(latest) : 0;
-  return surveys.slice(0, 16).map((p) => ({
+  return surveys.slice(0, 40).map((p) => ({
     institute: p.institute,
     sponsor: p.sponsor,
     publishedAt: p.publishedAt,

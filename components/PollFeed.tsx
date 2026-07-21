@@ -1,3 +1,6 @@
+"use client";
+
+import { useMemo, useState } from "react";
 import type { Poll } from "@/lib/types";
 import { CANDIDATES } from "@/lib/candidates";
 import SeenBeacon from "./SeenBeacon";
@@ -32,18 +35,55 @@ function fmtDate(iso: string): string {
   });
 }
 
-/** Fil des sondages publiés — tri antéchronologique. */
+/** Fil des sondages publiés — tri antéchronologique, filtrable par institut. */
 export default function PollFeed({ polls }: { polls: Poll[] }) {
+  const [institute, setInstitute] = useState<string>("all");
+
+  const institutes = useMemo(
+    () => [...new Set(polls.map((p) => p.institute))].sort((a, b) => a.localeCompare(b, "fr")),
+    [polls],
+  );
+  const shown = useMemo(
+    () => (institute === "all" ? polls : polls.filter((p) => p.institute === institute)),
+    [polls, institute],
+  );
+
   return (
     <section id="sondages" className="panel flex flex-col p-5">
       <SeenBeacon />
-      <div className="mb-4 flex items-center justify-between gap-3">
+      <div className="mb-3 flex items-center justify-between gap-3">
         <h2 className="display text-lg font-bold text-ink">Sondages publiés</h2>
-        <span className="eyebrow">{polls.length} enquêtes</span>
+        <span className="eyebrow">{shown.length} enquêtes</span>
       </div>
 
+      {/* Filtre par institut */}
+      <div className="mb-4 flex items-center gap-2">
+        <label htmlFor="inst-filter" className="eyebrow shrink-0">
+          Institut
+        </label>
+        <select
+          id="inst-filter"
+          value={institute}
+          onChange={(e) => setInstitute(e.target.value)}
+          className="mono tap w-full rounded-lg border border-white/10 bg-[#0b1a30] px-2.5 py-1.5 text-[12px] text-ink outline-none focus:border-gold"
+        >
+          <option value="all">Tous les instituts ({polls.length})</option>
+          {institutes.map((inst) => (
+            <option key={inst} value={inst}>
+              {inst} ({polls.filter((p) => p.institute === inst).length})
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {shown.length === 0 && (
+        <div className="mono py-6 text-center text-[12px] text-ink-faint">
+          Aucun sondage pour cet institut dans la fenêtre récente.
+        </div>
+      )}
+
       <ul className="scroll-slim -mr-2 max-h-[560px] space-y-3 overflow-y-auto pr-2">
-        {polls.map((p, i) => {
+        {shown.map((p, i) => {
           const topline = Object.entries(p.scores)
             .sort((a, b) => (b[1] as number) - (a[1] as number))
             .slice(0, 4);

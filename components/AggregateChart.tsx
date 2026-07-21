@@ -67,11 +67,13 @@ export default function AggregateChart({ aggregates, milestones, mobile }: Props
       .filter((l): l is Line => l !== null);
   }, [aggregates, g, n]);
 
-  // Leader = plus haut score courant (sert d'aire par défaut si aucune isolation).
-  const leader = useMemo(
-    () => [...lines].sort((a, b) => b.current - a.current)[0],
+  // Classement courant : leader + duo de tête (rendus plus visibles).
+  const rankedIds = useMemo(
+    () => [...lines].sort((a, b) => b.current - a.current).map((l) => l.id),
     [lines],
   );
+  const leader = lines.find((l) => l.id === rankedIds[0]);
+  const topTwo = new Set(rankedIds.slice(0, 2));
   const areaLine = isolated ? lines.find((l) => l.id === isolated) : leader;
 
   // Anti-collision des pastilles de fin de courbe.
@@ -181,11 +183,13 @@ export default function AggregateChart({ aggregates, milestones, mobile }: Props
                 <feMergeNode in="SourceGraphic" />
               </feMerge>
             </filter>
-            {lines.map((l) => (
-              <clipPath id={`clip-${l.id}`} key={l.id}>
-                <circle cx={0} cy={0} r={11} />
-              </clipPath>
-            ))}
+            {/* Clips circulaires partagés : pastille standard (11) et de tête (16). */}
+            <clipPath id="pin-clip-sm">
+              <circle cx={0} cy={0} r={11} />
+            </clipPath>
+            <clipPath id="pin-clip-lg">
+              <circle cx={0} cy={0} r={16} />
+            </clipPath>
           </defs>
 
           {/* Grille horizontale pointillée 0/10/20/30/40 % */}
@@ -235,17 +239,18 @@ export default function AggregateChart({ aggregates, milestones, mobile }: Props
             <path d={areaPath(areaLine.points, baselineY)} fill="url(#area-grad)" />
           )}
 
-          {/* Courbes */}
+          {/* Courbes — le duo de tête est tracé plus épais */}
           {lines.map((l) => {
             const dimmed = isolated != null && isolated !== l.id;
             const highlighted = isolated === l.id;
+            const lead = topTwo.has(l.id) && isolated == null;
             return (
               <path
                 key={l.id}
                 d={smoothPath(l.points)}
                 fill="none"
                 stroke={l.color}
-                strokeWidth={highlighted ? 3.4 : 2}
+                strokeWidth={highlighted ? 3.4 : lead ? 3 : 2}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 opacity={dimmed ? 0.09 : 1}
@@ -287,13 +292,17 @@ export default function AggregateChart({ aggregates, milestones, mobile }: Props
             </>
           )}
 
-          {/* Pastilles de fin de courbe : photo ronde (fallback monogramme) + % */}
+          {/* Pastilles de fin de courbe : photo ronde (fallback monogramme) + % ;
+              le duo de tête est agrandi, cerclé d'or et badgé de son rang. */}
           {lines.map((l) => {
             const c = CANDIDATES[l.id];
             const dimmed = isolated != null && isolated !== l.id;
             const py = pinY[l.id] ?? l.last.y;
-            const px = l.last.x + 20;
+            const lead = topTwo.has(l.id) && isolated == null;
+            const r = lead ? 16 : 11;
+            const px = l.last.x + (lead ? 26 : 20);
             const showPhoto = c.photo && !failedPhotos.has(l.id);
+            const rank = rankedIds.indexOf(l.id) + 1;
             return (
               <g key={l.id} opacity={dimmed ? 0.18 : 1}>
                 {/* Connecteur Bézier depuis le dernier point */}
@@ -308,14 +317,17 @@ export default function AggregateChart({ aggregates, milestones, mobile }: Props
                 />
                 {/* Pastille — repère translaté pour aligner le clip circulaire */}
                 <g transform={`translate(${px} ${py})`}>
-                  <circle cx={0} cy={0} r={11} fill={c.color} />
+                  {lead && (
+                    <circle cx={0} cy={0} r={r + 3} fill="#d8b24a" opacity={0.9} />
+                  )}
+                  <circle cx={0} cy={0} r={r} fill={c.color} />
                   {/* Monogramme sous la photo : reste visible si l'image échoue */}
                   <text
                     x={0}
-                    y={3.5}
+                    y={lead ? 4.5 : 3.5}
                     textAnchor="middle"
                     className="mono"
-                    fontSize="8.5"
+                    fontSize={lead ? 11 : 8.5}
                     fontWeight={600}
                     fill="#04101f"
                   >
@@ -324,11 +336,11 @@ export default function AggregateChart({ aggregates, milestones, mobile }: Props
                   {showPhoto && (
                     <image
                       href={c.photo}
-                      x={-11}
-                      y={-11}
-                      width={22}
-                      height={22}
-                      clipPath={`url(#clip-${l.id})`}
+                      x={-r}
+                      y={-r}
+                      width={r * 2}
+                      height={r * 2}
+                      clipPath={`url(#pin-clip-${lead ? "lg" : "sm"})`}
                       preserveAspectRatio="xMidYMid slice"
                       onError={() =>
                         setFailedPhotos((prev) => new Set(prev).add(l.id))
@@ -338,18 +350,35 @@ export default function AggregateChart({ aggregates, milestones, mobile }: Props
                   <circle
                     cx={0}
                     cy={0}
-                    r={11}
+                    r={r}
                     fill="none"
-                    stroke="#061426"
-                    strokeWidth={1.5}
+                    stroke={lead ? "#d8b24a" : "#061426"}
+                    strokeWidth={lead ? 2 : 1.5}
                   />
+                  {/* Badge de rang pour le duo de tête */}
+                  {lead && (
+                    <g transform={`translate(${r - 3} ${-(r - 3)})`}>
+                      <circle cx={0} cy={0} r={7} fill="#04101f" stroke="#d8b24a" strokeWidth={1.2} />
+                      <text
+                        x={0}
+                        y={3}
+                        textAnchor="middle"
+                        className="mono"
+                        fontSize={9}
+                        fontWeight={700}
+                        fill="#d8b24a"
+                      >
+                        {rank}
+                      </text>
+                    </g>
+                  )}
                   <text
-                    x={16}
+                    x={r + 5}
                     y={3.5}
                     className="mono"
-                    fontSize="11"
-                    fontWeight={600}
-                    fill={dimmed ? "#5f748f" : "#eaf1fb"}
+                    fontSize={lead ? 13 : 11}
+                    fontWeight={lead ? 700 : 600}
+                    fill={dimmed ? "#5f748f" : lead ? "#ecd08a" : "#eaf1fb"}
                   >
                     {l.current.toFixed(0)}
                   </text>
