@@ -3,7 +3,6 @@
 import type { VigieData } from "@/lib/types";
 import { useBreakpoint } from "@/hooks/useBreakpoint";
 import Hero from "./Hero";
-import KpiBar from "./KpiBar";
 import AggregateChart from "./AggregateChart";
 import RankingCards from "./RankingCards";
 import Hypotheses from "./Hypotheses";
@@ -49,7 +48,6 @@ export default function Dashboard({ data }: { data: VigieData }) {
               incomplets.
             </div>
           )}
-          <KpiBar kpis={data.kpis} />
 
           {/* Baromètre : courbe (principale) + fil des sondages (colonne droite en web) */}
           <section
@@ -68,6 +66,9 @@ export default function Dashboard({ data }: { data: VigieData }) {
               <AggregateChart
                 aggregates={data.aggregates}
                 milestones={data.milestones}
+                milestoneDates={data.milestoneDates}
+                barometerPolls={data.barometerPolls}
+                institutes={data.institutes}
                 mobile={isMobile}
               />
             </div>
@@ -78,7 +79,9 @@ export default function Dashboard({ data }: { data: VigieData }) {
           </section>
 
           <div>
-            <div className="eyebrow mb-3">Classement agrégé · {data.principalLabel}</div>
+            <div className="eyebrow mb-3">
+              Classement agrégé · tous les candidats
+            </div>
             <RankingCards aggregates={data.aggregates} />
           </div>
 

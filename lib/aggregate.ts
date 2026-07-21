@@ -44,11 +44,52 @@ function weightWaves(values: number[]): number {
 }
 
 /**
- * Valeur agrégée d'un candidat à une date `asOf`, sur la fenêtre glissante.
- * 1) filtre les sondages dont la fin de terrain tombe dans [asOf-28j, asOf]
- * 2) par institut : pondère ses vagues 40/30/20/10
- * 3) moyenne inter-instituts
- * Renvoie null si aucun sondage ne mesure ce candidat sur la fenêtre.
+ * Cœur d'agrégation d'un candidat sur un lot de sondages DÉJÀ filtré (fenêtre,
+ * hypothèse, duel… selon l'appelant). Ne mélange jamais les instituts au mauvais
+ * niveau :
+ * 1) par institut, on regroupe ses vagues par date de terrain, et pour une même
+ *    date on prend la MOYENNE du candidat à travers les configs testées ce jour-là
+ *    (« moyennée à travers les configs de chaque vague ») ;
+ * 2) on pondère les vagues datées de l'institut 40/30/20/10 (du + récent au + ancien) ;
+ * 3) moyenne inter-instituts.
+ * Un candidat non mesuré → jamais un score emprunté : il est simplement absent du
+ * lot et renvoie null.
+ */
+function instituteWeighted(polls: Poll[], candidate: CandidateId): number | null {
+  const byInstitute = new Map<string, Map<string, number[]>>();
+  for (const p of polls) {
+    const v = p.scores[candidate];
+    if (typeof v !== "number") continue;
+    let dated = byInstitute.get(p.institute);
+    if (!dated) {
+      dated = new Map();
+      byInstitute.set(p.institute, dated);
+    }
+    const key = p.fieldEnd || p.publishedAt;
+    const arr = dated.get(key) ?? [];
+    arr.push(v);
+    dated.set(key, arr);
+  }
+  if (byInstitute.size === 0) return null;
+
+  const perInstitute: number[] = [];
+  for (const [, dated] of byInstitute) {
+    const waves = [...dated.entries()]
+      .map(([d, vals]) => ({
+        t: toTime(d),
+        v: vals.reduce((a, b) => a + b, 0) / vals.length, // moyenne inter-configs du jour
+      }))
+      .sort((a, b) => b.t - a.t)
+      .map((x) => x.v);
+    perInstitute.push(weightWaves(waves));
+  }
+  return perInstitute.reduce((a, b) => a + b, 0) / perInstitute.length;
+}
+
+/**
+ * Valeur agrégée d'un candidat à une date `asOf`, sur la fenêtre glissante de
+ * 28 jours : filtre [asOf-28j, asOf] puis {@link instituteWeighted}. Renvoie null
+ * si aucun sondage ne mesure ce candidat sur la fenêtre.
  */
 export function aggregateAt(
   polls: Poll[],
@@ -58,50 +99,70 @@ export function aggregateAt(
   const lo = asOf - WINDOW_DAYS * 86400000;
   const inWindow = polls.filter((p) => {
     const t = pollDate(p);
-    return (
-      t <= asOf &&
-      t >= lo &&
-      typeof p.scores[candidate] === "number"
-    );
+    return t <= asOf && t >= lo && typeof p.scores[candidate] === "number";
   });
   if (inWindow.length === 0) return null;
-
-  const byInstitute = new Map<string, number[]>();
-  for (const p of inWindow) {
-    const arr = byInstitute.get(p.institute) ?? [];
-    arr.push({ t: pollDate(p), v: p.scores[candidate] as number } as never);
-    byInstitute.set(p.institute, arr);
-  }
-
-  const perInstitute: number[] = [];
-  for (const [, raw] of byInstitute) {
-    const waves = (raw as unknown as { t: number; v: number }[])
-      .sort((a, b) => b.t - a.t)
-      .map((x) => x.v);
-    perInstitute.push(weightWaves(waves));
-  }
-
-  return perInstitute.reduce((a, b) => a + b, 0) / perInstitute.length;
+  return instituteWeighted(inWindow, candidate);
 }
 
 /**
- * Construit les séries agrégées à partir de sondages bruts, par hypothèse.
- * `dates` = ancres temporelles (ISO) auxquelles on échantillonne la fenêtre.
- * `labels` = étiquettes d'axe correspondantes.
+ * Agrégat d'un candidat dans un duel de 2nd tour : {@link instituteWeighted} sur
+ * TOUTES les vagues du duel (pas de fenêtre — les duels sont épars dans le temps),
+ * la pondération 40/30/20/10 par institut privilégiant naturellement le récent.
+ */
+export function duelAggregate(polls: Poll[], candidate: CandidateId): number | null {
+  return round1(instituteWeighted(polls, candidate));
+}
+
+/**
+ * Fenêtre de fraîcheur ≈ 4 semaines glissantes, ancrée sur AUJOURD'HUI (choix
+ * produit — pas la date du dernier sondage). Borne à 27 j : un candidat dont le
+ * dernier sondage remonte à 27 jours ou plus est marqué « daté » et relégué
+ * derrière les candidats à jour. (27 et non 28 pour que la vague ~4 semaines —
+ * ex. RN du 24 juin, à 27 j du 21/07 — soit reléguée, la vague du 8–10 juillet
+ * restant fraîche ; se durcit naturellement les jours suivants.)
+ */
+export const FRESH_WINDOW_DAYS = 27;
+
+/**
+ * Construit les séries agrégées à partir de sondages bruts (toutes hypothèses).
+ * `dates` = ancres temporelles (ISO), `labels` = étiquettes d'axe.
+ * `todayMs` = date du jour (ms) pour juger la fraîcheur.
+ *
+ * Fenêtre souple : la courbe d'un candidat S'ARRÊTE après son dernier sondage
+ * réel (aucune prolongation trompeuse) ; un candidat sans sondage récent garde
+ * sa dernière valeur connue mais est marqué `stale` (daté) pour être relégué au
+ * classement. Aucun score n'est emprunté à une autre hypothèse.
  */
 export function buildAggregatesFromPolls(
   polls: Poll[],
   dates: string[],
   labels: string[],
+  todayMs: number,
 ): Aggregate[] {
   const anchors = dates.map(toTime);
 
   return CANDIDATE_ORDER.map((candidate) => {
+    // Dernier terrain réel où ce candidat est mesuré.
+    let lastPollMs = -Infinity;
+    for (const p of polls) {
+      if (typeof p.scores[candidate] === "number") {
+        const t = pollDate(p);
+        if (t > lastPollMs) lastPollMs = t;
+      }
+    }
+    if (lastPollMs === -Infinity) {
+      return finalizeAggregate(candidate, []); // jamais mesuré → filtré ensuite
+    }
     const series: SeriesPoint[] = anchors.map((asOf, i) => ({
       date: labels[i],
-      value: round1(aggregateAt(polls, candidate, asOf)),
+      // Pas de prolongation : null pour toute ancre postérieure au dernier terrain.
+      value: asOf > lastPollMs ? null : round1(aggregateAt(polls, candidate, asOf)),
     }));
-    return finalizeAggregate(candidate, series);
+    const gapDays = Math.round((todayMs - lastPollMs) / 86400000);
+    const stale = gapDays >= FRESH_WINDOW_DAYS;
+    const lastPollDate = new Date(lastPollMs).toISOString().slice(0, 10);
+    return { ...finalizeAggregate(candidate, series), stale, lastPollDate };
   }).filter((agg) => agg.series.some((p) => p.value != null));
 }
 
@@ -135,6 +196,8 @@ function finalizeAggregate(
     series,
     current: round1(current) ?? 0,
     delta: round1(current - prev) ?? 0,
+    stale: false, // par défaut « à jour » ; surchargé par buildAggregatesFromPolls
+    lastPollDate: "",
   };
 }
 
@@ -174,6 +237,39 @@ export function aggregateSnapshot(
     if (v != null) out.push({ candidate, value: round1(v) as number });
   }
   return out.sort((a, b) => b.value - a.value);
+}
+
+/**
+ * Série BRUTE d'un institut au sein d'une config homogène : à chaque date
+ * d'ancrage, la valeur de la vague de cet institut qui s'y termine, sinon null.
+ * Aucune pondération inter-instituts, aucune moyenne mobile — les mesures
+ * réelles de cet institut, telles quelles. Sert au mode « institut unique » :
+ * si l'institut n'a qu'une ou deux vagues, on obtient des points isolés (le
+ * rendu n'inventera pas de courbe lissée trompeuse). Un candidat non mesuré
+ * par cet institut reste null : jamais un score emprunté à un autre institut.
+ */
+export function buildRawInstituteSeries(
+  polls: Poll[],
+  institute: string,
+  dates: string[],
+  labels: string[],
+): Aggregate[] {
+  const inst = polls.filter((p) => p.institute === institute);
+  return CANDIDATE_ORDER.map((candidate) => {
+    const series: SeriesPoint[] = dates.map((d, i) => {
+      // À cette date, moyenne du candidat sur les configs testées par CET institut
+      // ce jour-là (aucune pondération inter-instituts : c'est la mesure brute de
+      // l'institut). Aucune valeur empruntée à un autre institut.
+      const vals = inst
+        .filter((p) => p.fieldEnd === d && typeof p.scores[candidate] === "number")
+        .map((p) => p.scores[candidate] as number);
+      return {
+        date: labels[i],
+        value: vals.length ? round1(vals.reduce((a, b) => a + b, 0) / vals.length) : null,
+      };
+    });
+    return finalizeAggregate(candidate, series);
+  }).filter((agg) => agg.series.some((p) => p.value != null));
 }
 
 /** Dates de fin d'enquête distinctes d'un lot, triées croissant. */

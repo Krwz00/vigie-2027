@@ -109,6 +109,35 @@ body::before {
     background: rgba(216, 178, 74, 0.08);
     color: var(--ink);
   }
+
+  /* Dropdown sobre, aligné sur l'esthétique des chips */
+  .select {
+    appearance: none;
+    -webkit-appearance: none;
+    padding: 6px 30px 6px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 175, 214, 0.16);
+    background-color: rgba(11, 26, 48, 0.6);
+    /* chevron dessiné en SVG inline (pas d'image externe) */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%2394afd6' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 11px center;
+    font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+    font-size: 12px;
+    color: var(--ink);
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    min-height: 34px;
+  }
+
+  .select:hover {
+    border-color: rgba(216, 178, 74, 0.4);
+  }
+
+  .select option {
+    background: #0b1a30;
+    color: var(--ink);
+  }
 }
 
 /* Accessibilité : focus visible sur éléments interactifs */
