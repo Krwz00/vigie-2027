@@ -67,12 +67,18 @@ export interface HypothesisResult {
   color: string;
 }
 
+/** Traçabilité d'une agrégation : quel institut, à quelles dates. */
+export interface Source {
+  institute: string;
+  dates: string; // dates de terrain lisibles, séparées par des virgules
+}
+
 export interface Hypothesis {
-  id: string; // id_hypothese du dépôt (H41…) — jamais affiché brut
+  id: string; // clé de configuration (liste triée des candidats) — jamais affichée brute
   label: string; // libellé lisible dérivé
-  note: string;
   n: number; // nombre de vagues testant cette hypothèse
   results: HypothesisResult[];
+  sources: Source[]; // instituts + dates ayant testé cette hypothèse
 }
 
 export interface DuelSide {
@@ -84,13 +90,8 @@ export interface DuelSide {
 export interface Duel {
   a: DuelSide; // camp RN (Le Pen / Bardella)
   b: DuelSide; // adversaire
-}
-
-export interface Kpi {
-  label: string;
-  value: string;
-  sub: string;
-  accent?: boolean;
+  n: number; // nombre de vagues agrégées
+  sources: Source[]; // instituts + dates ayant testé ce duel
 }
 
 /** Charge complète servie à l'UI. */
@@ -103,13 +104,15 @@ export interface VigieData {
   latestPollDate: string | null; // fin d'enquête la plus récente
   lastPollInstitute: string | null; // « Dernier sondage : <institut> »
   lastPollDates: string | null; // « … <dates> »
-  principalLabel: string; // hypothèse principale affichée sur la courbe
-  milestones: string[]; // échéances de l'axe X
-  aggregates: Aggregate[];
+  principalLabel: string; // libellé de la vue baromètre (« vue de dynamique »)
+  milestones: string[]; // libellés de l'axe X
+  milestoneDates: string[]; // dates ISO des ancres (parallèle à `milestones`)
+  aggregates: Aggregate[]; // TOUS les candidats, moyenne toutes hypothèses
+  barometerPolls: Poll[]; // toutes les vagues 1er tour (filtre institut du baromètre)
+  institutes: string[]; // instituts présents dans les données 1er tour
   polls: Poll[];
   hypotheses: Hypothesis[];
   duels: Duel[];
-  kpis: Kpi[];
   wavesCount: number; // nb de vagues (sondages) agrégées
   unmapped: string[]; // candidate_id du dépôt non rattachés
 }

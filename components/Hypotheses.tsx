@@ -10,43 +10,55 @@ function candidateFor(name: string) {
   return id ? CANDIDATES[id] : null;
 }
 
-/** Hypothèses de 1er tour : sélecteur de configurations + barres horizontales. */
+/** Hypothèses de 1er tour : dropdown de TOUTES les configs réellement sondées,
+ *  barres agrégées dans la config + instituts/dates l'ayant testée. */
 export default function Hypotheses({ hypotheses }: { hypotheses: Hypothesis[] }) {
   const [active, setActive] = useState(0);
   const h = hypotheses[active];
+  if (!h) return null;
   const max = Math.max(...h.results.map((r) => r.value), 1);
 
   return (
     <section id="hypotheses" className="panel p-5">
-      <div className="mb-1 flex items-center justify-between gap-3">
+      <div className="mb-3 flex items-center justify-between gap-3">
         <h2 className="display text-lg font-bold text-ink">Hypothèses de 1er tour</h2>
         <span className="eyebrow">{hypotheses.length} configurations</span>
       </div>
 
-      {/* Sélecteur de configurations */}
-      <div
-        className="mb-4 flex flex-wrap gap-1.5"
-        role="tablist"
-        aria-label="Configurations testées"
+      {/* Sélecteur — toutes les configurations testées, générées depuis les données */}
+      <label htmlFor="hyp-select" className="eyebrow mb-1.5 block">
+        Configuration testée
+      </label>
+      <select
+        id="hyp-select"
+        className="select tap mb-4 w-full"
+        value={active}
+        onChange={(e) => setActive(Number(e.target.value))}
       >
         {hypotheses.map((hyp, i) => (
-          <button
-            key={hyp.id}
-            type="button"
-            role="tab"
-            aria-selected={i === active}
-            className="chip tap"
-            data-active={i === active}
-            onClick={() => setActive(i)}
-          >
-            {hyp.label}
-            <span className="mono text-ink-faint">n={hyp.n}</span>
-          </button>
+          <option key={hyp.id} value={i}>
+            {hyp.label} · {hyp.n} vague{hyp.n > 1 ? "s" : ""}
+          </option>
         ))}
+      </select>
+
+      {/* Qui a posé la question : instituts + dates ayant testé cette hypothèse */}
+      <div className="mb-3 rounded-xl border border-white/5 bg-white/[0.02] p-3">
+        <div className="eyebrow mb-2">Testée par</div>
+        <ul className="space-y-1">
+          {h.sources.map((s) => (
+            <li key={s.institute} className="flex gap-2 text-[12px]">
+              <span className="mono w-24 shrink-0 font-semibold text-ink">
+                {s.institute}
+              </span>
+              <span className="text-ink-soft">{s.dates}</span>
+            </li>
+          ))}
+        </ul>
       </div>
 
-      {/* De qui est candidat ? — trombinoscope de la configuration sélectionnée */}
-      <div className="mb-3 rounded-xl border border-white/5 bg-white/[0.02] p-3">
+      {/* Trombinoscope des candidats testés dans ce scénario */}
+      <div className="mb-4 rounded-xl border border-white/5 bg-white/[0.02] p-3">
         <div className="eyebrow mb-2">Candidats testés dans ce scénario</div>
         <div className="flex flex-wrap gap-2">
           {h.results.map((r) => {
@@ -68,9 +80,7 @@ export default function Hypotheses({ hypotheses }: { hypotheses: Hypothesis[] })
         </div>
       </div>
 
-      <p className="mb-4 text-[13px] leading-relaxed text-ink-soft">{h.note}</p>
-
-      {/* Barres horizontales par candidat (avec tête) */}
+      {/* Barres horizontales par candidat (agrégées DANS la config) */}
       <div className="space-y-2">
         {h.results.map((r) => {
           const c = candidateFor(r.name);

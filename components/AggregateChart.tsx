@@ -1,8 +1,9 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
-import type { Aggregate, CandidateId } from "@/lib/types";
+import type { Aggregate, CandidateId, Poll } from "@/lib/types";
 import { CANDIDATES } from "@/lib/candidates";
+import { buildRawInstituteSeries } from "@/lib/aggregate";
 import {
   CHART_MOBILE,
   CHART_WEB,
@@ -15,9 +16,14 @@ import {
   type Pt,
 } from "@/lib/chart";
 
+const ALL = "all"; // valeur du sélecteur « Tous les instituts »
+
 interface Props {
   aggregates: Aggregate[];
   milestones: string[];
+  milestoneDates: string[];
+  barometerPolls: Poll[];
+  institutes: string[];
   mobile?: boolean;
 }
 
@@ -32,9 +38,17 @@ interface Line {
   current: number;
 }
 
-export default function AggregateChart({ aggregates, milestones, mobile }: Props) {
+export default function AggregateChart({
+  aggregates,
+  milestones,
+  milestoneDates,
+  barometerPolls,
+  institutes,
+  mobile,
+}: Props) {
   const g = mobile ? CHART_MOBILE : CHART_WEB;
   const [isolated, setIsolated] = useState<CandidateId | null>(null);
+  const [institute, setInstitute] = useState<string>(ALL);
   const [hover, setHover] = useState<number | null>(null);
   const [failedPhotos, setFailedPhotos] = useState<Set<string>>(new Set());
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -42,8 +56,20 @@ export default function AggregateChart({ aggregates, milestones, mobile }: Props
   const n = milestones.length;
   const baselineY = g.height - g.padB;
 
+  // Mode « institut unique » : série BRUTE de l'institut (pas de pondération),
+  // calculée côté client à l'intérieur de la MÊME config. Sinon : agrégat
+  // pondéré inter-instituts fourni par le serveur (comportement inchangé).
+  const instituteMode = institute !== ALL;
+  const activeAggregates = useMemo(
+    () =>
+      instituteMode
+        ? buildRawInstituteSeries(barometerPolls, institute, milestoneDates, milestones)
+        : aggregates,
+    [instituteMode, barometerPolls, institute, milestoneDates, milestones, aggregates],
+  );
+
   const lines: Line[] = useMemo(() => {
-    return aggregates
+    return activeAggregates
       .map((agg) => {
         const range = definedRange(agg.series.map((p) => p.value));
         if (!range) return null;
@@ -65,7 +91,7 @@ export default function AggregateChart({ aggregates, milestones, mobile }: Props
         } as Line;
       })
       .filter((l): l is Line => l !== null);
-  }, [aggregates, g, n]);
+  }, [activeAggregates, g, n]);
 
   // Classement courant : leader + duo de tête (rendus plus visibles).
   const rankedIds = useMemo(
@@ -74,7 +100,13 @@ export default function AggregateChart({ aggregates, milestones, mobile }: Props
   );
   const leader = lines.find((l) => l.id === rankedIds[0]);
   const topTwo = new Set(rankedIds.slice(0, 2));
-  const areaLine = isolated ? lines.find((l) => l.id === isolated) : leader;
+  // Pas d'aire dégradée en mode institut (série brute : ne pas suggérer un
+  // volume lissé sur peu de mesures).
+  const areaLine = instituteMode
+    ? null
+    : isolated
+      ? lines.find((l) => l.id === isolated)
+      : leader;
 
   // Anti-collision des pastilles de fin de courbe.
   const pinY = useMemo(() => {
@@ -106,7 +138,7 @@ export default function AggregateChart({ aggregates, milestones, mobile }: Props
   // Tooltip : liste triée décroissante des candidats à l'échéance survolée.
   const tooltipRows =
     hover != null
-      ? aggregates
+      ? activeAggregates
           .map((a) => ({
             id: a.candidate,
             value: a.series[hover]?.value ?? null,
@@ -120,6 +152,48 @@ export default function AggregateChart({ aggregates, milestones, mobile }: Props
 
   return (
     <div className="w-full">
+      {/* Filtre par institut : « Tous » = moyenne pondérée inter-instituts ;
+          un institut = ses vagues brutes, à l'intérieur de la même hypothèse. */}
+      <div className="mb-3 flex flex-wrap items-center gap-2">
+        <label htmlFor="inst-filter" className="eyebrow">
+          Institut
+        </label>
+        <select
+          id="inst-filter"
+          className="select tap"
+          value={institute}
+          onChange={(e) => {
+            setInstitute(e.target.value);
+            setHover(null);
+            setIsolated(null);
+          }}
+        >
+          <option value={ALL}>Tous les instituts</option>
+          {institutes.map((i) => (
+            <option key={i} value={i}>
+              {i}
+            </option>
+          ))}
+        </select>
+        <span className="mono text-[11px] text-ink-faint">
+          {instituteMode
+            ? "vagues brutes de l’institut (non lissées)"
+            : "moyenne mobile pondérée 40/30/20/10"}
+        </span>
+      </div>
+
+      {/* LABEL OBLIGATOIRE « vue de dynamique » — condition de crédibilité :
+          les courbes ne s'additionnent pas (chaque candidat à sa moyenne toutes
+          hypothèses confondues), ce n'est pas un 1er tour simulé. */}
+      <p
+        className="mb-3 rounded-xl border px-3 py-2 text-[12px] leading-snug text-ink-soft"
+        style={{ borderColor: "rgba(216,178,74,.35)", background: "rgba(216,178,74,.06)" }}
+      >
+        <span className="mono font-semibold text-gold">Vue de dynamique.</span>{" "}
+        Chaque candidat est affiché à sa moyenne toutes hypothèses confondues. Les
+        courbes ne s’additionnent pas et ne constituent pas un premier tour simulé.
+      </p>
+
       {/* Légende — chips cliquables pour isoler un candidat */}
       <div className="mb-3 flex flex-wrap gap-1.5" role="group" aria-label="Filtrer les candidats">
         {lines.map((l) => {
@@ -239,11 +313,35 @@ export default function AggregateChart({ aggregates, milestones, mobile }: Props
             <path d={areaPath(areaLine.points, baselineY)} fill="url(#area-grad)" />
           )}
 
-          {/* Courbes — le duo de tête est tracé plus épais */}
+          {/* Courbes.
+              — Mode « tous instituts » : spline lissée, duo de tête plus épais.
+              — Mode « institut unique » : segments droits entre vagues réelles
+                (jamais de lissage trompeur) ; 1 seule vague ⇒ aucun trait, juste
+                les points (rendus plus bas). Sous 3 vagues, on ne relie RIEN :
+                points isolés, jamais un tracé qui suggère une tendance. */}
           {lines.map((l) => {
             const dimmed = isolated != null && isolated !== l.id;
             const highlighted = isolated === l.id;
             const lead = topTwo.has(l.id) && isolated == null;
+            if (instituteMode) {
+              if (l.points.length < 3) return null;
+              const d = l.points
+                .map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`)
+                .join(" ");
+              return (
+                <path
+                  key={l.id}
+                  d={d}
+                  fill="none"
+                  stroke={l.color}
+                  strokeWidth={highlighted ? 2.6 : 1.8}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeDasharray="5 4"
+                  opacity={dimmed ? 0.09 : 0.85}
+                />
+              );
+            }
             return (
               <path
                 key={l.id}
@@ -258,6 +356,28 @@ export default function AggregateChart({ aggregates, milestones, mobile }: Props
               />
             );
           })}
+
+          {/* Mode institut : marqueurs sur CHAQUE vague réelle (points isolés
+              lisibles même à 1-2 mesures). */}
+          {instituteMode &&
+            lines.map((l) => {
+              const dimmed = isolated != null && isolated !== l.id;
+              return (
+                <g key={`mk-${l.id}`} opacity={dimmed ? 0.12 : 1}>
+                  {l.points.map((p, i) => (
+                    <circle
+                      key={i}
+                      cx={p.x}
+                      cy={p.y}
+                      r={3.6}
+                      fill="#061426"
+                      stroke={l.color}
+                      strokeWidth={2}
+                    />
+                  ))}
+                </g>
+              );
+            })}
 
           {/* Crosshair + points de survol */}
           {hover != null && (

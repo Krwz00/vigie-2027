@@ -1,10 +1,9 @@
 import type {
-  Aggregate,
   CandidateId,
   Duel,
   Hypothesis,
-  Kpi,
   Poll,
+  Source,
   VigieData,
 } from "./types";
 import { CANDIDATES } from "./candidates";
@@ -12,6 +11,7 @@ import {
   aggregateSnapshot,
   buildAggregatesFromPolls,
   distinctDates,
+  duelAggregate,
 } from "./aggregate";
 import {
   deriveHypothesisLabel,
@@ -20,8 +20,6 @@ import {
   type WikiPoll,
 } from "./wikipedia";
 
-const RECENT_WINDOW_DAYS = 120; // « testée récemment » = 4 derniers mois
-const SELECTOR_MAX = 6; // hypothèses proposées dans le sélecteur
 const RN: CandidateId[] = ["lepen", "bardella"];
 
 function frDate(iso: string): string {
@@ -39,97 +37,92 @@ function candidatesOf(polls: WikiPoll[]): CandidateId[] {
   return [...set];
 }
 
-/** Choisit l'hypothèse 1er tour la plus fréquemment testée récemment. */
-function pickPrincipal(first: WikiPoll[], latestDate: string): string {
-  const cutoff = new Date(
-    new Date(latestDate + "T00:00:00Z").getTime() - RECENT_WINDOW_DAYS * 86400000,
-  )
-    .toISOString()
-    .slice(0, 10);
-
-  const stats = new Map<string, { recent: number; total: number; last: string }>();
-  for (const p of first) {
-    const s = stats.get(p.hypothesisId) ?? { recent: 0, total: 0, last: "" };
-    s.total++;
-    if (p.fieldEnd >= cutoff) s.recent++;
-    if (p.fieldEnd > s.last) s.last = p.fieldEnd;
-    stats.set(p.hypothesisId, s);
+/**
+ * Traçabilité d'une agrégation : pour un lot de sondages, qui (institut) a testé
+ * et à quelles dates. Instituts ordonnés du terrain le plus récent au plus ancien ;
+ * dates idem. Toute agrégation de l'app expose ces sources.
+ */
+function sourcesOf(polls: WikiPoll[]): Source[] {
+  const byInst = new Map<string, Set<string>>();
+  for (const p of polls) {
+    const s = byInst.get(p.institute) ?? new Set<string>();
+    s.add(p.fieldEnd);
+    byInst.set(p.institute, s);
   }
-  const ranked = [...stats.entries()].sort((a, b) => {
-    if (b[1].recent !== a[1].recent) return b[1].recent - a[1].recent;
-    if (b[1].last !== a[1].last) return b[1].last > a[1].last ? 1 : -1;
-    return a[0] < b[0] ? -1 : 1;
-  });
-  return ranked[0]?.[0] ?? "";
+  return [...byInst.entries()]
+    .map(([institute, ds]) => {
+      const sorted = [...ds].sort((a, b) => (a < b ? 1 : -1)); // récent → ancien
+      return { institute, dates: sorted.map(frDate).join(", "), last: sorted[0] };
+    })
+    .sort((a, b) => (a.last < b.last ? 1 : -1))
+    .map(({ institute, dates }) => ({ institute, dates }));
 }
 
-/** Hypothèses 1er tour ordonnées (principal en tête, puis par nb de vagues). */
-function orderedHypotheses(first: WikiPoll[], principalId: string): string[] {
-  const counts = new Map<string, number>();
-  for (const p of first) counts.set(p.hypothesisId, (counts.get(p.hypothesisId) ?? 0) + 1);
-  const ordered = [...counts.entries()]
-    .sort((a, b) => b[1] - a[1])
-    .map(([id]) => id);
-  return [principalId, ...ordered.filter((id) => id !== principalId)];
-}
-
-function buildSelector(first: WikiPoll[], ids: string[]): Hypothesis[] {
+/**
+ * TOUTES les hypothèses de 1er tour réellement sondées (une par configuration
+ * distincte), libellé lisible, barres agrégées À L'INTÉRIEUR de la config (aucun
+ * score emprunté à une autre hypothèse) et instituts/dates sources. Triées de la
+ * plus testée à la moins testée.
+ */
+function buildAllHypotheses(first: WikiPoll[]): Hypothesis[] {
+  const byId = new Map<string, WikiPoll[]>();
+  for (const p of first) {
+    const a = byId.get(p.hypothesisId) ?? [];
+    a.push(p);
+    byId.set(p.hypothesisId, a);
+  }
   const out: Hypothesis[] = [];
-  const seenLabels = new Set<string>();
-
-  for (const id of ids) {
-    if (out.length >= SELECTOR_MAX) break;
-    const polls = first.filter((p) => p.hypothesisId === id);
-    if (!polls.length) continue;
-    const label = deriveHypothesisLabel(candidatesOf(polls), 1);
-    // Dédup : deux hypothèses au même libellé de blocs = même config pour l'UI ;
-    // on garde la plus testée (déjà en tête via l'ordre d'entrée).
-    if (seenLabels.has(label)) continue;
+  for (const [id, polls] of byId) {
     const latest = distinctDates(polls).slice(-1)[0];
     const snap = aggregateSnapshot(polls, latest);
     if (!snap.length) continue;
-    seenLabels.add(label);
-    const note = `Configuration testée ${polls.length} fois — dernier terrain ${frDate(latest)}.`;
     out.push({
       id,
-      label,
-      note,
+      label: deriveHypothesisLabel(candidatesOf(polls), 1),
       n: polls.length,
       results: snap.map((s) => ({
         name: CANDIDATES[s.candidate].last,
         value: s.value,
         color: CANDIDATES[s.candidate].color,
       })),
+      sources: sourcesOf(polls),
     });
   }
-  return out;
+  return out.sort((a, b) => b.n - a.n);
 }
 
-function buildDuels(second: WikiPoll[]): Duel[] {
-  // Regroupe par hypothèse de 2nd tour, prend le sondage le plus récent.
-  const byHyp = new Map<string, WikiPoll>();
+/**
+ * TOUS les duels de 2nd tour, agrégés (moyenne pondérée par institut sur toutes
+ * les vagues du duel) et tracés jusqu'à leurs instituts/dates sources. Camp RN à
+ * gauche, puis tri par score RN décroissant.
+ */
+function buildAllDuels(second: WikiPoll[]): Duel[] {
+  const byId = new Map<string, WikiPoll[]>();
   for (const p of second) {
-    const cur = byHyp.get(p.hypothesisId);
-    if (!cur || p.fieldEnd > cur.fieldEnd) byHyp.set(p.hypothesisId, p);
+    const a = byId.get(p.hypothesisId) ?? [];
+    a.push(p);
+    byId.set(p.hypothesisId, a);
   }
   const duels: Duel[] = [];
-  for (const p of byHyp.values()) {
-    const entries = (Object.entries(p.scores) as [CandidateId, number][])
-      .filter(([, v]) => typeof v === "number")
-      .sort((a, b) => b[1] - a[1]);
-    if (entries.length < 2) continue;
-    const rnEntry = entries.find(([id]) => RN.includes(id));
-    const a = rnEntry ?? entries[0];
-    const b = entries.find(([id]) => id !== a[0]) ?? entries[1];
+  for (const [, polls] of byId) {
+    const ids = [
+      ...new Set(polls.flatMap((p) => Object.keys(p.scores) as CandidateId[])),
+    ];
+    if (ids.length < 2) continue;
+    const rn = ids.find((id) => RN.includes(id));
+    const idA = rn ?? ids[0];
+    const idB = ids.find((id) => id !== idA) ?? ids[1];
+    const va = duelAggregate(polls, idA);
+    const vb = duelAggregate(polls, idB);
+    if (va == null || vb == null) continue;
     duels.push({
-      a: { name: CANDIDATES[a[0]].last, value: a[1], color: CANDIDATES[a[0]].color },
-      b: { name: CANDIDATES[b[0]].last, value: b[1], color: CANDIDATES[b[0]].color },
+      a: { name: CANDIDATES[idA].last, value: va, color: CANDIDATES[idA].color },
+      b: { name: CANDIDATES[idB].last, value: vb, color: CANDIDATES[idB].color },
+      n: polls.length,
+      sources: sourcesOf(polls),
     });
   }
-  // Duels impliquant le RN d'abord, puis par écart décroissant.
-  return duels
-    .sort((x, y) => y.a.value - x.a.value)
-    .slice(0, 8);
+  return duels.sort((x, y) => y.a.value - x.a.value);
 }
 
 /** Fil des sondages : une carte par enquête (dédupliquée des variantes d'hypothèse). */
@@ -161,43 +154,6 @@ function buildFeed(first: WikiPoll[]): Poll[] {
   }));
 }
 
-function buildKpis(
-  aggregates: Aggregate[],
-  waves: number,
-  duels: Duel[],
-): Kpi[] {
-  const ranked = [...aggregates].sort((a, b) => b.current - a.current);
-  const leader = ranked[0];
-  const second = ranked[1];
-  const gap = leader && second ? leader.current - second.current : 0;
-  const rnWins = duels.filter((d) => d.a.value > d.b.value);
-  const rnCeiling = rnWins.length ? Math.max(...rnWins.map((d) => d.a.value)) : 0;
-
-  return [
-    {
-      label: "Leader 1er tour",
-      value: leader ? CANDIDATES[leader.candidate].last : "—",
-      sub: leader ? `${leader.current.toFixed(1)} % · agrégé` : "—",
-      accent: true,
-    },
-    {
-      label: "Écart leader / 2e",
-      value: `+${gap.toFixed(1)} pt`,
-      sub: second ? `devant ${CANDIDATES[second.candidate].last}` : "—",
-    },
-    {
-      label: "Vagues agrégées",
-      value: String(waves),
-      sub: "sur 4 semaines glissantes",
-    },
-    {
-      label: "Plafond RN · 2nd tour",
-      value: rnCeiling ? `${rnCeiling.toFixed(1)} %` : "—",
-      sub: "meilleure hypothèse de duel",
-    },
-  ];
-}
-
 function unavailable(reason: string): VigieData {
   return {
     status: "unavailable",
@@ -210,11 +166,13 @@ function unavailable(reason: string): VigieData {
     lastPollDates: null,
     principalLabel: reason,
     milestones: [],
+    milestoneDates: [],
     aggregates: [],
+    barometerPolls: [],
+    institutes: [],
     polls: [],
     hypotheses: [],
     duels: [],
-    kpis: [],
     wavesCount: 0,
     unmapped: [],
   };
@@ -230,19 +188,41 @@ export async function getVigieData(): Promise<VigieData> {
     return unavailable("Données momentanément indisponibles");
   }
 
-  // 1er tour — hypothèse principale (la plus testée récemment).
-  const principalId = pickPrincipal(wp.first, wp.latestDate);
-  const principalPolls = wp.first.filter((p) => p.hypothesisId === principalId);
-
-  const dates = distinctDates(principalPolls);
+  // Baromètre « vue de dynamique » : TOUS les candidats sondés, chacun à sa
+  // moyenne toutes hypothèses confondues (moyenne mobile pondérée 40/30/20/10
+  // dans le temps, moyennée à travers les configs de chaque vague), échantillonnée
+  // sur la timeline globale des terrains de 1er tour. Un candidat non testé sur
+  // une période reste null (pointillé/absence) — jamais un score emprunté.
+  const dates = distinctDates(wp.first);
   const labels = dates.map(frDate);
-  const aggregates = buildAggregatesFromPolls(principalPolls, dates, labels);
-  const principalLabel = deriveHypothesisLabel(candidatesOf(principalPolls), 1);
+  const aggregates = buildAggregatesFromPolls(wp.first, dates, labels);
 
-  // Sélecteur d'hypothèses (dédupliqué par libellé) + duels de 2nd tour.
-  const selectorIds = orderedHypotheses(wp.first, principalId);
-  const hypotheses = buildSelector(wp.first, selectorIds);
-  const duels = buildDuels(wp.second);
+  // Vagues brutes 1er tour (filtre par institut du baromètre, calculé côté
+  // client) + instituts réellement présents, ordonnés par nombre de vagues puis
+  // récence. Le filtre institut reste borné à la moyenne de cet institut.
+  const barometerPolls: Poll[] = wp.first.map((p) => ({
+    institute: p.institute,
+    sponsor: p.sponsor,
+    publishedAt: p.publishedAt,
+    fieldStart: p.fieldStart,
+    fieldEnd: p.fieldEnd,
+    sampleSize: p.sampleSize,
+    hypothesis: p.hypothesis,
+    scores: p.scores,
+  }));
+  const instStats = new Map<string, { n: number; last: string }>();
+  for (const p of wp.first) {
+    const s = instStats.get(p.institute) ?? { n: 0, last: "" };
+    s.n++;
+    if (p.fieldEnd > s.last) s.last = p.fieldEnd;
+    instStats.set(p.institute, s);
+  }
+  const institutes = [...instStats.entries()]
+    .sort((a, b) => (b[1].n !== a[1].n ? b[1].n - a[1].n : b[1].last > a[1].last ? 1 : -1))
+    .map(([name]) => name);
+
+  const hypotheses = buildAllHypotheses(wp.first);
+  const duels = buildAllDuels(wp.second);
 
   return {
     status: "available",
@@ -253,13 +233,15 @@ export async function getVigieData(): Promise<VigieData> {
     latestPollDate: wp.latestDate,
     lastPollInstitute: wp.lastPoll?.institute ?? null,
     lastPollDates: wp.lastPoll?.dates ?? null,
-    principalLabel,
+    principalLabel: "tous candidats · toutes hypothèses",
     milestones: labels,
+    milestoneDates: dates,
     aggregates,
+    barometerPolls,
+    institutes,
     polls: buildFeed(wp.first),
     hypotheses,
     duels,
-    kpis: buildKpis(aggregates, wp.count, duels),
     wavesCount: wp.count,
     unmapped: wp.unmapped,
   };
