@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gold: #d8b24a;
+  --gold-hover: #ecd08a;
+  --ink: #eaf1fb;
+  --ink-soft: #a2b4cd;
+  --ink-label: #8ba0bd;
+  --ink-faint: #5f748f;
+  --panel-border: rgba(216, 178, 74, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  color: var(--ink);
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  background-color: #050f1e;
+  /* Halo bleu haut-droite · halo or haut-gauche · dégradé de fond · grille HUD 46px masquée en radial */
+  background-image:
+    radial-gradient(120% 90% at 100% 0%, rgba(41, 82, 146, 0.34), transparent 60%),
+    radial-gradient(90% 70% at 0% 0%, rgba(216, 178, 74, 0.07), transparent 55%),
+    linear-gradient(180deg, #050f1e 0%, #061426 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Grille HUD 46px, masquée en radial pour ne rester visible qu'au centre-haut */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(148, 175, 214, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 175, 214, 0.05) 1px, transparent 1px);
+  background-size: 46px 46px;
+  -webkit-mask-image: radial-gradient(100% 60% at 50% 0%, #000 0%, transparent 75%);
+  mask-image: radial-gradient(100% 60% at 50% 0%, #000 0%, transparent 75%);
+}
+
+/* Le contenu passe au-dessus de la grille */
+#app-root {
+  position: relative;
+  z-index: 1;
+}
+
+@layer components {
+  .panel {
+    background: linear-gradient(180deg, rgba(17, 37, 66, 0.85), rgba(9, 21, 40, 0.9));
+    border: 1px solid var(--panel-border);
+    border-radius: 18px;
+  }
+
+  .display {
+    font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  }
+
+  .mono {
+    font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Section-label : petit intitulé espacé au-dessus des blocs */
+  .eyebrow {
+    font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 175, 214, 0.16);
+    background: rgba(11, 26, 48, 0.6);
+    font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s, background 0.15s, opacity 0.15s;
+    min-height: 34px;
+  }
+
+  .chip:hover {
+    border-color: rgba(216, 178, 74, 0.4);
+    color: var(--ink);
+  }
+
+  .chip[data-active="true"] {
+    border-color: rgba(216, 178, 74, 0.55);
+    background: rgba(216, 178, 74, 0.08);
+    color: var(--ink);
+  }
+}
+
+/* Accessibilité : focus visible sur éléments interactifs */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Zones de tap tactiles ≥ 44px sur pointeurs grossiers */
+@media (pointer: coarse) {
+  .tap {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+::selection {
+  background: rgba(216, 178, 74, 0.28);
+  color: #fff;
+}
+
+/* Scrollbar sobre pour le fil des sondages */
+.scroll-slim::-webkit-scrollbar {
+  width: 8px;
+}
+.scroll-slim::-webkit-scrollbar-thumb {
+  background: rgba(148, 175, 214, 0.18);
+  border-radius: 999px;
+}
+.scroll-slim::-webkit-scrollbar-track {
+  background: transparent;
+}
