@@ -22,7 +22,9 @@ export default function Dashboard({ data }: { data: VigieData }) {
     <main className="mx-auto max-w-[1320px] px-4 tab:px-6">
       <Hero
         principalLabel={data.principalLabel}
-        latestPollDate={data.latestPollDate}
+        lastPollInstitute={data.lastPollInstitute}
+        lastPollDates={data.lastPollDates}
+        updatedAt={data.updatedAt}
         available={available}
       />
 
@@ -30,13 +32,23 @@ export default function Dashboard({ data }: { data: VigieData }) {
         <div className="panel my-10 p-8 text-center">
           <div className="eyebrow mb-3">Données indisponibles</div>
           <p className="text-ink-soft">
-            La source réelle (MieuxVoter · presidentielle2027) est momentanément
-            injoignable. Aucun chiffre n&apos;est affiché pour ne pas induire en
-            erreur — réessayez dans un instant.
+            La source (Wikipédia) est momentanément injoignable. Aucun chiffre
+            n&apos;est affiché pour ne pas induire en erreur — réessayez dans un
+            instant.
           </p>
         </div>
       ) : (
         <div className="mt-6 space-y-8 pb-10">
+          {data.partial && (
+            <div
+              className="mono rounded-xl border px-4 py-2.5 text-[12px]"
+              style={{ borderColor: "rgba(216,178,74,.4)", background: "rgba(216,178,74,.06)", color: "#ecd08a" }}
+            >
+              ⚠ Données partielles : une partie du tableau Wikipédia n&apos;a pas pu
+              être lue à ce cycle. Les chiffres affichés restent réels mais
+              incomplets.
+            </div>
+          )}
           <KpiBar kpis={data.kpis} />
 
           {/* Baromètre : courbe (principale) + fil des sondages (colonne droite en web) */}

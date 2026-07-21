@@ -96,10 +96,13 @@ export interface Kpi {
 /** Charge complète servie à l'UI. */
 export interface VigieData {
   status: "available" | "unavailable"; // pas de fausse donnée si la source échoue
-  updatedAt: string; // ISO de la dernière agrégation
-  source: "mieuxvoter"; // source réelle unique en prod
+  partial: boolean; // trop de lignes non parsées → données partielles
+  updatedAt: string; // ISO de la dernière agrégation (= « données à jour au »)
+  source: "wikipedia"; // source réelle unique en prod
   sourceUrl: string;
-  latestPollDate: string | null; // fin d'enquête la plus récente du dépôt
+  latestPollDate: string | null; // fin d'enquête la plus récente
+  lastPollInstitute: string | null; // « Dernier sondage : <institut> »
+  lastPollDates: string | null; // « … <dates> »
   principalLabel: string; // hypothèse principale affichée sur la courbe
   milestones: string[]; // échéances de l'axe X
   aggregates: Aggregate[];

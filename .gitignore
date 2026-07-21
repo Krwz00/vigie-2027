@@ -11,3 +11,6 @@ next-env.d.ts
 
 # État runtime des alertes (généré)
 /data
+
+# TS incremental build info
+*.tsbuildinfo

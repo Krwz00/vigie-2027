@@ -42,15 +42,10 @@ export default function Header({ updatedAt }: { updatedAt: string }) {
 
         <div className="flex items-center gap-2">
           <HeaderAlert />
-          <div
-            className="chip mono !cursor-default"
-            style={{ borderColor: "rgba(229,72,77,.4)" }}
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-tri-red opacity-70" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-tri-red" />
-            </span>
-            <span className="text-ink">LIVE</span>
+          {/* Pas de faux « LIVE » : on affiche la fraîcheur réelle des données. */}
+          <div className="chip mono !cursor-default" title="Dernière agrégation des données">
+            <span className="inline-flex h-1.5 w-1.5 rounded-full bg-gold" />
+            <span className="text-ink-soft">à jour</span>
             <span className="text-ink-faint">· {formatLive(updatedAt)}</span>
           </div>
         </div>

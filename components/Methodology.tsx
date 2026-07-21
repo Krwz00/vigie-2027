@@ -7,7 +7,7 @@ export default function Methodology() {
     },
     {
       title: "Instituts & source",
-      body: "Ifop, Ipsos, Elabe, OpinionWay, Odoxa, Cluster17, Harris Interactive… Données consommées en direct depuis le dépôt ouvert MieuxVoter/presidentielle2027 (licence MIT, validé par intégration continue à chaque sondage). Le fil d'actualité est alimenté par les flux RSS des médias commanditaires.",
+      body: "Ifop, Ipsos, Elabe, OpinionWay, Odoxa, Harris Interactive, Verian… Données extraites de Wikipédia (« Liste de sondages sur l'élection présidentielle française de 2027 » et « Élection présidentielle française de 2027 »), sous licence CC BY-SA 4.0. Le fil d'actualité est alimenté par les flux RSS des médias commanditaires.",
     },
     {
       title: "Avertissement",

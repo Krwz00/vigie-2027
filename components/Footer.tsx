@@ -25,6 +25,36 @@ export default function Footer() {
             contact@lemillenaire.org
           </a>
           <div className="mt-2">Un sondage n&apos;est pas une prévision.</div>
+          <div className="mt-3 max-w-md text-[10px] leading-relaxed text-ink-faint tab:ml-auto">
+            Source des sondages :{" "}
+            <a
+              href="https://fr.wikipedia.org/wiki/Liste_de_sondages_sur_l%27%C3%A9lection_pr%C3%A9sidentielle_fran%C3%A7aise_de_2027"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-ink-soft"
+            >
+              Wikipédia — « Liste de sondages sur l&apos;élection présidentielle française de 2027 »
+            </a>{" "}
+            /{" "}
+            <a
+              href="https://fr.wikipedia.org/wiki/%C3%89lection_pr%C3%A9sidentielle_fran%C3%A7aise_de_2027"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-ink-soft"
+            >
+              « Élection présidentielle française de 2027 »
+            </a>
+            , sous licence{" "}
+            <a
+              href="https://creativecommons.org/licenses/by-sa/4.0/deed.fr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-ink-soft"
+            >
+              CC BY-SA 4.0
+            </a>
+            .
+          </div>
         </div>
       </div>
     </footer>
