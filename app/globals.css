@@ -22,40 +22,83 @@ body {
   margin: 0;
 }
 
+/* Fond fourni par le wrapper du composant Vigie (canvas + aurora, comme la
+   maquette). Le body reste uni pour ne rien ajouter derrière. */
 body {
-  color: var(--ink);
+  color: #eaf1fb;
   font-family: var(--font-body), system-ui, sans-serif;
-  background-color: #050f1e;
-  /* Halo bleu haut-droite · halo or haut-gauche · dégradé de fond · grille HUD 46px masquée en radial */
-  background-image:
-    radial-gradient(120% 90% at 100% 0%, rgba(41, 82, 146, 0.34), transparent 60%),
-    radial-gradient(90% 70% at 0% 0%, rgba(216, 178, 74, 0.07), transparent 55%),
-    linear-gradient(180deg, #050f1e 0%, #061426 100%);
-  background-attachment: fixed;
+  background: #050f1e;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-/* Grille HUD 46px, masquée en radial pour ne rester visible qu'au centre-haut */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background-image:
-    linear-gradient(rgba(148, 175, 214, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 175, 214, 0.05) 1px, transparent 1px);
-  background-size: 46px 46px;
-  -webkit-mask-image: radial-gradient(100% 60% at 50% 0%, #000 0%, transparent 75%);
-  mask-image: radial-gradient(100% 60% at 50% 0%, #000 0%, transparent 75%);
-}
-
-/* Le contenu passe au-dessus de la grille */
 #app-root {
   position: relative;
-  z-index: 1;
+}
+
+/* ───────── Styles repris À L'IDENTIQUE de Vigie.html (maquette) ───────── */
+a {
+  color: #d8b24a;
+  text-decoration: none;
+}
+a:hover {
+  color: #ecd08a;
+}
+@keyframes vpulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(0.6);
+  }
+}
+@keyframes vrise {
+  from {
+    opacity: 0;
+    transform: translateY(9px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes vaurora {
+  0% {
+    transform: translate3d(-3%, -2%, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(5%, 3%, 0) scale(1.16);
+  }
+}
+.vscroll::-webkit-scrollbar {
+  width: 7px;
+}
+.vscroll::-webkit-scrollbar-thumb {
+  background: rgba(216, 178, 74, 0.28);
+  border-radius: 8px;
+}
+.vscroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.vcard {
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+.vcard:hover {
+  transform: translateY(-3px);
+  border-color: rgba(216, 178, 74, 0.4) !important;
+}
+.vchip {
+  transition: all 0.15s ease;
+}
+.vnav {
+  transition: color 0.15s ease;
+}
+.vnav:hover {
+  color: #ecd08a;
 }
 
 @layer components {
