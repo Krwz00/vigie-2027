@@ -15,10 +15,14 @@ export const WIKI_ARTICLE_URL =
 export const WIKI_MAIN_URL =
   "https://fr.wikipedia.org/wiki/%C3%89lection_pr%C3%A9sidentielle_fran%C3%A7aise_de_2027";
 
-// Sections 1er tour à parser (feu vert : 2026 complet).
+// Sections 1er tour à parser. L'axe temporel doit couvrir janvier 2025 → dernier
+// sondage : on lit donc aussi « === Année 2025 === » (une seule table, colonnes
+// génériques PS/ENS/LR/RN réassignées par cellule au vrai candidat via <small>).
+// On ne remonte PAS à 2024.
 const FIRST_SECTIONS = [
   { heading: "==== Second semestre 2026 ====", year: 2026 },
   { heading: "==== Premier semestre 2026 ====", year: 2026 },
+  { heading: "=== Année 2025 ===", year: 2025 },
 ];
 
 const UNPARSED_THRESHOLD = 0.25; // >25 % de lignes perdues → données partielles
@@ -114,6 +118,12 @@ function parseValueCell(raw: string): { value: number | null; reassign: string |
       if (bm) reassign = bm;
     }
   }
+  // Retire d'abord les attributs de cellule (colspan/rowspan/style/width…) sinon
+  // leurs chiffres (ex. colspan="2" dans les tables 2025) sont pris pour la valeur.
+  s = s.replace(
+    /\b(?:colspan|rowspan|style|width|align|scope|class|bgcolor)\s*=\s*("[^"]*"|'[^']*'|[^\s|]+)/gi,
+    " ",
+  );
   s = s.replace(/\{\{blanc\|([^}]*)\}\}/gi, "$1");
   s = s.replace(/\{\{Infobox[^}]*couleurs\|[^}]*\}\}/gi, " ");
   s = s.replace(/<ref[^>]*>[\s\S]*?<\/ref>/gi, "").replace(/<ref[^>]*\/>/gi, "");
@@ -198,9 +208,20 @@ function parseFirstSection(
       ctx.end = d?.end ?? "";
       // échantillon : privilégier {{formatnum:N}} pour éviter le "6" du rowspan
       const smpCell = (cells[2] || "").replace(/rowspan\s*=\s*"?\d+"?/g, " ");
-      const smpM = smpCell.match(/formatnum:\s*([\d  ]+)/) || smpCell.match(/(\d[\d  ]{2,})/);
+      const smpM = smpCell.match(/formatnum\s*[:|]\s*([\d  ]+)/) || smpCell.match(/(\d[\d  ]{2,})/);
       ctx.sample = smpM ? parseInt(smpM[1].replace(/\D/g, ""), 10) : 0;
       candStart = 3;
+    } else if (parseDates(cells[0] || "", year) && cells.length >= candCols.length) {
+      // Institut en rowspan au-dessus : cette ligne ouvre un NOUVEAU groupe
+      // date + échantillon (fréquent en 2025). On saute ces 2 cellules — sinon
+      // la date et l'échantillon sont pris pour des scores candidats.
+      const d = parseDates(cells[0], year);
+      ctx.start = d?.start ?? ctx.start;
+      ctx.end = d?.end ?? ctx.end;
+      const smpCell = (cells[1] || "").replace(/rowspan\s*=\s*"?\d+"?/g, " ");
+      const smpM = smpCell.match(/formatnum\s*[:|]\s*([\d  ]+)/) || smpCell.match(/(\d[\d  ]{2,})/);
+      if (smpM) ctx.sample = parseInt(smpM[1].replace(/\D/g, ""), 10);
+      candStart = 2;
     }
     const candCells = cells.slice(candStart);
     if (candCells.length < candCols.length - 2) continue; // pas une ligne de données
