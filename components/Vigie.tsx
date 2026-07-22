@@ -503,9 +503,10 @@ function makeChart(
   const accent = "#d8b24a";
   const mobile = device === "mobile";
   const n = dates.length;
-  // Graphe agrandi (pleine largeur, le feed est passé dessous) + photos de bout
-  // de courbe plus grandes.
-  const W = 980, H = mobile ? 480 : 600, padL = 34, R = mobile ? 17 : 26, padR = mobile ? 132 : 196, padT = 28, padB = 44;
+  // Graphe agrandi (pleine largeur, le feed est passé dessous). Pastilles de bout
+  // de courbe compactes pour que l'ensemble respire (anti-collision verticale plus
+  // bas). R plus petit ⇒ moins de padR ⇒ courbes plus larges.
+  const W = 980, H = mobile ? 480 : 600, padL = 34, R = mobile ? 12 : 16, padR = mobile ? 104 : 140, padT = 28, padB = 44;
   const plotW = W - padL - padR, plotH = H - padT - padB, ymax = 40;
   const x = (i: number) => padL + (i / (n - 1)) * plotW;
   const y = (v: number) => padT + (1 - v / ymax) * plotH;
@@ -541,7 +542,14 @@ function makeChart(
     h("text", { x: padL + 2, y: y(gv) - 5, fill: "#4f6486", fontSize: 10, fontFamily: "var(--font-body)" }, gv + "%")
   ));
 
-  const xlabels = dates.map((d, i) => h("text", { key: "x" + i, x: x(i), y: H - padB + 22, textAnchor: "middle", fill: hoverIdx === i ? accent : "#5f748f", fontSize: 10, fontFamily: "var(--font-body)", fontWeight: hoverIdx === i ? 600 : 400 }, d));
+  // Axe X allégé : avec l'historique depuis 2025 (~27 points) on n'affiche qu'un
+  // libellé sur k pour éviter le chevauchement (le survol garde le détail).
+  const labelEvery = Math.max(1, Math.ceil(n / 13));
+  const xlabels = dates.map((d, i) =>
+    i % labelEvery === 0 || i === n - 1 || hoverIdx === i
+      ? h("text", { key: "x" + i, x: x(i), y: H - padB + 22, textAnchor: "middle", fill: hoverIdx === i ? accent : "#5f748f", fontSize: 10, fontFamily: "var(--font-body)", fontWeight: hoverIdx === i ? 600 : 400 }, d)
+      : null,
+  );
 
   const areaCand = cands.find((c) => c.id === (active ?? "lepen")) ?? cands.find((c) => c.id === "lepen");
   const areas = areaCand ? (() => {
