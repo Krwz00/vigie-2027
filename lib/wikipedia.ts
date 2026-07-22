@@ -85,6 +85,25 @@ function cellLines(seg: string, marker: "|" | "!"): string[] {
   return out;
 }
 
+/**
+ * Développe les cellules fusionnées : `colspan="N"` → N cellules logiques (la
+ * valeur dans la 1re, des placeholders vides pour les suivantes). Appliqué à
+ * l'en-tête ET aux lignes de données d'une même table, l'alignement positionnel
+ * redevient fiable même quand la colonne « Ensemble » est tantôt fusionnée
+ * (colspan=2) tantôt éclatée en deux cellules (tables 2025). Les placeholders
+ * vides deviennent des trous (jamais un rattachement) : sûr par construction.
+ */
+function expandColspan(cells: string[]): string[] {
+  const out: string[] = [];
+  for (const c of cells) {
+    const m = c.match(/colspan\s*=\s*"?(\d+)"?/i);
+    const n = m ? Math.max(1, Math.min(20, parseInt(m[1], 10))) : 1;
+    out.push(c);
+    for (let k = 1; k < n; k++) out.push("");
+  }
+  return out;
+}
+
 function headerCandidate(cell: string): { short: string } | null {
   const m = cell.match(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/);
   if (!m) return null;
@@ -184,9 +203,19 @@ function parseFirstSection(
   const segs = rowSegments(table);
 
   let candCols: string[] | null = null;
+  let colspanTable = false; // table avec colonnes fusionnées (2025) → expansion
   for (const seg of segs.slice(0, 6)) {
-    const hs = cellLines(seg, "!").map(headerCandidate).filter(Boolean) as { short: string }[];
-    if (hs.length >= 6) { candCols = hs.map((h) => h.short); break; }
+    const rawHeader = cellLines(seg, "!");
+    const hs = rawHeader.map(headerCandidate).filter(Boolean) as { short: string }[];
+    if (hs.length >= 6) {
+      if (rawHeader.some((c) => /colspan\s*=/i.test(c))) {
+        colspanTable = true;
+        candCols = expandColspan(rawHeader).map((c) => headerCandidate(c)?.short ?? "");
+      } else {
+        candCols = hs.map((h) => h.short); // chemin historique 2026 (inchangé)
+      }
+      break;
+    }
   }
   if (!candCols) return [];
 
@@ -223,17 +252,26 @@ function parseFirstSection(
       if (smpM) ctx.sample = parseInt(smpM[1].replace(/\D/g, ""), 10);
       candStart = 2;
     }
-    const candCells = cells.slice(candStart);
+    let candCells = cells.slice(candStart);
+    if (colspanTable) candCells = expandColspan(candCells);
     if (candCells.length < candCols.length - 2) continue; // pas une ligne de données
 
     stats.total++;
     const scores: Partial<Record<CandidateId, number>> = {};
+    // Position fiable seulement si le nombre de colonnes concorde (à la colonne
+    // « Autre » près). Sinon on ne se fie qu'aux réassignations explicites par
+    // cellule (<small>) et on LAISSE LE TROU pour les autres — jamais de mauvais
+    // rattachement. Pour 2026 (sans colspan) l'alignement est toujours vrai.
+    const aligned =
+      !colspanTable ||
+      candCells.length === candCols.length ||
+      candCells.length === candCols.length + 1;
     for (let i = 0; i < candCols.length && i < candCells.length; i++) {
       const { value, reassign } = parseValueCell(candCells[i]);
       if (value == null) continue;
-      const name = reassign || candCols[i];
-      const id = resolveCandidateId(name);
-      if (!id) { unmapped.add(name); continue; }
+      const name = reassign || (aligned ? candCols[i] : "");
+      const id = name ? resolveCandidateId(name) : null;
+      if (!id) { if (name) unmapped.add(name); continue; }
       scores[id] = value;
     }
     // colonne « Autre » : dernière cellule si réassignée
