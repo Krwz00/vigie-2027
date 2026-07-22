@@ -19,12 +19,12 @@ const hanken = Hanken_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "VIGIE 2027 — Agrégateur de sondages · Le Millénaire",
+  title: "VIGIE 2027 · Agrégateur de sondages · Le Millénaire",
   description:
     "Tous les sondages de l'élection présidentielle française de 2027, agrégés et lissés. Un observatoire indépendant du think tank Le Millénaire.",
   authors: [{ name: "Le Millénaire" }],
   openGraph: {
-    title: "VIGIE 2027 — Agrégateur de sondages",
+    title: "VIGIE 2027 · Agrégateur de sondages",
     description:
       "Tous les sondages de la présidentielle 2027, agrégés. Un sondage n'est pas une prévision.",
     siteName: "Le Millénaire",

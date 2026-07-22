@@ -68,7 +68,8 @@ export default function Vigie({ data }: { data: VigieData }) {
   const [source, setSource] = useState<string>("all");
   const [hypoIdx, setHypoIdx] = useState<number>(0);
   const [logoOk, setLogoOk] = useState(true);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const beamRef = useRef<HTMLCanvasElement>(null); // ruban flou (blur CSS 46px)
+  const partRef = useRef<HTMLCanvasElement>(null); // particules nettes
 
   // device (après montage pour éviter tout décalage d'hydratation)
   useEffect(() => {
@@ -84,62 +85,73 @@ export default function Vigie({ data }: { data: VigieData }) {
 
   // ── canvas de fond animé (onde + particules), repris de la maquette ──
   useEffect(() => {
-    const cv = canvasRef.current;
+    const cv = beamRef.current;
     if (!cv) return;
-    const ctx = cv.getContext("2d");
-    if (!ctx) return;
+    const bctx = cv.getContext("2d"); // ruban
+    const pcv = partRef.current;
+    const pctx = pcv?.getContext("2d") ?? null; // particules
+    if (!bctx) return;
     let dpr = 1, raf = 0;
     let parts: { x: number; off: number; spread: number; r: number; ph: number; sp: number; c: string }[] = [];
     const resize = () => {
       dpr = Math.min(2, window.devicePixelRatio || 1);
-      cv.width = Math.max(1, cv.clientWidth * dpr);
-      cv.height = Math.max(1, cv.clientHeight * dpr);
+      for (const c of [cv, pcv]) {
+        if (!c) continue;
+        c.width = Math.max(1, c.clientWidth * dpr);
+        c.height = Math.max(1, c.clientHeight * dpr);
+      }
     };
     resize();
     window.addEventListener("resize", resize);
     const draw = (t: number) => {
       const W = cv.clientWidth, H = cv.clientHeight;
       if (W && H) {
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        ctx.clearRect(0, 0, W, H);
         const cyBase = H * 0.4, amp = H * 0.13, half = H * 0.16, freq = 3.0 / W, sp = t * 0.00016;
         const wave = (x: number) => cyBase + Math.sin(x * freq + sp) * amp + Math.sin(x * freq * 0.5 + sp * 1.7) * amp * 0.4;
-        ctx.save();
-        if ("filter" in ctx) (ctx as CanvasRenderingContext2D).filter = "blur(46px)";
-        const grad = ctx.createLinearGradient(0, 0, W, 0);
+        // Ruban : mêmes points d'arrêt/opacités que la maquette. Le flou (46px) est
+        // porté par la règle CSS `filter:blur(46px)` du canvas (identique visuellement
+        // au ctx.filter d'origine, mais rendu par TOUS les navigateurs — le ctx.filter
+        // canvas 2D n'est pas fiable, d'où le « bloc plein à arête nette » observé).
+        bctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        bctx.clearRect(0, 0, W, H);
+        const grad = bctx.createLinearGradient(0, 0, W, 0);
         grad.addColorStop(0, "rgba(36,92,210,0)");
         grad.addColorStop(0.24, "rgba(48,112,226,0.5)");
         grad.addColorStop(0.54, "rgba(66,152,236,0.55)");
         grad.addColorStop(0.8, "rgba(44,104,216,0.4)");
         grad.addColorStop(1, "rgba(36,92,210,0)");
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.moveTo(0, wave(0) - half);
-        for (let x = 0; x <= W; x += 24) ctx.lineTo(x, wave(x) - half);
-        for (let x = W; x >= 0; x -= 24) ctx.lineTo(x, wave(x) + half);
-        ctx.closePath();
-        ctx.fill();
-        ctx.restore();
-        if (!parts.length) {
-          const pal = ["64,120,232", "54,150,235", "96,172,240"];
-          for (let i = 0; i < 150; i++) {
-            const c = i % 8 === 0 ? "216,178,74" : pal[i % pal.length];
-            parts.push({ x: (i * 97 % 1000) / 1000, off: ((i * 53) % 200) / 100 - 1, spread: ((i * 31) % 100) / 100, r: ((i * 17) % 180) / 100 + 0.4, ph: ((i * 13) % 628) / 100, sp: ((i * 7) % 15) / 100 + 0.03, c });
+        bctx.fillStyle = grad;
+        bctx.beginPath();
+        bctx.moveTo(0, wave(0) - half);
+        for (let x = 0; x <= W; x += 24) bctx.lineTo(x, wave(x) - half);
+        for (let x = W; x >= 0; x -= 24) bctx.lineTo(x, wave(x) + half);
+        bctx.closePath();
+        bctx.fill();
+        // Particules (nettes), sur leur propre canvas — comme la maquette.
+        if (pctx) {
+          pctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          pctx.clearRect(0, 0, W, H);
+          if (!parts.length) {
+            const pal = ["64,120,232", "54,150,235", "96,172,240"];
+            for (let i = 0; i < 150; i++) {
+              const c = Math.random() < 0.12 ? "216,178,74" : pal[Math.floor(Math.random() * pal.length)];
+              parts.push({ x: Math.random(), off: Math.random() * 2 - 1, spread: Math.random(), r: Math.random() * 1.8 + 0.4, ph: Math.random() * 6.28, sp: Math.random() * 0.15 + 0.03, c });
+            }
           }
+          pctx.globalCompositeOperation = "lighter";
+          for (const p of parts) {
+            const px = (p.x + t * 0.0000115 * p.sp * 60) % 1;
+            const x = px * W;
+            const y = wave(x) + p.off * half * (0.6 + p.spread * 1.5);
+            const a = (0.22 + 0.34 * Math.sin(t * 0.0015 + p.ph)) * (1 - Math.abs(p.off) * 0.4);
+            if (a <= 0.01) continue;
+            pctx.fillStyle = "rgba(" + p.c + "," + a.toFixed(3) + ")";
+            pctx.beginPath();
+            pctx.arc(x, y, p.r, 0, 6.283);
+            pctx.fill();
+          }
+          pctx.globalCompositeOperation = "source-over";
         }
-        ctx.globalCompositeOperation = "lighter";
-        for (const p of parts) {
-          const px = (p.x + t * 0.0000115 * p.sp * 60) % 1;
-          const x = px * W;
-          const y = wave(x) + p.off * half * (0.6 + p.spread * 1.5);
-          const a = (0.22 + 0.34 * Math.sin(t * 0.0015 + p.ph)) * (1 - Math.abs(p.off) * 0.4);
-          if (a <= 0.01) continue;
-          ctx.fillStyle = "rgba(" + p.c + "," + a.toFixed(3) + ")";
-          ctx.beginPath();
-          ctx.arc(x, y, p.r, 0, 6.283);
-          ctx.fill();
-        }
-        ctx.globalCompositeOperation = "source-over";
       }
       raf = requestAnimationFrame(draw);
     };
@@ -266,7 +278,10 @@ export default function Vigie({ data }: { data: VigieData }) {
   return h(
     "div",
     { style: st({ position: "relative", minHeight: "100vh", background: "radial-gradient(1300px 720px at 82% -12%, rgba(41,82,146,0.34), transparent 58%), radial-gradient(1000px 640px at -8% 8%, rgba(216,178,74,0.07), transparent 55%), linear-gradient(180deg,#061426,#050f1e 60%)", overflow: "hidden", paddingBottom: 64 }) },
-    h("canvas", { ref: canvasRef, id: "vbg", style: st({ position: "fixed", inset: 0, width: "100%", height: "100%", zIndex: 0, pointerEvents: "none", display: "block" }) }),
+    // Ruban : flou porté par CSS (blur 46px) → rendu diffus identique dans tous
+    // les navigateurs. Particules nettes sur un canvas séparé, au-dessus.
+    h("canvas", { ref: beamRef, id: "vbg", style: st({ position: "fixed", inset: 0, width: "100%", height: "100%", zIndex: 0, pointerEvents: "none", display: "block", filter: "blur(46px)" }) }),
+    h("canvas", { ref: partRef, id: "vbg-parts", style: st({ position: "fixed", inset: 0, width: "100%", height: "100%", zIndex: 0, pointerEvents: "none", display: "block" }) }),
     h("div", { style: st({ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0, background: "radial-gradient(620px 420px at 24% 16%, rgba(216,178,74,0.11), transparent 62%), radial-gradient(700px 480px at 84% 26%, rgba(58,108,220,0.18), transparent 64%)", mixBlendMode: "screen", filter: "blur(8px)", animation: "vaurora 26s ease-in-out infinite alternate" }) }),
 
     // HEADER
@@ -285,7 +300,7 @@ export default function Vigie({ data }: { data: VigieData }) {
         h("div", { style: st({ marginLeft: "auto", display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 2 }) },
           h("div", { style: st({ fontFamily: "var(--font-body)", fontSize: 11, color: "#cdd9ea" }) },
             h("span", { style: st({ color: "#8ba0bd" }) }, "Dernier sondage : "),
-            data.lastPollInstitute ? `${data.lastPollInstitute}, ${lastRange(data.lastPollDates)}` : "—"
+            data.lastPollInstitute ? `${data.lastPollInstitute}, ${lastRange(data.lastPollDates)}` : "n.d."
           ),
           h("div", { style: st({ fontFamily: "var(--font-body)", fontSize: 11, color: "#8ba0bd" }) }, `À jour au ${frDayYear(data.updatedAt.slice(0, 10))}`)
         )
@@ -435,7 +450,7 @@ export default function Vigie({ data }: { data: VigieData }) {
       h("footer", { style: st({ marginTop: 30, paddingTop: 20, borderTop: "1px solid rgba(255,255,255,0.08)", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16, flexWrap: "wrap" }) },
         h("a", { href: "https://lemillenaire.org", target: "_blank", rel: "noopener", style: st({ display: "flex", alignItems: "center", gap: 12, color: "#8ba0bd" }) },
           logoMark(36),
-          h("span", { style: st({ fontFamily: "var(--font-body)", fontSize: 11, color: "#8ba0bd", letterSpacing: ".3px" }) }, "VIGIE 2027 — Le Millénaire, think tank gaulliste")
+          h("span", { style: st({ fontFamily: "var(--font-body)", fontSize: 11, color: "#8ba0bd", letterSpacing: ".3px" }) }, "VIGIE 2027 · Le Millénaire, think tank gaulliste")
         ),
         h("div", { style: st({ display: "flex", gap: 18, alignItems: "center", flexWrap: "wrap", fontSize: 11.5 }) },
           h("a", { href: "https://lemillenaire.org", target: "_blank", rel: "noopener", style: st({ color: "#b9c7dc" }) }, "Site web"),
