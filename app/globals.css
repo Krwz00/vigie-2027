@@ -24,7 +24,7 @@ body {
 
 body {
   color: var(--ink);
-  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
   background-color: #050f1e;
   /* Halo bleu haut-droite · halo or haut-gauche · dégradé de fond · grille HUD 46px masquée en radial */
   background-image:
@@ -63,20 +63,23 @@ body::before {
     background: linear-gradient(180deg, rgba(17, 37, 66, 0.85), rgba(9, 21, 40, 0.9));
     border: 1px solid var(--panel-border);
     border-radius: 18px;
+    box-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.7);
   }
 
   .display {
-    font-family: var(--font-space-grotesk), system-ui, sans-serif;
+    font-family: var(--font-display), system-ui, sans-serif;
   }
 
+  /* Chiffres tabulaires en Hanken Grotesk (le design n'utilise pas de vraie
+     mono : il aligne les nombres via font-variant-numeric). */
   .mono {
-    font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+    font-family: var(--font-body), system-ui, sans-serif;
     font-variant-numeric: tabular-nums;
   }
 
   /* Section-label : petit intitulé espacé au-dessus des blocs */
   .eyebrow {
-    font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+    font-family: var(--font-body), system-ui, sans-serif;
     font-size: 11px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -89,9 +92,9 @@ body::before {
     gap: 7px;
     padding: 6px 12px;
     border-radius: 999px;
-    border: 1px solid rgba(148, 175, 214, 0.16);
-    background: rgba(11, 26, 48, 0.6);
-    font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.02);
+    font-family: var(--font-body), system-ui, sans-serif;
     font-size: 12px;
     color: var(--ink-soft);
     cursor: pointer;
@@ -110,19 +113,19 @@ body::before {
     color: var(--ink);
   }
 
-  /* Dropdown sobre, aligné sur l'esthétique des chips */
+  /* Dropdown — caret or, bordure or, comme le sélecteur source du design */
   .select {
     appearance: none;
     -webkit-appearance: none;
-    padding: 6px 30px 6px 12px;
-    border-radius: 999px;
-    border: 1px solid rgba(148, 175, 214, 0.16);
-    background-color: rgba(11, 26, 48, 0.6);
-    /* chevron dessiné en SVG inline (pas d'image externe) */
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%2394afd6' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    padding: 7px 32px 7px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(216, 178, 74, 0.3);
+    background-color: rgba(255, 255, 255, 0.05);
+    /* caret ▼ or dessiné en SVG inline (pas d'image externe) */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23d8b24a' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 11px center;
-    font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+    background-position: right 12px center;
+    font-family: var(--font-body), system-ui, sans-serif;
     font-size: 12px;
     color: var(--ink);
     cursor: pointer;

@@ -40,9 +40,9 @@ const config: Config = {
         panelBorder: "rgba(216,178,74,.15)",
       },
       fontFamily: {
-        display: ["var(--font-space-grotesk)", "system-ui", "sans-serif"],
-        body: ["var(--font-manrope)", "system-ui", "sans-serif"],
-        mono: ["var(--font-jetbrains-mono)", "ui-monospace", "monospace"],
+        display: ["var(--font-display)", "system-ui", "sans-serif"],
+        body: ["var(--font-body)", "system-ui", "sans-serif"],
+        mono: ["var(--font-body)", "system-ui", "sans-serif"],
       },
       borderRadius: {
         panel: "18px",

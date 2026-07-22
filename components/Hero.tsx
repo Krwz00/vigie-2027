@@ -34,14 +34,27 @@ export default function Hero({
 
   return (
     <section className="pb-2 pt-8 tab:pt-12">
-      <div className="eyebrow mb-3">Observatoire des sondages · Présidentielle 2027</div>
-      <h1 className="display max-w-3xl text-3xl font-bold leading-[1.08] tracking-tight text-ink tab:text-5xl">
-        Tous les sondages de 2027,{" "}
-        <span className="text-gold">agrégés et lissés</span>.
+      <div
+        className="mb-3.5 font-body uppercase text-gold"
+        style={{ fontSize: 11, letterSpacing: "2.5px" }}
+      >
+        Présidentielle française 2027
+      </div>
+      <h1
+        className="display font-bold text-ink"
+        style={{
+          fontSize: "clamp(30px, 5vw, 56px)",
+          lineHeight: 1.02,
+          letterSpacing: "-1.2px",
+          textWrap: "balance",
+        }}
+      >
+        Tous les sondages de la présidentielle sur{" "}
+        <span className="text-gold">une seule courbe.</span>
       </h1>
-      <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-ink-soft">
-        Une lecture d&apos;ensemble, tous instituts confondus — moyenne mobile
-        pondérée sur quatre semaines glissantes.
+      <p className="mt-3.5 max-w-[580px] text-[15.5px] leading-[1.55] text-ink-soft">
+        La moyenne agrégée de tous les instituts, posée sur chaque sondage brut.
+        Survolez la courbe pour lire le détail, point par point.
       </p>
 
       {/* Double date : dernier sondage réel + fraîcheur des données (plus de faux LIVE) */}

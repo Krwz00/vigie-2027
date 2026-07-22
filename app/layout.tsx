@@ -1,25 +1,20 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Manrope, JetBrains_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+// Design Claude Design : Bricolage Grotesque (titres) + Hanken Grotesk (texte
+// courant et chiffres tabulaires).
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
   weight: ["500", "600", "700"],
-  variable: "--font-space-grotesk",
+  variable: "--font-display",
   display: "swap",
 });
 
-const manrope = Manrope({
+const hanken = Hanken_Grotesk({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-manrope",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-jetbrains-mono",
+  variable: "--font-body",
   display: "swap",
 });
 
@@ -46,7 +41,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${spaceGrotesk.variable} ${manrope.variable} ${jetbrainsMono.variable}`}
+      className={`${bricolage.variable} ${hanken.variable}`}
     >
       <body>
         <div id="app-root">{children}</div>
