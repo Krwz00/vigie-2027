@@ -67,6 +67,7 @@ export default function Vigie({ data }: { data: VigieData }) {
   const [hoverIdx, setHoverIdx] = useState<number | null>(null);
   const [source, setSource] = useState<string>("all");
   const [hypoIdx, setHypoIdx] = useState<number>(0);
+  const [logoOk, setLogoOk] = useState(true);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   // device (après montage pour éviter tout décalage d'hydratation)
@@ -150,8 +151,10 @@ export default function Vigie({ data }: { data: VigieData }) {
   }, []);
 
   // ── données réelles → formes de la maquette ──
-  const dates = data.milestones;
-  const nAll = dates.length;
+  // Axe temporel : démarre en janvier 2025 (jamais 2024). Les données réelles
+  // commencent de toute façon en 2026 ; ce plancher garde l'axe propre.
+  const cut = Math.max(0, data.milestoneDates.findIndex((d) => d >= "2025-01-01"));
+  const dates = data.milestones.slice(cut);
   const baseAgg = data.aggregates;
   const instAgg =
     source === "all"
@@ -169,7 +172,7 @@ export default function Vigie({ data }: { data: VigieData }) {
       mono: c.mono,
       color: c.color,
       photo: c.photo,
-      s: a.series.map((p) => p.value),
+      s: a.series.slice(cut).map((p) => p.value),
       cur: a.current,
       delta: a.delta,
       stale: source === "all" ? a.stale : false,
@@ -224,6 +227,42 @@ export default function Vigie({ data }: { data: VigieData }) {
 
   const st = (o: React.CSSProperties) => o;
 
+  // carte candidat — `big` = podium (2 premiers), plus grande. Marquage « daté »
+  // explicite (pastille or) pour les candidats hors fenêtre de fraîcheur.
+  const renderCand = (c: Cand, rank: number, big: boolean): ReactNode => {
+    const up = c.delta > 0, flat = c.delta === 0;
+    const av = big ? 62 : 44;
+    return h("div", { key: c.id, className: "vcard", onClick: () => setActive(active === c.id ? null : c.id), style: st({ cursor: "pointer", display: "flex", alignItems: "center", gap: big ? 16 : 13, padding: big ? "18px 20px" : "13px 15px", borderRadius: big ? 16 : 14, border: `1px solid ${active === c.id ? c.color : big ? "rgba(216,178,74,0.35)" : "rgba(255,255,255,0.08)"}`, background: active === c.id ? "rgba(255,255,255,0.055)" : big ? "linear-gradient(180deg, rgba(216,178,74,0.06), rgba(16,35,63,0.5))" : "rgba(16,35,63,0.4)", opacity: c.stale ? 0.55 : 1 }) },
+      h("div", { style: st({ fontFamily: "var(--font-body)", fontSize: big ? 15 : 12, fontWeight: big ? 700 : 400, color: big ? "#d8b24a" : "#5f748f", width: big ? 22 : 16 }) }, String(rank).padStart(2, "0")),
+      h("div", { style: st({ position: "relative", width: av, height: av, flex: `0 0 ${av}px`, borderRadius: "50%", background: `radial-gradient(circle at 35% 30%, ${soft(c.color)}, ${c.color})`, display: "grid", placeItems: "center", color: "#08152a", fontFamily: "var(--font-display)", fontWeight: 700, fontSize: big ? 17 : 13, boxShadow: `0 0 0 1.5px rgba(255,255,255,0.1), 0 6px 16px -6px ${c.color}`, overflow: "hidden" }) },
+        h("span", null, c.mono),
+        c.photo ? h("img", { src: c.photo, alt: c.name, onError: (e: React.SyntheticEvent<HTMLImageElement>) => { (e.target as HTMLImageElement).style.display = "none"; }, style: st({ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", borderRadius: "50%" }) }) : null
+      ),
+      h("div", { style: st({ minWidth: 0, flex: 1 }) },
+        h("div", { style: st({ fontWeight: 700, fontSize: big ? 17 : 14, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }) }, c.name),
+        h("div", { style: st({ fontSize: big ? 12 : 11, color: "#8ba0bd", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }) }, c.party)
+      ),
+      h("div", { style: st({ opacity: 0.85, display: cfg.sparkDisplay }) }, spark(c.s, c.color)),
+      h("div", { style: st({ textAlign: "right", minWidth: big ? 78 : 60 }) },
+        h("div", { style: st({ fontFamily: "var(--font-body)", fontSize: big ? 30 : 20, fontWeight: 600, color: c.color, lineHeight: 1 }) }, fmtPct(c.cur)),
+        c.stale
+          ? h("div", { style: st({ display: "flex", justifyContent: "flex-end", alignItems: "center", gap: 5, marginTop: 5 }) },
+              h("span", { style: st({ padding: "1px 6px", borderRadius: 999, border: "1px solid rgba(216,178,74,0.4)", background: "rgba(216,178,74,0.1)", fontFamily: "var(--font-body)", fontSize: 9, fontWeight: 700, letterSpacing: ".8px", color: "#d8b24a" }) }, "DATÉ"),
+              h("span", { style: st({ fontFamily: "var(--font-body)", fontSize: 9.5, color: "#8ba0bd" }) }, frDay(c.lastPollDate))
+            )
+          : h("div", { style: st({ fontFamily: "var(--font-body)", fontSize: big ? 12 : 10.5, color: flat ? "#5f748f" : up ? "#3fd08a" : "#e5686b", marginTop: 4 }) }, `${flat ? "=" : up ? "▲" : "▼"} ${c.delta > 0 ? "+" : c.delta < 0 ? "−" : ""}${Math.abs(c.delta)} pt`)
+      )
+    );
+  };
+  const podiumCols = device === "mobile" ? "minmax(0,1fr)" : "repeat(2,minmax(0,1fr))";
+
+  // Logo Le Millénaire (public/brand/logo-millenaire.png) blanchi pour le fond
+  // sombre ; fallback propre « M » or si le fichier est absent.
+  const logoMark = (px: number): ReactNode =>
+    logoOk
+      ? h("img", { src: "/brand/logo-millenaire.png", alt: "Le Millénaire", onError: () => setLogoOk(false), style: st({ height: px, width: "auto", objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.95 }) })
+      : h("span", { style: st({ width: px, height: px, borderRadius: "50%", display: "grid", placeItems: "center", background: "linear-gradient(145deg,#ecd08a,#d8b24a)", color: "#04101f", fontFamily: "var(--font-display)", fontWeight: 700, fontSize: Math.round(px * 0.5) }) }, "M");
+
   return h(
     "div",
     { style: st({ position: "relative", minHeight: "100vh", background: "radial-gradient(1300px 720px at 82% -12%, rgba(41,82,146,0.34), transparent 58%), radial-gradient(1000px 640px at -8% 8%, rgba(216,178,74,0.07), transparent 55%), linear-gradient(180deg,#061426,#050f1e 60%)", overflow: "hidden", paddingBottom: 64 }) },
@@ -234,7 +273,7 @@ export default function Vigie({ data }: { data: VigieData }) {
     h("header", { style: st({ position: "sticky", top: 0, zIndex: 40, backdropFilter: "blur(14px)", background: "linear-gradient(180deg, rgba(6,17,33,0.9), rgba(6,17,33,0.62))", borderBottom: "1px solid rgba(216,178,74,0.16)" }) },
       h("div", { style: st({ maxWidth: 1340, margin: "0 auto", padding: "12px clamp(16px,3vw,24px)", display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }) },
         h("div", { style: st({ display: "flex", alignItems: "center", gap: 11 }) },
-          h("span", { style: st({ width: 40, height: 40, borderRadius: "50%", display: "grid", placeItems: "center", background: "linear-gradient(145deg,#ecd08a,#d8b24a)", color: "#04101f", fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 20 }) }, "M"),
+          logoMark(40),
           h("div", { style: st({ width: 1, height: 26, background: "rgba(216,178,74,0.35)" }) }),
           h("div", { style: st({ fontFamily: "var(--font-display)", fontSize: 21, fontWeight: 700, letterSpacing: "1px" }) }, "VIGIE 2027")
         ),
@@ -261,49 +300,48 @@ export default function Vigie({ data }: { data: VigieData }) {
         h("p", { style: st({ maxWidth: 580, margin: 0, color: "#a2b4cd", fontSize: 15.5, lineHeight: 1.55 }) }, "La moyenne agrégée de tous les instituts, posée sur chaque sondage brut. Survolez la courbe pour lire le détail, point par point.")
       ),
 
-      // MAIN GRID : baromètre + feed
-      h("div", { id: "barometre", style: st({ display: "flex", gap: 16, flexDirection: cfg.mainDir as "row" | "column", alignItems: "stretch" }) },
-        h("section", { style: st({ flex: "1 1 auto", minWidth: 0, position: "relative", background: "linear-gradient(180deg, rgba(17,37,66,0.85), rgba(9,21,40,0.9))", border: "1px solid rgba(216,178,74,0.15)", borderRadius: 18, padding: "18px 18px 14px", boxShadow: "0 24px 60px -30px rgba(0,0,0,0.7)" }) },
-          h("div", { style: st({ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap", marginBottom: 2 }) },
-            h("div", { style: st({ fontFamily: "var(--font-display)", fontSize: 18, fontWeight: 600 }) }, "Baromètre du 1er tour"),
-            h("div", { style: st({ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }) },
-              selectEl(source, (e) => { setSource(e); setHoverIdx(null); setActive(null); }, sources.map((s) => [s.v, s.label]), "7px 32px 7px 12px", 12),
-              h("div", { style: st({ fontFamily: "var(--font-body)", fontSize: 10.5, color: "#5f748f" }) }, `${dates[0] ?? ""} → ${dates[dates.length - 1] ?? ""}`)
-            )
-          ),
-          chart,
-          h("div", { style: st({ display: "flex", flexWrap: "wrap", gap: 7, marginTop: 12 }) },
-            chartCands.map((c) => {
-              const dim = active && active !== c.id;
-              return h("button", { key: c.id, className: "vchip", onClick: () => setActive(active === c.id ? null : c.id), style: st({ display: "flex", alignItems: "center", gap: 7, cursor: "pointer", padding: "4px 11px 4px 5px", borderRadius: 999, border: `1px solid ${active === c.id ? c.color : "rgba(255,255,255,0.12)"}`, background: active === c.id ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.02)", opacity: dim ? 0.4 : 1 }) },
-                h("span", { style: st({ width: 19, height: 19, borderRadius: "50%", background: c.color, color: "#08152a", fontFamily: "var(--font-body)", fontSize: 8.5, fontWeight: 600, display: "grid", placeItems: "center" }) }, c.mono),
-                h("span", { style: st({ fontSize: 12, color: "#dbe4f0" }) }, c.last),
-                h("span", { style: st({ fontFamily: "var(--font-body)", fontSize: 12, color: c.color, fontWeight: 600 }) }, fmtPct(c.cur))
-              );
-            })
+      // BAROMÈTRE — pleine largeur, le feed est passé dessous
+      h("section", { id: "barometre", style: st({ position: "relative", background: "linear-gradient(180deg, rgba(17,37,66,0.85), rgba(9,21,40,0.9))", border: "1px solid rgba(216,178,74,0.15)", borderRadius: 18, padding: "18px 18px 14px", boxShadow: "0 24px 60px -30px rgba(0,0,0,0.7)" }) },
+        h("div", { style: st({ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap", marginBottom: 2 }) },
+          h("div", { style: st({ fontFamily: "var(--font-display)", fontSize: 18, fontWeight: 600 }) }, "Baromètre du 1er tour"),
+          h("div", { style: st({ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }) },
+            selectEl(source, (e) => { setSource(e); setHoverIdx(null); setActive(null); }, sources.map((s) => [s.v, s.label]), "7px 32px 7px 12px", 12),
+            h("div", { style: st({ fontFamily: "var(--font-body)", fontSize: 10.5, color: "#5f748f" }) }, `${dates[0] ?? ""} → ${dates[dates.length - 1] ?? ""}`)
           )
         ),
-        // FEED
-        h("aside", { id: "sondages", style: st({ flex: `0 0 ${cfg.feedW}`, width: cfg.feedW, background: "linear-gradient(180deg, rgba(17,37,66,0.8), rgba(9,21,40,0.85))", border: "1px solid rgba(216,178,74,0.15)", borderRadius: 18, padding: "16px 7px 16px 16px", display: "flex", flexDirection: "column" }) },
-          h("div", { style: st({ display: "flex", alignItems: "center", gap: 9, paddingRight: 10, marginBottom: 13 }) },
-            h("span", { style: st({ width: 7, height: 7, borderRadius: "50%", background: "#d8b24a", boxShadow: "0 0 8px #d8b24a", animation: "vpulse 1.6s infinite" }) }),
-            h("div", { style: st({ fontFamily: "var(--font-body)", fontSize: 10.5, letterSpacing: "2px", color: "#d8b24a", textTransform: "uppercase" }) }, "Derniers sondages")
-          ),
-          h("div", { className: "vscroll", style: st({ overflowY: "auto", maxHeight: cfg.feedH, paddingRight: 9, display: "flex", flexDirection: "column", gap: 9 }) },
-            feed.map((f, i) =>
-              h("article", { key: i, className: "vcard", style: st({ position: "relative", border: "1px solid rgba(255,255,255,0.07)", borderLeft: `3px solid ${f.color}`, borderRadius: 11, padding: "12px 13px", background: "rgba(255,255,255,0.022)", animation: "vrise .4s ease both" }) },
-                h("div", { style: st({ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8, marginBottom: 6 }) },
-                  h("span", { style: st({ fontFamily: "var(--font-body)", fontSize: 10.5, color: "#8ba0bd", letterSpacing: ".5px" }) }, f.dateLabel),
-                  f.isNew ? h("span", { style: st({ fontFamily: "var(--font-body)", fontSize: 8.5, letterSpacing: "1px", color: "#08152a", background: "#d8b24a", padding: "2px 6px", borderRadius: 4, fontWeight: 600, boxShadow: "0 0 10px rgba(216,178,74,0.4)" }) }, "NOUVEAU") : null
-                ),
-                h("div", { style: st({ display: "flex", alignItems: "center", gap: 8 }) },
-                  h("span", { style: st({ width: 8, height: 8, borderRadius: 2, background: f.color, flex: "0 0 8px" }) }),
-                  h("span", { style: st({ fontWeight: 700, fontSize: 14, color: "#eef3fa" }) }, f.institute)
-                ),
-                f.sponsor ? h("div", { style: st({ fontSize: 11.5, color: "#93a6c2", margin: "2px 0 8px 16px" }) }, f.sponsor) : null,
-                h("div", { style: st({ fontSize: 12.5, color: "#c9d5e6", lineHeight: 1.5, marginTop: f.sponsor ? 0 : 6 }) }, f.lead),
-                h("div", { style: st({ fontFamily: "var(--font-body)", fontSize: 10, color: "#5f748f", marginTop: 7 }) }, f.meta)
-              )
+        chart,
+        h("div", { style: st({ display: "flex", flexWrap: "wrap", gap: 7, marginTop: 12 }) },
+          chartCands.map((c) => {
+            const dim = active && active !== c.id;
+            return h("button", { key: c.id, className: "vchip", onClick: () => setActive(active === c.id ? null : c.id), style: st({ display: "flex", alignItems: "center", gap: 7, cursor: "pointer", padding: "4px 11px 4px 5px", borderRadius: 999, border: `1px solid ${active === c.id ? c.color : "rgba(255,255,255,0.12)"}`, background: active === c.id ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.02)", opacity: dim ? 0.4 : 1 }) },
+              h("span", { style: st({ width: 19, height: 19, borderRadius: "50%", background: c.color, color: "#08152a", fontFamily: "var(--font-body)", fontSize: 8.5, fontWeight: 600, display: "grid", placeItems: "center" }) }, c.mono),
+              h("span", { style: st({ fontSize: 12, color: "#dbe4f0" }) }, c.last),
+              h("span", { style: st({ fontFamily: "var(--font-body)", fontSize: 12, color: c.color, fontWeight: 600 }) }, fmtPct(c.cur))
+            );
+          })
+        )
+      ),
+
+      // FEED — pleine largeur, sous le graphe, défilement horizontal des cartes
+      h("section", { id: "sondages", style: st({ marginTop: 16, background: "linear-gradient(180deg, rgba(17,37,66,0.8), rgba(9,21,40,0.85))", border: "1px solid rgba(216,178,74,0.15)", borderRadius: 18, padding: 16 }) },
+        h("div", { style: st({ display: "flex", alignItems: "center", gap: 9, marginBottom: 13 }) },
+          h("span", { style: st({ width: 7, height: 7, borderRadius: "50%", background: "#d8b24a", boxShadow: "0 0 8px #d8b24a", animation: "vpulse 1.6s infinite" }) }),
+          h("div", { style: st({ fontFamily: "var(--font-body)", fontSize: 10.5, letterSpacing: "2px", color: "#d8b24a", textTransform: "uppercase" }) }, "Derniers sondages")
+        ),
+        h("div", { className: "vscroll", style: st({ display: "flex", gap: 11, overflowX: "auto", paddingBottom: 6 }) },
+          feed.map((f, i) =>
+            h("article", { key: i, className: "vcard", style: st({ position: "relative", flex: "0 0 300px", maxWidth: 300, border: "1px solid rgba(255,255,255,0.07)", borderLeft: `3px solid ${f.color}`, borderRadius: 11, padding: "12px 13px", background: "rgba(255,255,255,0.022)", animation: "vrise .4s ease both" }) },
+              h("div", { style: st({ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8, marginBottom: 6 }) },
+                h("span", { style: st({ fontFamily: "var(--font-body)", fontSize: 10.5, color: "#8ba0bd", letterSpacing: ".5px" }) }, f.dateLabel),
+                f.isNew ? h("span", { style: st({ fontFamily: "var(--font-body)", fontSize: 8.5, letterSpacing: "1px", color: "#08152a", background: "#d8b24a", padding: "2px 6px", borderRadius: 4, fontWeight: 600, boxShadow: "0 0 10px rgba(216,178,74,0.4)" }) }, "NOUVEAU") : null
+              ),
+              h("div", { style: st({ display: "flex", alignItems: "center", gap: 8 }) },
+                h("span", { style: st({ width: 8, height: 8, borderRadius: 2, background: f.color, flex: "0 0 8px" }) }),
+                h("span", { style: st({ fontWeight: 700, fontSize: 14, color: "#eef3fa" }) }, f.institute)
+              ),
+              f.sponsor ? h("div", { style: st({ fontSize: 11.5, color: "#93a6c2", margin: "2px 0 8px 16px" }) }, f.sponsor) : null,
+              h("div", { style: st({ fontSize: 12.5, color: "#c9d5e6", lineHeight: 1.5, marginTop: f.sponsor ? 0 : 6 }) }, f.lead),
+              h("div", { style: st({ fontFamily: "var(--font-body)", fontSize: 10, color: "#5f748f", marginTop: 7 }) }, f.meta)
             )
           )
         )
@@ -315,28 +353,13 @@ export default function Vigie({ data }: { data: VigieData }) {
           h("h2", { style: st({ fontFamily: "var(--font-display)", fontSize: 24, fontWeight: 600, margin: 0 }) }, "Candidats"),
           h("span", { style: st({ fontSize: 11, color: "#5f748f", marginLeft: "auto", fontFamily: "var(--font-body)" }) }, "Δ vs mois préc.")
         ),
+        // Podium : les 2 premiers en grand
+        h("div", { style: st({ display: "grid", gridTemplateColumns: podiumCols, gap: 12, marginBottom: 12 }) },
+          byRank.slice(0, 2).map((c, i) => renderCand(c, i + 1, true))
+        ),
+        // Suite du classement
         h("div", { style: st({ display: "grid", gridTemplateColumns: cfg.lbCols, gap: 11 }) },
-          byRank.map((c, i) => {
-            const up = c.delta > 0, flat = c.delta === 0;
-            return h("div", { key: c.id, className: "vcard", onClick: () => setActive(active === c.id ? null : c.id), style: st({ cursor: "pointer", display: "flex", alignItems: "center", gap: 13, padding: "13px 15px", borderRadius: 14, border: `1px solid ${active === c.id ? c.color : "rgba(255,255,255,0.08)"}`, background: active === c.id ? "rgba(255,255,255,0.055)" : "rgba(16,35,63,0.4)", opacity: c.stale ? 0.55 : 1 }) },
-              h("div", { style: st({ fontFamily: "var(--font-body)", fontSize: 12, color: "#5f748f", width: 16 }) }, String(i + 1).padStart(2, "0")),
-              h("div", { style: st({ position: "relative", width: 44, height: 44, flex: "0 0 44px", borderRadius: "50%", background: `radial-gradient(circle at 35% 30%, ${soft(c.color)}, ${c.color})`, display: "grid", placeItems: "center", color: "#08152a", fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13, boxShadow: `0 0 0 1.5px rgba(255,255,255,0.1), 0 6px 16px -6px ${c.color}`, overflow: "hidden" }) },
-                h("span", null, c.mono),
-                c.photo ? h("img", { src: c.photo, alt: c.name, onError: (e: React.SyntheticEvent<HTMLImageElement>) => { (e.target as HTMLImageElement).style.display = "none"; }, style: st({ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", borderRadius: "50%" }) }) : null
-              ),
-              h("div", { style: st({ minWidth: 0, flex: 1 }) },
-                h("div", { style: st({ fontWeight: 700, fontSize: 14, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }) }, c.name),
-                h("div", { style: st({ fontSize: 11, color: "#8ba0bd", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }) }, c.party)
-              ),
-              h("div", { style: st({ opacity: 0.85, display: cfg.sparkDisplay }) }, spark(c.s, c.color)),
-              h("div", { style: st({ textAlign: "right", minWidth: 60 }) },
-                h("div", { style: st({ fontFamily: "var(--font-body)", fontSize: 20, fontWeight: 600, color: c.color, lineHeight: 1 }) }, fmtPct(c.cur)),
-                c.stale
-                  ? h("div", { style: st({ fontFamily: "var(--font-body)", fontSize: 10.5, color: "#8ba0bd", marginTop: 3 }) }, `datant du ${frDay(c.lastPollDate)}`)
-                  : h("div", { style: st({ fontFamily: "var(--font-body)", fontSize: 10.5, color: flat ? "#5f748f" : up ? "#3fd08a" : "#e5686b", marginTop: 3 }) }, `${flat ? "=" : up ? "▲" : "▼"} ${c.delta > 0 ? "+" : c.delta < 0 ? "−" : ""}${Math.abs(c.delta)} pt`)
-              )
-            );
-          })
+          byRank.slice(2).map((c, i) => renderCand(c, i + 3, false))
         ),
         h("div", { style: st({ marginTop: 11, fontSize: 11, color: "#5f748f" }) }, "Candidats à jour d’abord, puis candidats non testés récemment (atténués). Marine Le Pen et Jordan Bardella relèvent d’hypothèses de candidature alternatives.")
       ),
@@ -408,13 +431,17 @@ export default function Vigie({ data }: { data: VigieData }) {
         )
       ),
 
-      // FOOTER
-      h("footer", { style: st({ marginTop: 30, paddingTop: 20, borderTop: "1px solid rgba(255,255,255,0.08)", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 14, flexWrap: "wrap" }) },
-        h("div", { style: st({ fontFamily: "var(--font-body)", fontSize: 11, color: "#8ba0bd", letterSpacing: ".3px" }) }, "VIGIE 2027 - Le Millénaire, think tank gaulliste"),
+      // FOOTER — logo + réseaux Le Millénaire
+      h("footer", { style: st({ marginTop: 30, paddingTop: 20, borderTop: "1px solid rgba(255,255,255,0.08)", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16, flexWrap: "wrap" }) },
+        h("a", { href: "https://lemillenaire.org", target: "_blank", rel: "noopener", style: st({ display: "flex", alignItems: "center", gap: 12, color: "#8ba0bd" }) },
+          logoMark(36),
+          h("span", { style: st({ fontFamily: "var(--font-body)", fontSize: 11, color: "#8ba0bd", letterSpacing: ".3px" }) }, "VIGIE 2027 — Le Millénaire, think tank gaulliste")
+        ),
         h("div", { style: st({ display: "flex", gap: 18, alignItems: "center", flexWrap: "wrap", fontSize: 11.5 }) },
-          h("a", { href: "https://x.com/le_millenaire", target: "_blank", rel: "noopener", style: st({ color: "#b9c7dc" }) }, "Twitter/X"),
-          h("a", { href: "https://www.instagram.com/lemillenaire", target: "_blank", rel: "noopener", style: st({ color: "#b9c7dc" }) }, "Instagram"),
-          h("a", { href: "https://www.linkedin.com/company/le-millenaire", target: "_blank", rel: "noopener", style: st({ color: "#b9c7dc" }) }, "LinkedIn"),
+          h("a", { href: "https://lemillenaire.org", target: "_blank", rel: "noopener", style: st({ color: "#b9c7dc" }) }, "Site"),
+          h("a", { href: "https://x.com/Le_Millenaire", target: "_blank", rel: "noopener", style: st({ color: "#b9c7dc" }) }, "X"),
+          h("a", { href: "https://www.instagram.com/lemillenaire_thinktank/", target: "_blank", rel: "noopener", style: st({ color: "#b9c7dc" }) }, "Instagram"),
+          h("a", { href: "https://www.linkedin.com/company/le-mill%C3%A9naire-think-tank/posts/?feedView=all", target: "_blank", rel: "noopener", style: st({ color: "#b9c7dc" }) }, "LinkedIn"),
           h("a", { href: "https://fr.wikipedia.org/wiki/Liste_de_sondages_sur_l%27%C3%A9lection_pr%C3%A9sidentielle_fran%C3%A7aise_de_2027", target: "_blank", rel: "noopener", style: st({ color: "#d8b24a" }) }, "Source · CC BY-SA")
         )
       )
@@ -476,7 +503,9 @@ function makeChart(
   const accent = "#d8b24a";
   const mobile = device === "mobile";
   const n = dates.length;
-  const W = 980, H = mobile ? 430 : 486, padL = 34, R = mobile ? 13 : 17, padR = mobile ? 118 : 152, padT = 26, padB = 42;
+  // Graphe agrandi (pleine largeur, le feed est passé dessous) + photos de bout
+  // de courbe plus grandes.
+  const W = 980, H = mobile ? 480 : 600, padL = 34, R = mobile ? 17 : 26, padR = mobile ? 132 : 196, padT = 28, padB = 44;
   const plotW = W - padL - padR, plotH = H - padT - padB, ymax = 40;
   const x = (i: number) => padL + (i / (n - 1)) * plotW;
   const y = (v: number) => padT + (1 - v / ymax) * plotH;
