@@ -438,7 +438,7 @@ export default function Vigie({ data }: { data: VigieData }) {
           h("span", { style: st({ fontFamily: "var(--font-body)", fontSize: 11, color: "#8ba0bd", letterSpacing: ".3px" }) }, "VIGIE 2027 — Le Millénaire, think tank gaulliste")
         ),
         h("div", { style: st({ display: "flex", gap: 18, alignItems: "center", flexWrap: "wrap", fontSize: 11.5 }) },
-          h("a", { href: "https://lemillenaire.org", target: "_blank", rel: "noopener", style: st({ color: "#b9c7dc" }) }, "Site"),
+          h("a", { href: "https://lemillenaire.org", target: "_blank", rel: "noopener", style: st({ color: "#b9c7dc" }) }, "Site web"),
           h("a", { href: "https://x.com/Le_Millenaire", target: "_blank", rel: "noopener", style: st({ color: "#b9c7dc" }) }, "X"),
           h("a", { href: "https://www.instagram.com/lemillenaire_thinktank/", target: "_blank", rel: "noopener", style: st({ color: "#b9c7dc" }) }, "Instagram"),
           h("a", { href: "https://www.linkedin.com/company/le-mill%C3%A9naire-think-tank/posts/?feedView=all", target: "_blank", rel: "noopener", style: st({ color: "#b9c7dc" }) }, "LinkedIn"),
