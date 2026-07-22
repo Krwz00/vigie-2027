@@ -88,7 +88,8 @@ function buildAllHypotheses(first: WikiPoll[]): Hypothesis[] {
       sources: sourcesOf(polls),
     });
   }
-  return out.sort((a, b) => b.n - a.n);
+  // Filtre : une hypothèse n'apparaît que si elle a été testée au moins 2 fois.
+  return out.filter((hy) => hy.n >= 2).sort((a, b) => b.n - a.n);
 }
 
 /**
@@ -109,6 +110,10 @@ function buildAllDuels(second: WikiPoll[]): Duel[] {
       ...new Set(polls.flatMap((p) => Object.keys(p.scores) as CandidateId[])),
     ];
     if (ids.length < 2) continue;
+    // Filtre : on exclut les duels d'avant 2025 testés une seule fois (un duel
+    // d'avant 2025 avec 2+ occurrences reste affiché).
+    const latestField = polls.reduce((m, p) => (p.fieldEnd > m ? p.fieldEnd : m), "");
+    if (polls.length === 1 && latestField < "2025-01-01") continue;
     const rn = ids.find((id) => RN.includes(id));
     const idA = rn ?? ids[0];
     const idB = ids.find((id) => id !== idA) ?? ids[1];
