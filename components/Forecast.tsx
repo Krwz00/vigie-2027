@@ -12,6 +12,7 @@
 
 import { useState } from "react";
 import type { ForecastData, ForecastCandidate } from "@/lib/forecast";
+import DeptMap from "./DeptMap";
 
 function pct(n: number) {
   return n.toFixed(1).replace(".", ",");
@@ -136,6 +137,12 @@ export default function Forecast({ data }: { data: ForecastData | null }) {
           )}
         </section>
       </div>
+
+      {hyp.dept && Object.keys(hyp.dept).length > 0 && (
+        <div className="mt-4">
+          <DeptMap dept={hyp.dept} />
+        </div>
+      )}
 
       <p className="mt-4 font-body text-[11px] text-ink-faint">
         Prévision, source modèle vigie. L'agrégateur (onglet Sondages) montre les sondages bruts, source Wikipédia.

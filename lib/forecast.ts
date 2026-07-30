@@ -32,6 +32,13 @@ export interface ForecastDuel {
   vainqueur: string;
 }
 
+export interface DeptLead {
+  leadId: string;
+  leadName: string;
+  leadColor: string;
+  leadScore: number;
+}
+
 export interface ForecastHypothesis {
   id: string;
   label: string;
@@ -39,6 +46,7 @@ export interface ForecastHypothesis {
   proba: number;
   candidates: ForecastCandidate[];
   duel: ForecastDuel | null;
+  dept: Record<string, DeptLead>;
 }
 
 export interface ForecastData {

@@ -110,20 +110,586 @@
      "id": "philippe",
      "name": "Philippe",
      "color": "#23c4a8",
-     "score": 51.7,
-     "lo": 45.7,
-     "hi": 57.6
+     "score": 51.8,
+     "lo": 45.8,
+     "hi": 57.9
     },
     "lePen": {
      "id": "lepen",
      "name": "Le Pen",
      "color": "#6f9bff",
-     "score": 48.3,
-     "lo": 42.4,
-     "hi": 54.3
+     "score": 48.2,
+     "lo": 42.1,
+     "hi": 54.2
     },
     "pAppariement": 0.78,
     "vainqueur": "Philippe"
+   },
+   "dept": {
+    "01": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 36.3
+    },
+    "02": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 47.3
+    },
+    "03": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 36.4
+    },
+    "04": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 38.1
+    },
+    "05": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.1
+    },
+    "06": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 41.5
+    },
+    "07": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.9
+    },
+    "08": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 44.6
+    },
+    "09": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.8
+    },
+    "10": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 42.2
+    },
+    "11": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 41.1
+    },
+    "12": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 29.5
+    },
+    "13": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 38.9
+    },
+    "14": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 31.5
+    },
+    "15": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.8
+    },
+    "16": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.5
+    },
+    "17": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.8
+    },
+    "18": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 37.3
+    },
+    "19": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.0
+    },
+    "21": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.0
+    },
+    "22": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 28.4
+    },
+    "23": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.5
+    },
+    "24": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.4
+    },
+    "25": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.5
+    },
+    "26": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.2
+    },
+    "27": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 40.8
+    },
+    "28": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 37.1
+    },
+    "29": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 25.0
+    },
+    "30": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 40.6
+    },
+    "31": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 27.3
+    },
+    "32": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.5
+    },
+    "33": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.1
+    },
+    "34": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 36.7
+    },
+    "35": {
+     "leadId": "philippe",
+     "leadName": "Philippe",
+     "leadColor": "#23c4a8",
+     "leadScore": 24.2
+    },
+    "36": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 37.2
+    },
+    "37": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 29.9
+    },
+    "38": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 31.6
+    },
+    "39": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.7
+    },
+    "40": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.0
+    },
+    "41": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 36.9
+    },
+    "42": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.0
+    },
+    "43": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 36.5
+    },
+    "44": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 23.6
+    },
+    "45": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.4
+    },
+    "46": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 28.7
+    },
+    "47": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 39.5
+    },
+    "48": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.6
+    },
+    "49": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 27.2
+    },
+    "50": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.1
+    },
+    "51": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 39.5
+    },
+    "52": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 45.3
+    },
+    "53": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 29.6
+    },
+    "54": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 36.2
+    },
+    "55": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 44.3
+    },
+    "56": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 29.7
+    },
+    "57": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 40.3
+    },
+    "58": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 38.2
+    },
+    "59": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 37.0
+    },
+    "60": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 41.6
+    },
+    "61": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 36.1
+    },
+    "62": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 45.4
+    },
+    "63": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.0
+    },
+    "64": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 28.0
+    },
+    "65": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.4
+    },
+    "66": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 43.8
+    },
+    "67": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.0
+    },
+    "68": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 38.6
+    },
+    "69": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 26.4
+    },
+    "70": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 43.4
+    },
+    "71": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 36.8
+    },
+    "72": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.7
+    },
+    "73": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.0
+    },
+    "74": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.8
+    },
+    "75": {
+     "leadId": "philippe",
+     "leadName": "Philippe",
+     "leadColor": "#23c4a8",
+     "leadScore": 24.8
+    },
+    "76": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.1
+    },
+    "77": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.1
+    },
+    "78": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 24.0
+    },
+    "79": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 29.9
+    },
+    "80": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 40.9
+    },
+    "81": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.9
+    },
+    "82": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 40.1
+    },
+    "83": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 45.2
+    },
+    "84": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 41.3
+    },
+    "85": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 31.7
+    },
+    "86": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 31.2
+    },
+    "87": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.3
+    },
+    "88": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 41.2
+    },
+    "89": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 40.7
+    },
+    "90": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 37.6
+    },
+    "91": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 27.2
+    },
+    "92": {
+     "leadId": "philippe",
+     "leadName": "Philippe",
+     "leadColor": "#23c4a8",
+     "leadScore": 26.4
+    },
+    "93": {
+     "leadId": "melenchon",
+     "leadName": "Mélenchon",
+     "leadColor": "#e5484d",
+     "leadScore": 35.2
+    },
+    "94": {
+     "leadId": "melenchon",
+     "leadName": "Mélenchon",
+     "leadColor": "#e5484d",
+     "leadScore": 22.9
+    },
+    "95": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 26.9
+    }
    }
   },
   {
@@ -157,7 +723,7 @@
      "score": 14.7,
      "lo": 9.9,
      "hi": 19.4,
-     "pQualif": 0.4
+     "pQualif": 0.39
     },
     {
      "id": "glucksmann",
@@ -175,7 +741,7 @@
      "score": 10.7,
      "lo": 6.7,
      "hi": 14.8,
-     "pQualif": 0.08
+     "pQualif": 0.07
     },
     {
      "id": "zemmour",
@@ -229,19 +795,585 @@
      "name": "Mélenchon",
      "color": "#e5484d",
      "score": 54.3,
-     "lo": 48.0,
-     "hi": 60.7
+     "lo": 47.9,
+     "hi": 60.8
     },
     "lePen": {
      "id": "lepen",
      "name": "Le Pen",
      "color": "#6f9bff",
      "score": 45.7,
-     "lo": 39.3,
-     "hi": 52.0
+     "lo": 39.2,
+     "hi": 52.1
     },
     "pAppariement": 0.42,
     "vainqueur": "Mélenchon"
+   },
+   "dept": {
+    "01": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 36.9
+    },
+    "02": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 48.0
+    },
+    "03": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 37.0
+    },
+    "04": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 38.6
+    },
+    "05": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.4
+    },
+    "06": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 42.0
+    },
+    "07": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.2
+    },
+    "08": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 45.4
+    },
+    "09": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.2
+    },
+    "10": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 42.8
+    },
+    "11": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 41.6
+    },
+    "12": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.0
+    },
+    "13": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 39.5
+    },
+    "14": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.2
+    },
+    "15": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.1
+    },
+    "16": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.3
+    },
+    "17": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.5
+    },
+    "18": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 38.1
+    },
+    "19": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 29.8
+    },
+    "21": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.6
+    },
+    "22": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 29.1
+    },
+    "23": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.6
+    },
+    "24": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.9
+    },
+    "25": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.1
+    },
+    "26": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.7
+    },
+    "27": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 41.7
+    },
+    "28": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 37.7
+    },
+    "29": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 25.5
+    },
+    "30": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 41.2
+    },
+    "31": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 27.8
+    },
+    "32": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.0
+    },
+    "33": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.8
+    },
+    "34": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 37.2
+    },
+    "35": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 23.9
+    },
+    "36": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 37.8
+    },
+    "37": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.6
+    },
+    "38": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.1
+    },
+    "39": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 36.1
+    },
+    "40": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.7
+    },
+    "41": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 37.5
+    },
+    "42": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.6
+    },
+    "43": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 36.6
+    },
+    "44": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 24.1
+    },
+    "45": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.0
+    },
+    "46": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 29.0
+    },
+    "47": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 40.2
+    },
+    "48": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.7
+    },
+    "49": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 28.0
+    },
+    "50": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.0
+    },
+    "51": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 40.3
+    },
+    "52": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 45.9
+    },
+    "53": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.5
+    },
+    "54": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 37.0
+    },
+    "55": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 45.1
+    },
+    "56": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.4
+    },
+    "57": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 41.2
+    },
+    "58": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 38.9
+    },
+    "59": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 37.9
+    },
+    "60": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 42.4
+    },
+    "61": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 36.8
+    },
+    "62": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 46.5
+    },
+    "63": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.5
+    },
+    "64": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 28.6
+    },
+    "65": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.1
+    },
+    "66": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 44.5
+    },
+    "67": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.9
+    },
+    "68": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 39.4
+    },
+    "69": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 26.9
+    },
+    "70": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 43.9
+    },
+    "71": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 37.4
+    },
+    "72": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.3
+    },
+    "73": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.3
+    },
+    "74": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 31.3
+    },
+    "75": {
+     "leadId": "melenchon",
+     "leadName": "Mélenchon",
+     "leadColor": "#e5484d",
+     "leadScore": 19.8
+    },
+    "76": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.9
+    },
+    "77": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.6
+    },
+    "78": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 24.4
+    },
+    "79": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.8
+    },
+    "80": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 42.0
+    },
+    "81": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.4
+    },
+    "82": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 40.7
+    },
+    "83": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 45.9
+    },
+    "84": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 41.9
+    },
+    "85": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.7
+    },
+    "86": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 31.9
+    },
+    "87": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.8
+    },
+    "88": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 41.9
+    },
+    "89": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 41.2
+    },
+    "90": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 38.2
+    },
+    "91": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 27.7
+    },
+    "92": {
+     "leadId": "attal",
+     "leadName": "Attal",
+     "leadColor": "#e8b13a",
+     "leadScore": 20.3
+    },
+    "93": {
+     "leadId": "melenchon",
+     "leadName": "Mélenchon",
+     "leadColor": "#e5484d",
+     "leadScore": 35.1
+    },
+    "94": {
+     "leadId": "melenchon",
+     "leadName": "Mélenchon",
+     "leadColor": "#e5484d",
+     "leadScore": 22.8
+    },
+    "95": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 27.4
+    }
    }
   },
   {
@@ -266,7 +1398,7 @@
      "score": 14.6,
      "lo": 9.9,
      "hi": 19.4,
-     "pQualif": 0.47
+     "pQualif": 0.48
     },
     {
      "id": "philippe",
@@ -355,20 +1487,586 @@
      "id": "melenchon",
      "name": "Mélenchon",
      "color": "#e5484d",
-     "score": 54.9,
+     "score": 54.8,
      "lo": 48.2,
-     "hi": 61.6
+     "hi": 61.3
     },
     "lePen": {
      "id": "lepen",
      "name": "Le Pen",
      "color": "#6f9bff",
-     "score": 45.1,
-     "lo": 38.4,
+     "score": 45.2,
+     "lo": 38.7,
      "hi": 51.8
     },
-    "pAppariement": 0.47,
+    "pAppariement": 0.48,
     "vainqueur": "Mélenchon"
+   },
+   "dept": {
+    "01": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 36.9
+    },
+    "02": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 47.9
+    },
+    "03": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 36.9
+    },
+    "04": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 38.8
+    },
+    "05": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.9
+    },
+    "06": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 42.2
+    },
+    "07": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.7
+    },
+    "08": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 45.2
+    },
+    "09": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.6
+    },
+    "10": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 42.8
+    },
+    "11": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 41.9
+    },
+    "12": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.1
+    },
+    "13": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 39.6
+    },
+    "14": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 31.9
+    },
+    "15": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.3
+    },
+    "16": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.0
+    },
+    "17": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.3
+    },
+    "18": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 37.8
+    },
+    "19": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.7
+    },
+    "21": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.5
+    },
+    "22": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 28.9
+    },
+    "23": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.2
+    },
+    "24": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 36.1
+    },
+    "25": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.1
+    },
+    "26": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.9
+    },
+    "27": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 41.4
+    },
+    "28": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 37.6
+    },
+    "29": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 25.4
+    },
+    "30": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 41.4
+    },
+    "31": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 27.9
+    },
+    "32": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.1
+    },
+    "33": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.7
+    },
+    "34": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 37.5
+    },
+    "35": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 23.6
+    },
+    "36": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 37.8
+    },
+    "37": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.4
+    },
+    "38": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.3
+    },
+    "39": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 36.4
+    },
+    "40": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.5
+    },
+    "41": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 37.4
+    },
+    "42": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.5
+    },
+    "43": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 37.3
+    },
+    "44": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 24.1
+    },
+    "45": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.9
+    },
+    "46": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 29.3
+    },
+    "47": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 40.2
+    },
+    "48": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.4
+    },
+    "49": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 27.5
+    },
+    "50": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.5
+    },
+    "51": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 39.9
+    },
+    "52": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 46.0
+    },
+    "53": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 29.9
+    },
+    "54": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 36.7
+    },
+    "55": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 44.9
+    },
+    "56": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.1
+    },
+    "57": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 40.8
+    },
+    "58": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 38.8
+    },
+    "59": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 37.5
+    },
+    "60": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 42.2
+    },
+    "61": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 36.5
+    },
+    "62": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 45.9
+    },
+    "63": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.5
+    },
+    "64": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 28.5
+    },
+    "65": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.9
+    },
+    "66": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 44.6
+    },
+    "67": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.4
+    },
+    "68": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 39.1
+    },
+    "69": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 26.9
+    },
+    "70": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 44.2
+    },
+    "71": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 37.3
+    },
+    "72": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.3
+    },
+    "73": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.7
+    },
+    "74": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 31.3
+    },
+    "75": {
+     "leadId": "melenchon",
+     "leadName": "Mélenchon",
+     "leadColor": "#e5484d",
+     "leadScore": 19.6
+    },
+    "76": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.5
+    },
+    "77": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.8
+    },
+    "78": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 24.4
+    },
+    "79": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.2
+    },
+    "80": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 41.2
+    },
+    "81": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.7
+    },
+    "82": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 40.9
+    },
+    "83": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 45.9
+    },
+    "84": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 42.1
+    },
+    "85": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.0
+    },
+    "86": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 31.7
+    },
+    "87": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.8
+    },
+    "88": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 41.8
+    },
+    "89": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 41.3
+    },
+    "90": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 38.3
+    },
+    "91": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 27.8
+    },
+    "92": {
+     "leadId": "philippe",
+     "leadName": "Philippe",
+     "leadColor": "#23c4a8",
+     "leadScore": 19.8
+    },
+    "93": {
+     "leadId": "melenchon",
+     "leadName": "Mélenchon",
+     "leadColor": "#e5484d",
+     "leadScore": 34.9
+    },
+    "94": {
+     "leadId": "melenchon",
+     "leadName": "Mélenchon",
+     "leadColor": "#e5484d",
+     "leadScore": 22.5
+    },
+    "95": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 27.5
+    }
    }
   },
   {
@@ -483,19 +2181,585 @@
      "name": "Philippe",
      "color": "#23c4a8",
      "score": 54.8,
-     "lo": 48.5,
-     "hi": 61.1
+     "lo": 48.7,
+     "hi": 61.0
     },
     "lePen": {
      "id": "lepen",
      "name": "Le Pen",
      "color": "#6f9bff",
      "score": 45.2,
-     "lo": 38.9,
-     "hi": 51.5
+     "lo": 39.0,
+     "hi": 51.3
     },
     "pAppariement": 0.86,
     "vainqueur": "Philippe"
+   },
+   "dept": {
+    "01": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.2
+    },
+    "02": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 45.3
+    },
+    "03": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.4
+    },
+    "04": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 36.3
+    },
+    "05": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.3
+    },
+    "06": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 39.4
+    },
+    "07": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.1
+    },
+    "08": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 42.6
+    },
+    "09": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.1
+    },
+    "10": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 40.1
+    },
+    "11": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 39.2
+    },
+    "12": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 27.7
+    },
+    "13": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 37.1
+    },
+    "14": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 29.5
+    },
+    "15": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.7
+    },
+    "16": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.6
+    },
+    "17": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 31.8
+    },
+    "18": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.4
+    },
+    "19": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 28.2
+    },
+    "21": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.0
+    },
+    "22": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 26.6
+    },
+    "23": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 31.7
+    },
+    "24": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.6
+    },
+    "25": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 31.6
+    },
+    "26": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.3
+    },
+    "27": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 38.8
+    },
+    "28": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.1
+    },
+    "29": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 23.2
+    },
+    "30": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 38.8
+    },
+    "31": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 25.6
+    },
+    "32": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 31.5
+    },
+    "33": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 28.3
+    },
+    "34": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.9
+    },
+    "35": {
+     "leadId": "philippe",
+     "leadName": "Philippe",
+     "leadColor": "#23c4a8",
+     "leadScore": 24.2
+    },
+    "36": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.2
+    },
+    "37": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 28.0
+    },
+    "38": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 29.7
+    },
+    "39": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.7
+    },
+    "40": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 31.0
+    },
+    "41": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.8
+    },
+    "42": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.0
+    },
+    "43": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.5
+    },
+    "44": {
+     "leadId": "philippe",
+     "leadName": "Philippe",
+     "leadColor": "#23c4a8",
+     "leadScore": 22.2
+    },
+    "45": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.4
+    },
+    "46": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 27.0
+    },
+    "47": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 37.6
+    },
+    "48": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.8
+    },
+    "49": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 25.2
+    },
+    "50": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.0
+    },
+    "51": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 37.4
+    },
+    "52": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 43.3
+    },
+    "53": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 27.5
+    },
+    "54": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.2
+    },
+    "55": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 42.2
+    },
+    "56": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 27.6
+    },
+    "57": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 38.2
+    },
+    "58": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 36.3
+    },
+    "59": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.1
+    },
+    "60": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 39.7
+    },
+    "61": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.9
+    },
+    "62": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 43.4
+    },
+    "63": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 28.2
+    },
+    "64": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 26.1
+    },
+    "65": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 31.5
+    },
+    "66": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 41.9
+    },
+    "67": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.9
+    },
+    "68": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 36.4
+    },
+    "69": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 24.7
+    },
+    "70": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 41.4
+    },
+    "71": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.7
+    },
+    "72": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.7
+    },
+    "73": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.1
+    },
+    "74": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 28.7
+    },
+    "75": {
+     "leadId": "philippe",
+     "leadName": "Philippe",
+     "leadColor": "#23c4a8",
+     "leadScore": 24.7
+    },
+    "76": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.1
+    },
+    "77": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 31.4
+    },
+    "78": {
+     "leadId": "philippe",
+     "leadName": "Philippe",
+     "leadColor": "#23c4a8",
+     "leadScore": 23.5
+    },
+    "79": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 27.9
+    },
+    "80": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 38.9
+    },
+    "81": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.1
+    },
+    "82": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 38.2
+    },
+    "83": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 43.2
+    },
+    "84": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 39.4
+    },
+    "85": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 29.5
+    },
+    "86": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 29.3
+    },
+    "87": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 28.5
+    },
+    "88": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 39.1
+    },
+    "89": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 38.7
+    },
+    "90": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.7
+    },
+    "91": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 25.6
+    },
+    "92": {
+     "leadId": "philippe",
+     "leadName": "Philippe",
+     "leadColor": "#23c4a8",
+     "leadScore": 26.3
+    },
+    "93": {
+     "leadId": "melenchon",
+     "leadName": "Mélenchon",
+     "leadColor": "#e5484d",
+     "leadScore": 31.5
+    },
+    "94": {
+     "leadId": "philippe",
+     "leadName": "Philippe",
+     "leadColor": "#23c4a8",
+     "leadScore": 21.3
+    },
+    "95": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 25.5
+    }
    }
   },
   {
@@ -609,20 +2873,586 @@
      "id": "attal",
      "name": "Attal",
      "color": "#e8b13a",
-     "score": 54.5,
-     "lo": 48.0,
-     "hi": 60.8
+     "score": 54.4,
+     "lo": 48.1,
+     "hi": 60.7
     },
     "lePen": {
      "id": "lepen",
      "name": "Le Pen",
      "color": "#6f9bff",
-     "score": 45.5,
-     "lo": 39.2,
-     "hi": 52.0
+     "score": 45.6,
+     "lo": 39.3,
+     "hi": 51.9
     },
     "pAppariement": 0.52,
     "vainqueur": "Attal"
+   },
+   "dept": {
+    "01": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.4
+    },
+    "02": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 44.5
+    },
+    "03": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.6
+    },
+    "04": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.5
+    },
+    "05": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 29.5
+    },
+    "06": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 38.5
+    },
+    "07": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.2
+    },
+    "08": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 41.9
+    },
+    "09": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 31.4
+    },
+    "10": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 39.1
+    },
+    "11": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 38.4
+    },
+    "12": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 26.9
+    },
+    "13": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 36.4
+    },
+    "14": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 29.0
+    },
+    "15": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 29.7
+    },
+    "16": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.0
+    },
+    "17": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 31.1
+    },
+    "18": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.6
+    },
+    "19": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 27.0
+    },
+    "21": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 31.3
+    },
+    "22": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 26.1
+    },
+    "23": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.6
+    },
+    "24": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.8
+    },
+    "25": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.8
+    },
+    "26": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 31.6
+    },
+    "27": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 38.1
+    },
+    "28": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.2
+    },
+    "29": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 22.8
+    },
+    "30": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 38.0
+    },
+    "31": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 25.1
+    },
+    "32": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.8
+    },
+    "33": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 27.8
+    },
+    "34": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.2
+    },
+    "35": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 21.2
+    },
+    "36": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.4
+    },
+    "37": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 27.5
+    },
+    "38": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 29.1
+    },
+    "39": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.9
+    },
+    "40": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.4
+    },
+    "41": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.0
+    },
+    "42": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.3
+    },
+    "43": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.3
+    },
+    "44": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 21.5
+    },
+    "45": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 31.7
+    },
+    "46": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 26.2
+    },
+    "47": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 36.8
+    },
+    "48": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 29.7
+    },
+    "49": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 24.9
+    },
+    "50": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 29.5
+    },
+    "51": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 36.6
+    },
+    "52": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 42.2
+    },
+    "53": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 27.1
+    },
+    "54": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.7
+    },
+    "55": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 41.4
+    },
+    "56": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 27.2
+    },
+    "57": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 37.7
+    },
+    "58": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.5
+    },
+    "59": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.6
+    },
+    "60": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 38.9
+    },
+    "61": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 33.2
+    },
+    "62": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 42.9
+    },
+    "63": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 27.5
+    },
+    "64": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 25.7
+    },
+    "65": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 31.0
+    },
+    "66": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 41.2
+    },
+    "67": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.4
+    },
+    "68": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 35.8
+    },
+    "69": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 24.1
+    },
+    "70": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 40.4
+    },
+    "71": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.0
+    },
+    "72": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 31.9
+    },
+    "73": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 29.3
+    },
+    "74": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 28.1
+    },
+    "75": {
+     "leadId": "attal",
+     "leadName": "Attal",
+     "leadColor": "#e8b13a",
+     "leadScore": 19.7
+    },
+    "76": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.7
+    },
+    "77": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 30.5
+    },
+    "78": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 21.6
+    },
+    "79": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 27.5
+    },
+    "80": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 38.4
+    },
+    "81": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 32.3
+    },
+    "82": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 37.4
+    },
+    "83": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 42.2
+    },
+    "84": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 38.6
+    },
+    "85": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 29.1
+    },
+    "86": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 28.8
+    },
+    "87": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 27.8
+    },
+    "88": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 38.3
+    },
+    "89": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 37.8
+    },
+    "90": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 34.9
+    },
+    "91": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 24.9
+    },
+    "92": {
+     "leadId": "attal",
+     "leadName": "Attal",
+     "leadColor": "#e8b13a",
+     "leadScore": 20.9
+    },
+    "93": {
+     "leadId": "melenchon",
+     "leadName": "Mélenchon",
+     "leadColor": "#e5484d",
+     "leadScore": 32.1
+    },
+    "94": {
+     "leadId": "melenchon",
+     "leadName": "Mélenchon",
+     "leadColor": "#e5484d",
+     "leadScore": 20.4
+    },
+    "95": {
+     "leadId": "lepen",
+     "leadName": "Le Pen",
+     "leadColor": "#6f9bff",
+     "leadScore": 24.9
+    }
    }
   }
  ]
