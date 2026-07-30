@@ -125,7 +125,7 @@ export default function Settings({ data }: { data: SettingsData | null }) {
         </div>
 
         {/* FAMILLE 1 */}
-        <Family color="#d8b24a" tag="Paramètres du modèle" sub="Ajustables. Chacun affiche sa valeur calibrée et sa plage.">
+        <Family color="#d8b24a" tag="Paramètres du modèle" sub="Ajustables. L'erreur affichée est celle des notes : erreur sur les 3 premiers candidats, 5 élections rejouées à l'aveugle, tous horizons (3,46 sans correction d'institut, 3,28 au réglage calibré ; ici paramètres globaux, d'où un léger écart).">
           {(["tau_delta", "tau_theta", "tau"] as const).map((key) => {
             const par = F.family1[key]; const info = gridInfo(par, p[key]);
             return (
@@ -133,7 +133,7 @@ export default function Settings({ data }: { data: SettingsData | null }) {
                 onReset={() => setP({ ...p, [key]: par.default })} snap={par.grid?.map((g) => g.value)}>
                 {info && (
                   <div className="mt-1 font-body text-[11.5px] text-ink-faint">
-                    {par.grid![0].mae3_2022 != null ? `erreur backtest 2022 : ${num(info.gp.mae3_2022!, 2)} pts · ` : `${par.backtest ?? ""} · `}
+                    {par.grid![0].mae3 != null ? `erreur ${num(info.gp.mae3!, 2)} pts · ` : `${par.backtest ?? ""} · `}
                     H1 : {info.top.map(([id, s]) => `${id} ${num(s)}`).join(" · ")}
                   </div>
                 )}

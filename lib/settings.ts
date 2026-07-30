@@ -3,7 +3,7 @@ import path from "path";
 
 export interface GridPoint {
   value: number;
-  mae3_2022?: number;
+  mae3?: number;
   forecast?: Record<string, Record<string, number>>;
 }
 export interface Param {
@@ -30,7 +30,7 @@ export interface F2Hyp {
 }
 export interface SettingsData {
   updatedAt: string;
-  family1: { tau_delta: Param; tau_theta: Param; tau: Param; g: Param };
+  family1: { backtestBase: string; tau_delta: Param; tau_theta: Param; tau: Param; g: Param };
   family2: {
     hypotheses: F2Hyp[];
     report: Record<string, number[]>;
