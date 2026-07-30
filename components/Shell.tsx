@@ -87,6 +87,12 @@ export default function Shell({ data, forecast }: { data: VigieData; forecast: F
       tab === "sondages"
         ? "Ce que disent les sondages, moyenne sur quatre semaines."
         : "Le penchant des instituts corrigé, projeté au jour du scrutin."
+    ),
+    h(
+      "span",
+      { style: st({ display: "inline-flex", gap: 14, fontFamily: "var(--font-body)", fontSize: 12 }) },
+      h("a", { href: "/methode", style: st({ color: "#d8b24a" }) }, "Méthode"),
+      h("a", { href: "/resultats-2022", style: st({ color: "#d8b24a" }) }, "Test 2022")
     )
   );
 
