@@ -13,6 +13,7 @@
 import { useState } from "react";
 import type { ForecastData, ForecastCandidate } from "@/lib/forecast";
 import DeptMap from "./DeptMap";
+import ForecastChart from "./ForecastChart";
 
 function pct(n: number) {
   return n.toFixed(1).replace(".", ",");
@@ -88,6 +89,10 @@ export default function Forecast({ data }: { data: ForecastData | null }) {
             </button>
           );
         })}
+      </div>
+
+      <div className="mb-4">
+        <ForecastChart candidates={hyp.candidates} electionDate={data.electionDate} />
       </div>
 
       <div className="grid grid-cols-1 gap-4 web:grid-cols-[1fr_360px]">

@@ -9,7 +9,7 @@
  "note": "Point central dans sa fourchette. Fourchette calibrée sur les scrutins passés.",
  "hypotheses": [
   {
-   "id": "Dupont-AignanGlucksmannMélenchonPhilippe",
+   "id": "Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Zemmour",
    "label": "Dupont-Aignan, Glucksmann, Mélenchon, Philippe, Retailleau, ",
    "n": 6,
    "proba": 0.3,
@@ -21,7 +21,15 @@
      "score": 34.3,
      "lo": 27.0,
      "hi": 41.6,
-     "pQualif": 1.0
+     "pQualif": 1.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 34.3,
+       "lo": 27.0,
+       "hi": 41.6
+      }
+     ]
     },
     {
      "id": "philippe",
@@ -30,7 +38,15 @@
      "score": 19.1,
      "lo": 13.7,
      "hi": 24.5,
-     "pQualif": 0.78
+     "pQualif": 0.78,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 19.1,
+       "lo": 13.7,
+       "hi": 24.5
+      }
+     ]
     },
     {
      "id": "melenchon",
@@ -39,7 +55,15 @@
      "score": 14.9,
      "lo": 10.1,
      "hi": 19.7,
-     "pQualif": 0.19
+     "pQualif": 0.19,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 14.9,
+       "lo": 10.1,
+       "hi": 19.7
+      }
+     ]
     },
     {
      "id": "glucksmann",
@@ -48,7 +72,15 @@
      "score": 10.2,
      "lo": 6.3,
      "hi": 14.2,
-     "pQualif": 0.02
+     "pQualif": 0.02,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 10.2,
+       "lo": 6.3,
+       "hi": 14.2
+      }
+     ]
     },
     {
      "id": "retailleau",
@@ -57,7 +89,15 @@
      "score": 8.5,
      "lo": 4.9,
      "hi": 12.1,
-     "pQualif": 0.01
+     "pQualif": 0.01,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 8.5,
+       "lo": 4.9,
+       "hi": 12.1
+      }
+     ]
     },
     {
      "id": "zemmour",
@@ -66,7 +106,15 @@
      "score": 4.1,
      "lo": 1.6,
      "hi": 6.6,
-     "pQualif": 0.0
+     "pQualif": 0.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 4.1,
+       "lo": 1.6,
+       "hi": 6.6
+      }
+     ]
     },
     {
      "id": "tondelier",
@@ -75,7 +123,15 @@
      "score": 3.8,
      "lo": 1.4,
      "hi": 6.3,
-     "pQualif": 0.0
+     "pQualif": 0.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 3.8,
+       "lo": 1.4,
+       "hi": 6.3
+      }
+     ]
     },
     {
      "id": "roussel",
@@ -84,7 +140,15 @@
      "score": 2.6,
      "lo": 0.6,
      "hi": 4.6,
-     "pQualif": 0.0
+     "pQualif": 0.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 2.6,
+       "lo": 0.6,
+       "hi": 4.6
+      }
+     ]
     },
     {
      "id": "dupontaignan",
@@ -93,7 +157,15 @@
      "score": 1.4,
      "lo": 0.0,
      "hi": 2.9,
-     "pQualif": 0.0
+     "pQualif": 0.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 1.4,
+       "lo": 0.0,
+       "hi": 2.9
+      }
+     ]
     },
     {
      "id": "arthaud",
@@ -102,7 +174,15 @@
      "score": 1.0,
      "lo": 0.0,
      "hi": 2.2,
-     "pQualif": 0.0
+     "pQualif": 0.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 1.0,
+       "lo": 0.0,
+       "hi": 2.2
+      }
+     ]
     }
    ],
    "duel": {
@@ -110,7 +190,7 @@
      "id": "philippe",
      "name": "Philippe",
      "color": "#23c4a8",
-     "score": 51.8,
+     "score": 51.7,
      "lo": 45.7,
      "hi": 57.9
     },
@@ -118,7 +198,7 @@
      "id": "lepen",
      "name": "Le Pen",
      "color": "#6f9bff",
-     "score": 48.2,
+     "score": 48.3,
      "lo": 42.1,
      "hi": 54.3
     },
@@ -693,7 +773,7 @@
    }
   },
   {
-   "id": "AttalDupont-AignanGlucksmannMélenchonRet",
+   "id": "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Retailleau-Roussel-Tondelier-Zemmour",
    "label": "Attal, Dupont-Aignan, Glucksmann, Mélenchon, Retailleau, Rou",
    "n": 6,
    "proba": 0.3,
@@ -705,7 +785,15 @@
      "score": 34.9,
      "lo": 27.6,
      "hi": 42.2,
-     "pQualif": 1.0
+     "pQualif": 1.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 34.9,
+       "lo": 27.6,
+       "hi": 42.2
+      }
+     ]
     },
     {
      "id": "melenchon",
@@ -714,7 +802,15 @@
      "score": 14.8,
      "lo": 10.1,
      "hi": 19.6,
-     "pQualif": 0.42
+     "pQualif": 0.42,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 14.8,
+       "lo": 10.1,
+       "hi": 19.6
+      }
+     ]
     },
     {
      "id": "attal",
@@ -723,7 +819,15 @@
      "score": 14.7,
      "lo": 9.9,
      "hi": 19.4,
-     "pQualif": 0.39
+     "pQualif": 0.39,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 14.7,
+       "lo": 9.9,
+       "hi": 19.4
+      }
+     ]
     },
     {
      "id": "glucksmann",
@@ -732,7 +836,15 @@
      "score": 11.5,
      "lo": 7.3,
      "hi": 15.8,
-     "pQualif": 0.11
+     "pQualif": 0.11,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 11.5,
+       "lo": 7.3,
+       "hi": 15.8
+      }
+     ]
     },
     {
      "id": "retailleau",
@@ -741,7 +853,15 @@
      "score": 10.7,
      "lo": 6.7,
      "hi": 14.8,
-     "pQualif": 0.08
+     "pQualif": 0.08,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 10.7,
+       "lo": 6.7,
+       "hi": 14.8
+      }
+     ]
     },
     {
      "id": "zemmour",
@@ -750,7 +870,15 @@
      "score": 4.0,
      "lo": 1.5,
      "hi": 6.4,
-     "pQualif": 0.0
+     "pQualif": 0.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 4.0,
+       "lo": 1.5,
+       "hi": 6.4
+      }
+     ]
     },
     {
      "id": "tondelier",
@@ -759,7 +887,15 @@
      "score": 3.8,
      "lo": 1.4,
      "hi": 6.3,
-     "pQualif": 0.0
+     "pQualif": 0.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 3.8,
+       "lo": 1.4,
+       "hi": 6.3
+      }
+     ]
     },
     {
      "id": "roussel",
@@ -768,7 +904,15 @@
      "score": 2.7,
      "lo": 0.7,
      "hi": 4.8,
-     "pQualif": 0.0
+     "pQualif": 0.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 2.7,
+       "lo": 0.7,
+       "hi": 4.8
+      }
+     ]
     },
     {
      "id": "dupontaignan",
@@ -777,7 +921,15 @@
      "score": 1.6,
      "lo": 0.0,
      "hi": 3.2,
-     "pQualif": 0.0
+     "pQualif": 0.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 1.6,
+       "lo": 0.0,
+       "hi": 3.2
+      }
+     ]
     },
     {
      "id": "arthaud",
@@ -786,7 +938,15 @@
      "score": 1.1,
      "lo": 0.0,
      "hi": 2.4,
-     "pQualif": 0.0
+     "pQualif": 0.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 1.1,
+       "lo": 0.0,
+       "hi": 2.4
+      }
+     ]
     }
    ],
    "duel": {
@@ -795,16 +955,16 @@
      "name": "Mélenchon",
      "color": "#e5484d",
      "score": 54.3,
-     "lo": 47.8,
-     "hi": 60.9
+     "lo": 47.7,
+     "hi": 60.8
     },
     "lePen": {
      "id": "lepen",
      "name": "Le Pen",
      "color": "#6f9bff",
      "score": 45.7,
-     "lo": 39.1,
-     "hi": 52.2
+     "lo": 39.2,
+     "hi": 52.3
     },
     "pAppariement": 0.42,
     "vainqueur": "Mélenchon"
@@ -1377,7 +1537,7 @@
    }
   },
   {
-   "id": "AttalDupont-AignanGlucksmannMélenchonPhi",
+   "id": "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Zemmour",
    "label": "Attal, Dupont-Aignan, Glucksmann, Mélenchon, Philippe, Retai",
    "n": 3,
    "proba": 0.15,
@@ -1389,7 +1549,15 @@
      "score": 34.9,
      "lo": 27.6,
      "hi": 42.2,
-     "pQualif": 1.0
+     "pQualif": 1.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 34.9,
+       "lo": 27.6,
+       "hi": 42.2
+      }
+     ]
     },
     {
      "id": "melenchon",
@@ -1398,7 +1566,15 @@
      "score": 14.6,
      "lo": 9.9,
      "hi": 19.4,
-     "pQualif": 0.48
+     "pQualif": 0.47,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 14.6,
+       "lo": 9.9,
+       "hi": 19.4
+      }
+     ]
     },
     {
      "id": "philippe",
@@ -1407,7 +1583,15 @@
      "score": 14.4,
      "lo": 9.7,
      "hi": 19.1,
-     "pQualif": 0.43
+     "pQualif": 0.43,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 14.4,
+       "lo": 9.7,
+       "hi": 19.1
+      }
+     ]
     },
     {
      "id": "glucksmann",
@@ -1416,7 +1600,15 @@
      "score": 9.2,
      "lo": 5.5,
      "hi": 13.0,
-     "pQualif": 0.05
+     "pQualif": 0.05,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 9.2,
+       "lo": 5.5,
+       "hi": 13.0
+      }
+     ]
     },
     {
      "id": "retailleau",
@@ -1425,7 +1617,15 @@
      "score": 7.8,
      "lo": 4.3,
      "hi": 11.3,
-     "pQualif": 0.02
+     "pQualif": 0.02,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 7.8,
+       "lo": 4.3,
+       "hi": 11.3
+      }
+     ]
     },
     {
      "id": "attal",
@@ -1434,7 +1634,15 @@
      "score": 7.4,
      "lo": 4.1,
      "hi": 10.8,
-     "pQualif": 0.02
+     "pQualif": 0.02,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 7.4,
+       "lo": 4.1,
+       "hi": 10.8
+      }
+     ]
     },
     {
      "id": "zemmour",
@@ -1443,7 +1651,15 @@
      "score": 3.6,
      "lo": 1.2,
      "hi": 5.9,
-     "pQualif": 0.0
+     "pQualif": 0.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 3.6,
+       "lo": 1.2,
+       "hi": 5.9
+      }
+     ]
     },
     {
      "id": "tondelier",
@@ -1452,7 +1668,15 @@
      "score": 3.5,
      "lo": 1.2,
      "hi": 5.9,
-     "pQualif": 0.0
+     "pQualif": 0.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 3.5,
+       "lo": 1.2,
+       "hi": 5.9
+      }
+     ]
     },
     {
      "id": "roussel",
@@ -1461,7 +1685,15 @@
      "score": 2.3,
      "lo": 0.4,
      "hi": 4.1,
-     "pQualif": 0.0
+     "pQualif": 0.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 2.3,
+       "lo": 0.4,
+       "hi": 4.1
+      }
+     ]
     },
     {
      "id": "dupontaignan",
@@ -1470,7 +1702,15 @@
      "score": 1.4,
      "lo": 0.0,
      "hi": 2.8,
-     "pQualif": 0.0
+     "pQualif": 0.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 1.4,
+       "lo": 0.0,
+       "hi": 2.8
+      }
+     ]
     },
     {
      "id": "arthaud",
@@ -1479,7 +1719,15 @@
      "score": 0.9,
      "lo": 0.0,
      "hi": 2.0,
-     "pQualif": 0.0
+     "pQualif": 0.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 0.9,
+       "lo": 0.0,
+       "hi": 2.0
+      }
+     ]
     }
    ],
    "duel": {
@@ -1488,18 +1736,18 @@
      "name": "Mélenchon",
      "color": "#e5484d",
      "score": 54.8,
-     "lo": 48.2,
-     "hi": 61.5
+     "lo": 48.3,
+     "hi": 61.4
     },
     "lePen": {
      "id": "lepen",
      "name": "Le Pen",
      "color": "#6f9bff",
      "score": 45.2,
-     "lo": 38.5,
-     "hi": 51.8
+     "lo": 38.6,
+     "hi": 51.7
     },
-    "pAppariement": 0.48,
+    "pAppariement": 0.47,
     "vainqueur": "Mélenchon"
    },
    "dept": {
@@ -2070,7 +2318,7 @@
    }
   },
   {
-   "id": "Dupont-AignanGlucksmannMélenchonPhilippe",
+   "id": "Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Villepin-Zemmour",
    "label": "Dupont-Aignan, Glucksmann, Mélenchon, Philippe, Retailleau, ",
    "n": 3,
    "proba": 0.15,
@@ -2082,7 +2330,15 @@
      "score": 32.4,
      "lo": 25.4,
      "hi": 39.5,
-     "pQualif": 1.0
+     "pQualif": 1.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 32.4,
+       "lo": 25.4,
+       "hi": 39.5
+      }
+     ]
     },
     {
      "id": "philippe",
@@ -2091,7 +2347,15 @@
      "score": 19.4,
      "lo": 14.0,
      "hi": 24.9,
-     "pQualif": 0.86
+     "pQualif": 0.86,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 19.4,
+       "lo": 14.0,
+       "hi": 24.9
+      }
+     ]
     },
     {
      "id": "melenchon",
@@ -2100,7 +2364,15 @@
      "score": 13.1,
      "lo": 8.6,
      "hi": 17.6,
-     "pQualif": 0.09
+     "pQualif": 0.09,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 13.1,
+       "lo": 8.6,
+       "hi": 17.6
+      }
+     ]
     },
     {
      "id": "glucksmann",
@@ -2109,7 +2381,15 @@
      "score": 11.2,
      "lo": 7.0,
      "hi": 15.3,
-     "pQualif": 0.04
+     "pQualif": 0.04,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 11.2,
+       "lo": 7.0,
+       "hi": 15.3
+      }
+     ]
     },
     {
      "id": "retailleau",
@@ -2118,7 +2398,15 @@
      "score": 8.7,
      "lo": 5.1,
      "hi": 12.4,
-     "pQualif": 0.01
+     "pQualif": 0.01,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 8.7,
+       "lo": 5.1,
+       "hi": 12.4
+      }
+     ]
     },
     {
      "id": "tondelier",
@@ -2127,7 +2415,15 @@
      "score": 4.2,
      "lo": 1.7,
      "hi": 6.8,
-     "pQualif": 0.0
+     "pQualif": 0.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 4.2,
+       "lo": 1.7,
+       "hi": 6.8
+      }
+     ]
     },
     {
      "id": "zemmour",
@@ -2136,7 +2432,15 @@
      "score": 3.9,
      "lo": 1.4,
      "hi": 6.3,
-     "pQualif": 0.0
+     "pQualif": 0.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 3.9,
+       "lo": 1.4,
+       "hi": 6.3
+      }
+     ]
     },
     {
      "id": "roussel",
@@ -2145,7 +2449,15 @@
      "score": 3.0,
      "lo": 0.9,
      "hi": 5.2,
-     "pQualif": 0.0
+     "pQualif": 0.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 3.0,
+       "lo": 0.9,
+       "hi": 5.2
+      }
+     ]
     },
     {
      "id": "villepin",
@@ -2154,7 +2466,15 @@
      "score": 2.0,
      "lo": 0.2,
      "hi": 3.8,
-     "pQualif": 0.0
+     "pQualif": 0.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 2.0,
+       "lo": 0.2,
+       "hi": 3.8
+      }
+     ]
     },
     {
      "id": "dupontaignan",
@@ -2163,7 +2483,15 @@
      "score": 1.1,
      "lo": 0.0,
      "hi": 2.4,
-     "pQualif": 0.0
+     "pQualif": 0.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 1.1,
+       "lo": 0.0,
+       "hi": 2.4
+      }
+     ]
     },
     {
      "id": "arthaud",
@@ -2172,7 +2500,15 @@
      "score": 0.9,
      "lo": 0.0,
      "hi": 2.0,
-     "pQualif": 0.0
+     "pQualif": 0.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 0.9,
+       "lo": 0.0,
+       "hi": 2.0
+      }
+     ]
     }
    ],
    "duel": {
@@ -2180,17 +2516,17 @@
      "id": "philippe",
      "name": "Philippe",
      "color": "#23c4a8",
-     "score": 54.9,
-     "lo": 48.8,
+     "score": 54.8,
+     "lo": 48.7,
      "hi": 61.1
     },
     "lePen": {
      "id": "lepen",
      "name": "Le Pen",
      "color": "#6f9bff",
-     "score": 45.1,
+     "score": 45.2,
      "lo": 38.9,
-     "hi": 51.2
+     "hi": 51.3
     },
     "pAppariement": 0.86,
     "vainqueur": "Philippe"
@@ -2763,7 +3099,7 @@
    }
   },
   {
-   "id": "AttalDupont-AignanGlucksmannMélenchonRet",
+   "id": "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Retailleau-Roussel-Tondelier-Villepin-Zemmour",
    "label": "Attal, Dupont-Aignan, Glucksmann, Mélenchon, Retailleau, Rou",
    "n": 2,
    "proba": 0.1,
@@ -2775,7 +3111,15 @@
      "score": 31.7,
      "lo": 24.7,
      "hi": 38.7,
-     "pQualif": 1.0
+     "pQualif": 1.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 31.7,
+       "lo": 24.7,
+       "hi": 38.7
+      }
+     ]
     },
     {
      "id": "attal",
@@ -2784,7 +3128,15 @@
      "score": 15.6,
      "lo": 10.7,
      "hi": 20.5,
-     "pQualif": 0.52
+     "pQualif": 0.52,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 15.6,
+       "lo": 10.7,
+       "hi": 20.5
+      }
+     ]
     },
     {
      "id": "melenchon",
@@ -2793,7 +3145,15 @@
      "score": 13.5,
      "lo": 8.9,
      "hi": 18.0,
-     "pQualif": 0.24
+     "pQualif": 0.25,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 13.5,
+       "lo": 8.9,
+       "hi": 18.0
+      }
+     ]
     },
     {
      "id": "glucksmann",
@@ -2802,7 +3162,15 @@
      "score": 12.0,
      "lo": 7.7,
      "hi": 16.3,
-     "pQualif": 0.14
+     "pQualif": 0.13,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 12.0,
+       "lo": 7.7,
+       "hi": 16.3
+      }
+     ]
     },
     {
      "id": "retailleau",
@@ -2811,7 +3179,15 @@
      "score": 11.3,
      "lo": 7.1,
      "hi": 15.5,
-     "pQualif": 0.1
+     "pQualif": 0.1,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 11.3,
+       "lo": 7.1,
+       "hi": 15.5
+      }
+     ]
     },
     {
      "id": "zemmour",
@@ -2820,7 +3196,15 @@
      "score": 3.9,
      "lo": 1.4,
      "hi": 6.3,
-     "pQualif": 0.0
+     "pQualif": 0.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 3.9,
+       "lo": 1.4,
+       "hi": 6.3
+      }
+     ]
     },
     {
      "id": "tondelier",
@@ -2829,7 +3213,15 @@
      "score": 3.7,
      "lo": 1.3,
      "hi": 6.1,
-     "pQualif": 0.0
+     "pQualif": 0.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 3.7,
+       "lo": 1.3,
+       "hi": 6.1
+      }
+     ]
     },
     {
      "id": "roussel",
@@ -2838,7 +3230,15 @@
      "score": 3.0,
      "lo": 0.9,
      "hi": 5.2,
-     "pQualif": 0.0
+     "pQualif": 0.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 3.0,
+       "lo": 0.9,
+       "hi": 5.2
+      }
+     ]
     },
     {
      "id": "villepin",
@@ -2847,7 +3247,15 @@
      "score": 2.9,
      "lo": 0.8,
      "hi": 4.9,
-     "pQualif": 0.0
+     "pQualif": 0.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 2.9,
+       "lo": 0.8,
+       "hi": 4.9
+      }
+     ]
     },
     {
      "id": "dupontaignan",
@@ -2856,7 +3264,15 @@
      "score": 1.5,
      "lo": 0.0,
      "hi": 3.0,
-     "pQualif": 0.0
+     "pQualif": 0.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 1.5,
+       "lo": 0.0,
+       "hi": 3.0
+      }
+     ]
     },
     {
      "id": "arthaud",
@@ -2865,7 +3281,15 @@
      "score": 1.0,
      "lo": 0.0,
      "hi": 2.2,
-     "pQualif": 0.0
+     "pQualif": 0.0,
+     "series": [
+      {
+       "date": "2026-07-29",
+       "score": 1.0,
+       "lo": 0.0,
+       "hi": 2.2
+      }
+     ]
     }
    ],
    "duel": {
@@ -2873,17 +3297,17 @@
      "id": "attal",
      "name": "Attal",
      "color": "#e8b13a",
-     "score": 54.5,
-     "lo": 48.2,
-     "hi": 61.0
+     "score": 54.4,
+     "lo": 48.0,
+     "hi": 60.7
     },
     "lePen": {
      "id": "lepen",
      "name": "Le Pen",
      "color": "#6f9bff",
-     "score": 45.5,
-     "lo": 39.0,
-     "hi": 51.8
+     "score": 45.6,
+     "lo": 39.3,
+     "hi": 52.0
     },
     "pAppariement": 0.52,
     "vainqueur": "Attal"

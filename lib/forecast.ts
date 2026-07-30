@@ -6,6 +6,13 @@ import path from "path";
  * `build_vigie_forecast.py` et deposee dans public/forecast.json par le pipeline.
  * Source distincte de l'agregateur (Wikipedia), une seule verite pour chacune.
  */
+export interface SeriesPoint {
+  date: string;
+  score: number;
+  lo: number;
+  hi: number;
+}
+
 export interface ForecastCandidate {
   id: string;
   name: string;
@@ -14,6 +21,7 @@ export interface ForecastCandidate {
   lo: number;
   hi: number;
   pQualif: number;
+  series: SeriesPoint[];
 }
 
 export interface ForecastDuelSide {
