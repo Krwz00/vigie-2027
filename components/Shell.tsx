@@ -92,7 +92,8 @@ export default function Shell({ data, forecast }: { data: VigieData; forecast: F
       "span",
       { style: st({ display: "inline-flex", gap: 14, fontFamily: "var(--font-body)", fontSize: 12 }) },
       h("a", { href: "/methode", style: st({ color: "#d8b24a" }) }, "Méthode"),
-      h("a", { href: "/resultats-2022", style: st({ color: "#d8b24a" }) }, "Test 2022")
+      h("a", { href: "/resultats-2022", style: st({ color: "#d8b24a" }) }, "Test 2022"),
+      h("a", { href: "/parametres", style: st({ color: "#8ba0bd" }) }, "Paramètres bêta")
     )
   );
 

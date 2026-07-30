@@ -1,0 +1,1248 @@
+{
+ "updatedAt": "2026-07-29",
+ "family1": {
+  "tau_delta": {
+   "label": "Retrecissement des effets de maison",
+   "default": 5.0,
+   "calibrated": 5.0,
+   "min": 0,
+   "max": 8,
+   "recompute": "grille",
+   "note": "A zero, aucune correction d'institut, le modele redevient une moyenne ponderee. Eleve, la correction est maximale.",
+   "grid": [
+    {
+     "value": 0.02,
+     "mae3_2022": 4.8,
+     "forecast": {
+      "Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 0.9,
+       "melenchon": 15.0,
+       "roussel": 2.7,
+       "zemmour": 4.2,
+       "dupontaignan": 1.6,
+       "tondelier": 3.5,
+       "lepen": 34.5,
+       "glucksmann": 10.1,
+       "retailleau": 8.7,
+       "philippe": 18.9
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 1.0,
+       "melenchon": 14.9,
+       "attal": 15.0,
+       "roussel": 2.7,
+       "zemmour": 4.1,
+       "dupontaignan": 1.8,
+       "tondelier": 3.4,
+       "lepen": 34.9,
+       "glucksmann": 11.4,
+       "retailleau": 10.9
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 1.0,
+       "melenchon": 15.0,
+       "attal": 7.8,
+       "roussel": 2.3,
+       "zemmour": 3.6,
+       "dupontaignan": 1.3,
+       "tondelier": 3.1,
+       "lepen": 34.6,
+       "glucksmann": 9.4,
+       "retailleau": 7.9,
+       "philippe": 14.0
+      },
+      "Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Villepin-Zemmour": {
+       "arthaud": 0.5,
+       "melenchon": 12.7,
+       "villepin": 2.2,
+       "roussel": 3.0,
+       "zemmour": 3.9,
+       "dupontaignan": 1.7,
+       "tondelier": 4.1,
+       "lepen": 32.9,
+       "glucksmann": 10.7,
+       "retailleau": 9.0,
+       "philippe": 19.2
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Retailleau-Roussel-Tondelier-Villepin-Zemmour": {
+       "arthaud": 0.6,
+       "melenchon": 12.9,
+       "attal": 15.7,
+       "roussel": 3.0,
+       "zemmour": 4.0,
+       "dupontaignan": 2.0,
+       "tondelier": 3.5,
+       "lepen": 32.1,
+       "glucksmann": 11.5,
+       "retailleau": 11.5,
+       "villepin": 3.1
+      }
+     }
+    },
+    {
+     "value": 1.5,
+     "mae3_2022": 4.46,
+     "forecast": {
+      "Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 0.9,
+       "melenchon": 15.0,
+       "roussel": 2.7,
+       "zemmour": 4.1,
+       "dupontaignan": 1.5,
+       "tondelier": 3.6,
+       "lepen": 34.4,
+       "glucksmann": 10.3,
+       "retailleau": 8.6,
+       "philippe": 18.9
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 1.1,
+       "melenchon": 14.9,
+       "attal": 14.9,
+       "roussel": 2.7,
+       "zemmour": 4.0,
+       "dupontaignan": 1.7,
+       "tondelier": 3.6,
+       "lepen": 34.8,
+       "glucksmann": 11.5,
+       "retailleau": 10.8
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 0.9,
+       "melenchon": 14.7,
+       "attal": 7.7,
+       "roussel": 2.3,
+       "zemmour": 3.5,
+       "dupontaignan": 1.4,
+       "tondelier": 3.4,
+       "lepen": 34.7,
+       "glucksmann": 9.3,
+       "retailleau": 7.9,
+       "philippe": 14.0
+      },
+      "Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Villepin-Zemmour": {
+       "arthaud": 0.8,
+       "melenchon": 13.1,
+       "villepin": 2.2,
+       "roussel": 3.0,
+       "zemmour": 3.9,
+       "dupontaignan": 1.2,
+       "tondelier": 4.0,
+       "lepen": 32.6,
+       "glucksmann": 11.2,
+       "retailleau": 8.8,
+       "philippe": 19.3
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Retailleau-Roussel-Tondelier-Villepin-Zemmour": {
+       "arthaud": 0.9,
+       "melenchon": 13.4,
+       "attal": 15.8,
+       "roussel": 3.0,
+       "zemmour": 4.0,
+       "dupontaignan": 1.5,
+       "tondelier": 3.4,
+       "lepen": 31.8,
+       "glucksmann": 12.0,
+       "retailleau": 11.3,
+       "villepin": 3.0
+      }
+     }
+    },
+    {
+     "value": 3,
+     "mae3_2022": 4.43,
+     "forecast": {
+      "Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 1.0,
+       "melenchon": 15.0,
+       "roussel": 2.6,
+       "zemmour": 4.1,
+       "dupontaignan": 1.4,
+       "tondelier": 3.8,
+       "lepen": 34.3,
+       "glucksmann": 10.3,
+       "retailleau": 8.5,
+       "philippe": 19.0
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 1.1,
+       "melenchon": 14.8,
+       "attal": 14.9,
+       "roussel": 2.7,
+       "zemmour": 4.0,
+       "dupontaignan": 1.6,
+       "tondelier": 3.7,
+       "lepen": 34.8,
+       "glucksmann": 11.6,
+       "retailleau": 10.7
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 0.9,
+       "melenchon": 14.7,
+       "attal": 7.6,
+       "roussel": 2.3,
+       "zemmour": 3.6,
+       "dupontaignan": 1.4,
+       "tondelier": 3.5,
+       "lepen": 34.8,
+       "glucksmann": 9.3,
+       "retailleau": 7.8,
+       "philippe": 14.2
+      },
+      "Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Villepin-Zemmour": {
+       "arthaud": 0.9,
+       "melenchon": 13.2,
+       "villepin": 2.1,
+       "roussel": 3.0,
+       "zemmour": 3.9,
+       "dupontaignan": 1.1,
+       "tondelier": 4.1,
+       "lepen": 32.4,
+       "glucksmann": 11.2,
+       "retailleau": 8.7,
+       "philippe": 19.3
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Retailleau-Roussel-Tondelier-Villepin-Zemmour": {
+       "arthaud": 1.0,
+       "melenchon": 13.4,
+       "attal": 15.7,
+       "roussel": 3.0,
+       "zemmour": 3.9,
+       "dupontaignan": 1.5,
+       "tondelier": 3.6,
+       "lepen": 31.7,
+       "glucksmann": 12.1,
+       "retailleau": 11.3,
+       "villepin": 3.0
+      }
+     }
+    },
+    {
+     "value": 5,
+     "mae3_2022": 4.4,
+     "forecast": {
+      "Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 1.0,
+       "melenchon": 14.9,
+       "roussel": 2.6,
+       "zemmour": 4.1,
+       "dupontaignan": 1.4,
+       "tondelier": 3.8,
+       "lepen": 34.3,
+       "glucksmann": 10.2,
+       "retailleau": 8.5,
+       "philippe": 19.1
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 1.1,
+       "melenchon": 14.8,
+       "attal": 14.7,
+       "roussel": 2.7,
+       "zemmour": 4.0,
+       "dupontaignan": 1.6,
+       "tondelier": 3.8,
+       "lepen": 34.9,
+       "glucksmann": 11.5,
+       "retailleau": 10.7
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 0.9,
+       "melenchon": 14.6,
+       "attal": 7.4,
+       "roussel": 2.3,
+       "zemmour": 3.6,
+       "dupontaignan": 1.4,
+       "tondelier": 3.5,
+       "lepen": 34.9,
+       "glucksmann": 9.2,
+       "retailleau": 7.8,
+       "philippe": 14.4
+      },
+      "Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Villepin-Zemmour": {
+       "arthaud": 0.9,
+       "melenchon": 13.1,
+       "villepin": 2.0,
+       "roussel": 3.0,
+       "zemmour": 3.9,
+       "dupontaignan": 1.1,
+       "tondelier": 4.2,
+       "lepen": 32.4,
+       "glucksmann": 11.2,
+       "retailleau": 8.7,
+       "philippe": 19.4
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Retailleau-Roussel-Tondelier-Villepin-Zemmour": {
+       "arthaud": 1.0,
+       "melenchon": 13.5,
+       "attal": 15.6,
+       "roussel": 3.0,
+       "zemmour": 3.9,
+       "dupontaignan": 1.5,
+       "tondelier": 3.7,
+       "lepen": 31.7,
+       "glucksmann": 12.0,
+       "retailleau": 11.3,
+       "villepin": 2.9
+      }
+     }
+    },
+    {
+     "value": 8,
+     "mae3_2022": 4.38,
+     "forecast": {
+      "Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 1.0,
+       "melenchon": 14.9,
+       "roussel": 2.6,
+       "zemmour": 4.1,
+       "dupontaignan": 1.4,
+       "tondelier": 3.9,
+       "lepen": 34.3,
+       "glucksmann": 10.1,
+       "retailleau": 8.5,
+       "philippe": 19.2
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 1.1,
+       "melenchon": 14.9,
+       "attal": 14.5,
+       "roussel": 2.7,
+       "zemmour": 4.0,
+       "dupontaignan": 1.6,
+       "tondelier": 3.9,
+       "lepen": 35.0,
+       "glucksmann": 11.5,
+       "retailleau": 10.8
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 0.9,
+       "melenchon": 14.6,
+       "attal": 7.2,
+       "roussel": 2.3,
+       "zemmour": 3.6,
+       "dupontaignan": 1.4,
+       "tondelier": 3.6,
+       "lepen": 35.0,
+       "glucksmann": 9.2,
+       "retailleau": 7.8,
+       "philippe": 14.5
+      },
+      "Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Villepin-Zemmour": {
+       "arthaud": 0.9,
+       "melenchon": 13.1,
+       "villepin": 1.9,
+       "roussel": 3.0,
+       "zemmour": 3.9,
+       "dupontaignan": 1.1,
+       "tondelier": 4.3,
+       "lepen": 32.4,
+       "glucksmann": 11.1,
+       "retailleau": 8.7,
+       "philippe": 19.6
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Retailleau-Roussel-Tondelier-Villepin-Zemmour": {
+       "arthaud": 1.0,
+       "melenchon": 13.5,
+       "attal": 15.4,
+       "roussel": 3.0,
+       "zemmour": 3.9,
+       "dupontaignan": 1.5,
+       "tondelier": 3.8,
+       "lepen": 31.9,
+       "glucksmann": 12.0,
+       "retailleau": 11.4,
+       "villepin": 2.7
+      }
+     }
+    }
+   ]
+  },
+  "tau_theta": {
+   "label": "Vitesse de la marche aleatoire",
+   "default": 2.0,
+   "calibrated": 2.0,
+   "min": 0.6,
+   "max": 3,
+   "recompute": "grille",
+   "note": "Autorise l'opinion a bouger plus ou moins vite entre deux dates.",
+   "grid": [
+    {
+     "value": 0.6,
+     "mae3_2022": 4.38,
+     "forecast": {
+      "Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 1.0,
+       "melenchon": 14.9,
+       "roussel": 2.6,
+       "zemmour": 4.1,
+       "dupontaignan": 1.4,
+       "tondelier": 3.9,
+       "lepen": 34.3,
+       "glucksmann": 10.3,
+       "retailleau": 8.5,
+       "philippe": 19.1
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 1.1,
+       "melenchon": 14.9,
+       "attal": 14.7,
+       "roussel": 2.7,
+       "zemmour": 3.9,
+       "dupontaignan": 1.6,
+       "tondelier": 3.9,
+       "lepen": 35.0,
+       "glucksmann": 11.6,
+       "retailleau": 10.7
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 0.9,
+       "melenchon": 14.6,
+       "attal": 7.5,
+       "roussel": 2.3,
+       "zemmour": 3.6,
+       "dupontaignan": 1.3,
+       "tondelier": 3.5,
+       "lepen": 34.9,
+       "glucksmann": 9.3,
+       "retailleau": 7.9,
+       "philippe": 14.3
+      },
+      "Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Villepin-Zemmour": {
+       "arthaud": 0.9,
+       "melenchon": 13.3,
+       "villepin": 1.8,
+       "roussel": 3.0,
+       "zemmour": 3.8,
+       "dupontaignan": 1.1,
+       "tondelier": 4.2,
+       "lepen": 32.6,
+       "glucksmann": 11.1,
+       "retailleau": 8.5,
+       "philippe": 19.7
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Retailleau-Roussel-Tondelier-Villepin-Zemmour": {
+       "arthaud": 1.0,
+       "melenchon": 13.7,
+       "attal": 15.4,
+       "roussel": 3.0,
+       "zemmour": 3.8,
+       "dupontaignan": 1.5,
+       "tondelier": 3.7,
+       "lepen": 32.1,
+       "glucksmann": 12.0,
+       "retailleau": 11.2,
+       "villepin": 2.6
+      }
+     }
+    },
+    {
+     "value": 1.0,
+     "mae3_2022": 4.37,
+     "forecast": {
+      "Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 1.0,
+       "melenchon": 14.9,
+       "roussel": 2.6,
+       "zemmour": 4.1,
+       "dupontaignan": 1.4,
+       "tondelier": 3.9,
+       "lepen": 34.3,
+       "glucksmann": 10.3,
+       "retailleau": 8.5,
+       "philippe": 19.1
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 1.1,
+       "melenchon": 14.9,
+       "attal": 14.7,
+       "roussel": 2.7,
+       "zemmour": 3.9,
+       "dupontaignan": 1.6,
+       "tondelier": 3.9,
+       "lepen": 34.9,
+       "glucksmann": 11.6,
+       "retailleau": 10.7
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 0.9,
+       "melenchon": 14.6,
+       "attal": 7.5,
+       "roussel": 2.3,
+       "zemmour": 3.6,
+       "dupontaignan": 1.3,
+       "tondelier": 3.5,
+       "lepen": 34.9,
+       "glucksmann": 9.3,
+       "retailleau": 7.8,
+       "philippe": 14.3
+      },
+      "Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Villepin-Zemmour": {
+       "arthaud": 0.9,
+       "melenchon": 13.2,
+       "villepin": 1.8,
+       "roussel": 3.0,
+       "zemmour": 3.8,
+       "dupontaignan": 1.1,
+       "tondelier": 4.2,
+       "lepen": 32.5,
+       "glucksmann": 11.1,
+       "retailleau": 8.7,
+       "philippe": 19.6
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Retailleau-Roussel-Tondelier-Villepin-Zemmour": {
+       "arthaud": 1.0,
+       "melenchon": 13.6,
+       "attal": 15.5,
+       "roussel": 3.0,
+       "zemmour": 3.9,
+       "dupontaignan": 1.4,
+       "tondelier": 3.7,
+       "lepen": 31.9,
+       "glucksmann": 12.0,
+       "retailleau": 11.3,
+       "villepin": 2.7
+      }
+     }
+    },
+    {
+     "value": 2.0,
+     "mae3_2022": 4.4,
+     "forecast": {
+      "Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 1.0,
+       "melenchon": 14.9,
+       "roussel": 2.6,
+       "zemmour": 4.1,
+       "dupontaignan": 1.4,
+       "tondelier": 3.8,
+       "lepen": 34.3,
+       "glucksmann": 10.2,
+       "retailleau": 8.5,
+       "philippe": 19.1
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 1.1,
+       "melenchon": 14.8,
+       "attal": 14.7,
+       "roussel": 2.7,
+       "zemmour": 4.0,
+       "dupontaignan": 1.6,
+       "tondelier": 3.8,
+       "lepen": 34.9,
+       "glucksmann": 11.5,
+       "retailleau": 10.7
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 0.9,
+       "melenchon": 14.6,
+       "attal": 7.4,
+       "roussel": 2.3,
+       "zemmour": 3.6,
+       "dupontaignan": 1.4,
+       "tondelier": 3.5,
+       "lepen": 34.9,
+       "glucksmann": 9.2,
+       "retailleau": 7.8,
+       "philippe": 14.4
+      },
+      "Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Villepin-Zemmour": {
+       "arthaud": 0.9,
+       "melenchon": 13.1,
+       "villepin": 2.0,
+       "roussel": 3.0,
+       "zemmour": 3.9,
+       "dupontaignan": 1.1,
+       "tondelier": 4.2,
+       "lepen": 32.4,
+       "glucksmann": 11.2,
+       "retailleau": 8.7,
+       "philippe": 19.4
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Retailleau-Roussel-Tondelier-Villepin-Zemmour": {
+       "arthaud": 1.0,
+       "melenchon": 13.5,
+       "attal": 15.6,
+       "roussel": 3.0,
+       "zemmour": 3.9,
+       "dupontaignan": 1.5,
+       "tondelier": 3.7,
+       "lepen": 31.7,
+       "glucksmann": 12.0,
+       "retailleau": 11.3,
+       "villepin": 2.9
+      }
+     }
+    },
+    {
+     "value": 3.0,
+     "mae3_2022": 4.42,
+     "forecast": {
+      "Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 1.0,
+       "melenchon": 14.9,
+       "roussel": 2.6,
+       "zemmour": 4.1,
+       "dupontaignan": 1.5,
+       "tondelier": 3.8,
+       "lepen": 34.3,
+       "glucksmann": 10.2,
+       "retailleau": 8.5,
+       "philippe": 19.0
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 1.1,
+       "melenchon": 14.8,
+       "attal": 14.7,
+       "roussel": 2.7,
+       "zemmour": 4.0,
+       "dupontaignan": 1.7,
+       "tondelier": 3.8,
+       "lepen": 34.9,
+       "glucksmann": 11.5,
+       "retailleau": 10.7
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 0.9,
+       "melenchon": 14.6,
+       "attal": 7.4,
+       "roussel": 2.3,
+       "zemmour": 3.6,
+       "dupontaignan": 1.4,
+       "tondelier": 3.5,
+       "lepen": 34.9,
+       "glucksmann": 9.2,
+       "retailleau": 7.8,
+       "philippe": 14.4
+      },
+      "Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Villepin-Zemmour": {
+       "arthaud": 0.9,
+       "melenchon": 13.1,
+       "villepin": 2.1,
+       "roussel": 3.0,
+       "zemmour": 3.9,
+       "dupontaignan": 1.2,
+       "tondelier": 4.2,
+       "lepen": 32.4,
+       "glucksmann": 11.2,
+       "retailleau": 8.7,
+       "philippe": 19.4
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Retailleau-Roussel-Tondelier-Villepin-Zemmour": {
+       "arthaud": 1.0,
+       "melenchon": 13.4,
+       "attal": 15.6,
+       "roussel": 3.0,
+       "zemmour": 3.9,
+       "dupontaignan": 1.5,
+       "tondelier": 3.6,
+       "lepen": 31.6,
+       "glucksmann": 12.0,
+       "retailleau": 11.3,
+       "villepin": 3.0
+      }
+     }
+    }
+   ]
+  },
+  "tau": {
+   "label": "Decote temporelle (jours)",
+   "default": 30.0,
+   "calibrated": 3,
+   "min": 1,
+   "max": 30,
+   "recompute": "grille",
+   "note": "Plus grand, plus les sondages anciens pesent. Fenetre 2027 par defaut 30 jours ; l'optimum backtest est 3 jours.",
+   "backtest": "non applicable, parametre de la fenetre 2027",
+   "grid": [
+    {
+     "value": 3,
+     "forecast": {
+      "Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 0.9,
+       "melenchon": 15.8,
+       "roussel": 2.4,
+       "zemmour": 3.5,
+       "dupontaignan": 1.3,
+       "tondelier": 3.7,
+       "lepen": 35.4,
+       "glucksmann": 10.5,
+       "retailleau": 7.8,
+       "philippe": 18.6
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 1.2,
+       "melenchon": 15.2,
+       "attal": 14.5,
+       "roussel": 2.5,
+       "zemmour": 3.7,
+       "dupontaignan": 1.3,
+       "tondelier": 3.9,
+       "lepen": 35.8,
+       "glucksmann": 11.6,
+       "retailleau": 10.2
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 0.9,
+       "melenchon": 14.7,
+       "attal": 7.4,
+       "roussel": 2.2,
+       "zemmour": 3.4,
+       "dupontaignan": 1.3,
+       "tondelier": 3.7,
+       "lepen": 35.3,
+       "glucksmann": 9.1,
+       "retailleau": 7.7,
+       "philippe": 14.5
+      },
+      "Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Villepin-Zemmour": {
+       "arthaud": 0.9,
+       "melenchon": 13.5,
+       "villepin": 1.8,
+       "roussel": 3.1,
+       "zemmour": 3.9,
+       "dupontaignan": 0.9,
+       "tondelier": 4.1,
+       "lepen": 32.5,
+       "glucksmann": 11.5,
+       "retailleau": 8.7,
+       "philippe": 19.2
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Retailleau-Roussel-Tondelier-Villepin-Zemmour": {
+       "arthaud": 0.9,
+       "melenchon": 13.5,
+       "attal": 15.9,
+       "roussel": 3.1,
+       "zemmour": 3.9,
+       "dupontaignan": 1.4,
+       "tondelier": 3.6,
+       "lepen": 31.6,
+       "glucksmann": 12.0,
+       "retailleau": 11.3,
+       "villepin": 2.8
+      }
+     }
+    },
+    {
+     "value": 15,
+     "forecast": {
+      "Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 1.0,
+       "melenchon": 15.3,
+       "roussel": 2.5,
+       "zemmour": 3.9,
+       "dupontaignan": 1.4,
+       "tondelier": 3.8,
+       "lepen": 34.7,
+       "glucksmann": 10.3,
+       "retailleau": 8.2,
+       "philippe": 19.0
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 1.1,
+       "melenchon": 15.0,
+       "attal": 14.7,
+       "roussel": 2.6,
+       "zemmour": 3.8,
+       "dupontaignan": 1.5,
+       "tondelier": 3.8,
+       "lepen": 35.3,
+       "glucksmann": 11.6,
+       "retailleau": 10.5
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 0.9,
+       "melenchon": 14.8,
+       "attal": 7.4,
+       "roussel": 2.2,
+       "zemmour": 3.5,
+       "dupontaignan": 1.3,
+       "tondelier": 3.6,
+       "lepen": 35.2,
+       "glucksmann": 9.2,
+       "retailleau": 7.7,
+       "philippe": 14.4
+      },
+      "Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Villepin-Zemmour": {
+       "arthaud": 0.9,
+       "melenchon": 13.5,
+       "villepin": 1.8,
+       "roussel": 3.1,
+       "zemmour": 3.9,
+       "dupontaignan": 0.9,
+       "tondelier": 4.1,
+       "lepen": 32.5,
+       "glucksmann": 11.4,
+       "retailleau": 8.7,
+       "philippe": 19.2
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Retailleau-Roussel-Tondelier-Villepin-Zemmour": {
+       "arthaud": 0.9,
+       "melenchon": 13.5,
+       "attal": 15.8,
+       "roussel": 3.1,
+       "zemmour": 3.9,
+       "dupontaignan": 1.4,
+       "tondelier": 3.6,
+       "lepen": 31.6,
+       "glucksmann": 12.0,
+       "retailleau": 11.3,
+       "villepin": 2.8
+      }
+     }
+    },
+    {
+     "value": 30,
+     "forecast": {
+      "Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 1.0,
+       "melenchon": 14.9,
+       "roussel": 2.6,
+       "zemmour": 4.1,
+       "dupontaignan": 1.4,
+       "tondelier": 3.8,
+       "lepen": 34.3,
+       "glucksmann": 10.2,
+       "retailleau": 8.5,
+       "philippe": 19.1
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 1.1,
+       "melenchon": 14.8,
+       "attal": 14.7,
+       "roussel": 2.7,
+       "zemmour": 4.0,
+       "dupontaignan": 1.6,
+       "tondelier": 3.8,
+       "lepen": 34.9,
+       "glucksmann": 11.5,
+       "retailleau": 10.7
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Zemmour": {
+       "arthaud": 0.9,
+       "melenchon": 14.6,
+       "attal": 7.4,
+       "roussel": 2.3,
+       "zemmour": 3.6,
+       "dupontaignan": 1.4,
+       "tondelier": 3.5,
+       "lepen": 34.9,
+       "glucksmann": 9.2,
+       "retailleau": 7.8,
+       "philippe": 14.4
+      },
+      "Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Villepin-Zemmour": {
+       "arthaud": 0.9,
+       "melenchon": 13.1,
+       "villepin": 2.0,
+       "roussel": 3.0,
+       "zemmour": 3.9,
+       "dupontaignan": 1.1,
+       "tondelier": 4.2,
+       "lepen": 32.4,
+       "glucksmann": 11.2,
+       "retailleau": 8.7,
+       "philippe": 19.4
+      },
+      "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Retailleau-Roussel-Tondelier-Villepin-Zemmour": {
+       "arthaud": 1.0,
+       "melenchon": 13.5,
+       "attal": 15.6,
+       "roussel": 3.0,
+       "zemmour": 3.9,
+       "dupontaignan": 1.5,
+       "tondelier": 3.7,
+       "lepen": 31.7,
+       "glucksmann": 12.0,
+       "retailleau": 11.3,
+       "villepin": 2.9
+      }
+     }
+    }
+   ]
+  },
+  "g": {
+   "label": "Largeur d'intervalle",
+   "default": 0.625,
+   "calibrated": 0.625,
+   "min": 0.5,
+   "max": 2,
+   "recompute": "navigateur",
+   "note": "Resserre ou elargit toutes les fourchettes. Recalcul immediat, mise a l'echelle des bornes."
+  }
+ },
+ "family2": {
+  "hypotheses": [
+   {
+    "id": "Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Zemmour",
+    "label": "Dupont-Aignan, Glucksmann, Mélenchon, Philippe, Retailleau, ",
+    "proba": 0.3,
+    "duel": {
+     "nonRN": {
+      "id": "philippe",
+      "name": "Philippe",
+      "score": 19.1,
+      "bloc": "CE"
+     },
+     "lePen": {
+      "score": 34.3
+     },
+     "blocs": {
+      "GR": 18.5,
+      "GG": 14.1,
+      "CE": 0,
+      "DR": 8.5,
+      "DN": 5.5
+     }
+    }
+   },
+   {
+    "id": "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Retailleau-Roussel-Tondelier-Zemmour",
+    "label": "Attal, Dupont-Aignan, Glucksmann, Mélenchon, Retailleau, Rou",
+    "proba": 0.3,
+    "duel": {
+     "nonRN": {
+      "id": "melenchon",
+      "name": "Mélenchon",
+      "score": 14.8,
+      "bloc": "GR"
+     },
+     "lePen": {
+      "score": 34.9
+     },
+     "blocs": {
+      "GR": 3.8,
+      "GG": 15.4,
+      "CE": 14.7,
+      "DR": 10.7,
+      "DN": 5.6
+     }
+    }
+   },
+   {
+    "id": "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Zemmour",
+    "label": "Attal, Dupont-Aignan, Glucksmann, Mélenchon, Philippe, Retai",
+    "proba": 0.15,
+    "duel": {
+     "nonRN": {
+      "id": "melenchon",
+      "name": "Mélenchon",
+      "score": 14.6,
+      "bloc": "GR"
+     },
+     "lePen": {
+      "score": 34.9
+     },
+     "blocs": {
+      "GR": 3.1,
+      "GG": 12.8,
+      "CE": 21.8,
+      "DR": 7.8,
+      "DN": 5.0
+     }
+    }
+   },
+   {
+    "id": "Dupont-Aignan-Glucksmann-Mélenchon-Philippe-Retailleau-Roussel-Tondelier-Villepin-Zemmour",
+    "label": "Dupont-Aignan, Glucksmann, Mélenchon, Philippe, Retailleau, ",
+    "proba": 0.15,
+    "duel": {
+     "nonRN": {
+      "id": "philippe",
+      "name": "Philippe",
+      "score": 19.4,
+      "bloc": "CE"
+     },
+     "lePen": {
+      "score": 32.4
+     },
+     "blocs": {
+      "GR": 17.1,
+      "GG": 15.4,
+      "CE": 2.0,
+      "DR": 8.7,
+      "DN": 5.0
+     }
+    }
+   },
+   {
+    "id": "Attal-Dupont-Aignan-Glucksmann-Mélenchon-Retailleau-Roussel-Tondelier-Villepin-Zemmour",
+    "label": "Attal, Dupont-Aignan, Glucksmann, Mélenchon, Retailleau, Rou",
+    "proba": 0.1,
+    "duel": {
+     "nonRN": {
+      "id": "attal",
+      "name": "Attal",
+      "score": 15.6,
+      "bloc": "CE"
+     },
+     "lePen": {
+      "score": 31.7
+     },
+     "blocs": {
+      "GR": 17.5,
+      "GG": 15.7,
+      "CE": 2.9,
+      "DR": 11.3,
+      "DN": 5.4
+     }
+    }
+   }
+  ],
+  "report": {
+   "GR": [
+    0.49,
+    0.0,
+    0.51
+   ],
+   "GG": [
+    1.0,
+    0.0,
+    0
+   ],
+   "CE": [
+    0.96,
+    0.0,
+    0.04
+   ],
+   "DR": [
+    0.83,
+    0.0,
+    0.17
+   ],
+   "DN": [
+    0.0,
+    0.99,
+    0.01
+   ]
+  },
+  "report_declarative": {
+   "GR": [
+    0.42,
+    0.17,
+    0.41
+   ],
+   "GG": [
+    0.68,
+    0.05,
+    0.27
+   ],
+   "CE": [
+    0.6,
+    0.15,
+    0.25
+   ],
+   "DR": [
+    0.53,
+    0.18,
+    0.29
+   ],
+   "DN": [
+    0.06,
+    0.75,
+    0.19
+   ]
+  },
+  "blocLabels": {
+   "GR": "Gauche radicale",
+   "GG": "Gauche de gouvernement",
+   "CE": "Centre",
+   "DR": "Droite republicaine",
+   "DN": "Droite nationale"
+  }
+ },
+ "family3": {
+  "house": {
+   "Le Pen": [
+    {
+     "institut": "Elabe",
+     "value": -0.0,
+     "se": 2.8,
+     "n": 5
+    },
+    {
+     "institut": "Harris",
+     "value": -0.1,
+     "se": 2.5,
+     "n": 7
+    },
+    {
+     "institut": "Ifop",
+     "value": 0.8,
+     "se": 2.6,
+     "n": 8
+    },
+    {
+     "institut": "Ipsos",
+     "value": -0.5,
+     "se": 3.0,
+     "n": 1
+    },
+    {
+     "institut": "OpinionWay",
+     "value": -0.5,
+     "se": 3.6,
+     "n": 3
+    },
+    {
+     "institut": "Verian",
+     "value": 0.4,
+     "se": 4.1,
+     "n": 1
+    }
+   ],
+   "Attal": [
+    {
+     "institut": "Elabe",
+     "value": 0.3,
+     "se": 2.9,
+     "n": 3
+    },
+    {
+     "institut": "Harris",
+     "value": 0.6,
+     "se": 2.5,
+     "n": 4
+    },
+    {
+     "institut": "Ifop",
+     "value": 0.3,
+     "se": 2.6,
+     "n": 4
+    },
+    {
+     "institut": "Ipsos",
+     "value": 0.5,
+     "se": 3.0,
+     "n": 1
+    },
+    {
+     "institut": "OpinionWay",
+     "value": -0.2,
+     "se": 3.8,
+     "n": 2
+    },
+    {
+     "institut": "Verian",
+     "value": -1.4,
+     "se": 4.1,
+     "n": 1
+    }
+   ],
+   "Philippe": [
+    {
+     "institut": "Elabe",
+     "value": -0.6,
+     "se": 2.9,
+     "n": 3
+    },
+    {
+     "institut": "Harris",
+     "value": 0.1,
+     "se": 2.5,
+     "n": 4
+    },
+    {
+     "institut": "Ifop",
+     "value": -0.1,
+     "se": 2.6,
+     "n": 4
+    },
+    {
+     "institut": "Ipsos",
+     "value": -0.5,
+     "se": 3.0,
+     "n": 1
+    },
+    {
+     "institut": "OpinionWay",
+     "value": 1.2,
+     "se": 3.8,
+     "n": 2
+    },
+    {
+     "institut": "Verian",
+     "value": -0.2,
+     "se": 4.1,
+     "n": 1
+    }
+   ],
+   "Mélenchon": [
+    {
+     "institut": "Elabe",
+     "value": 0.2,
+     "se": 2.8,
+     "n": 5
+    },
+    {
+     "institut": "Harris",
+     "value": 0.8,
+     "se": 2.5,
+     "n": 7
+    },
+    {
+     "institut": "Ifop",
+     "value": -0.4,
+     "se": 2.5,
+     "n": 8
+    },
+    {
+     "institut": "Ipsos",
+     "value": -0.1,
+     "se": 2.9,
+     "n": 1
+    },
+    {
+     "institut": "OpinionWay",
+     "value": -0.5,
+     "se": 3.6,
+     "n": 3
+    },
+    {
+     "institut": "Verian",
+     "value": -0.0,
+     "se": 4.1,
+     "n": 1
+    }
+   ]
+  },
+  "houseNote": "Estimes conjointement avec l'etat de l'opinion. Non modifiables : deplacer un penchant estime remplacerait une mesure par une opinion sans que le modele puisse le signaler. Pour agir dessus, exclure ou reponderer un institut en famille 2.",
+  "hypEffectNote": "Effet de configuration estime dans le meme modele, il separe le penchant propre de l'institut de la composition des hypotheses qu'il teste.",
+  "penchant": {
+   "note": "Penchant territorial par departement, moyenne de trois scrutins, en lecture seule.",
+   "min": 3.2,
+   "max": 53.1,
+   "median": 23.2
+  },
+  "sdByHorizon": [
+   {
+    "horizon": 180,
+    "sd": 5.97
+   },
+   {
+    "horizon": 90,
+    "sd": 4.75
+   },
+   {
+    "horizon": 60,
+    "sd": 3.57
+   },
+   {
+    "horizon": 30,
+    "sd": 3.18
+   },
+   {
+    "horizon": 15,
+    "sd": 2.58
+   },
+   {
+    "horizon": 7,
+    "sd": 1.84
+   },
+   {
+    "horizon": 1,
+    "sd": 1.66
+   }
+  ],
+  "sdNote": "Ecart type de l'erreur par horizon, calibre sur les scrutins passes. En lecture seule."
+ }
+}
