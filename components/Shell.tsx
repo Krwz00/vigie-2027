@@ -71,7 +71,7 @@ export default function Shell({ data, forecast }: { data: VigieData; forecast: F
         }),
       },
       btn("sondages", "Sondages"),
-      btn("prevision", "Prevision")
+      btn("prevision", "Prévision")
     ),
     h(
       "span",
@@ -86,7 +86,7 @@ export default function Shell({ data, forecast }: { data: VigieData; forecast: F
       },
       tab === "sondages"
         ? "Ce que disent les sondages, moyenne sur quatre semaines."
-        : "Le penchant des instituts corrige, projete au jour du scrutin."
+        : "Le penchant des instituts corrigé, projeté au jour du scrutin."
     )
   );
 

@@ -5,8 +5,8 @@
  "horizonJours": 263,
  "nSondages": 25,
  "electionDate": "2027-04-18",
- "phrase": "L'agregateur montre ce que disent les sondages aujourd'hui, leur moyenne sur quatre semaines. Le modele va plus loin, il corrige le penchant propre de chaque institut et projette le resultat au jour du scrutin.",
- "note": "Point central dans sa fourchette. Fourchette calibree sur les scrutins passes.",
+ "phrase": "L'agrégateur montre ce que disent les sondages aujourd'hui, leur moyenne sur quatre semaines. Le modèle va plus loin, il corrige le penchant propre de chaque institut et projette le résultat au jour du scrutin.",
+ "note": "Point central dans sa fourchette. Fourchette calibrée sur les scrutins passés.",
  "hypotheses": [
   {
    "id": "Dupont-AignanGlucksmannMélenchonPhilippe",
@@ -110,17 +110,17 @@
      "id": "philippe",
      "name": "Philippe",
      "color": "#23c4a8",
-     "score": 51.8,
-     "lo": 45.6,
-     "hi": 57.9
+     "score": 51.7,
+     "lo": 45.7,
+     "hi": 57.6
     },
     "lePen": {
      "id": "lepen",
      "name": "Le Pen",
      "color": "#6f9bff",
-     "score": 48.2,
-     "lo": 42.1,
-     "hi": 54.4
+     "score": 48.3,
+     "lo": 42.4,
+     "hi": 54.3
     },
     "pAppariement": 0.78,
     "vainqueur": "Philippe"
@@ -148,7 +148,7 @@
      "score": 14.8,
      "lo": 10.1,
      "hi": 19.6,
-     "pQualif": 0.41
+     "pQualif": 0.42
     },
     {
      "id": "attal",
@@ -157,7 +157,7 @@
      "score": 14.7,
      "lo": 9.9,
      "hi": 19.4,
-     "pQualif": 0.39
+     "pQualif": 0.4
     },
     {
      "id": "glucksmann",
@@ -228,19 +228,19 @@
      "id": "melenchon",
      "name": "Mélenchon",
      "color": "#e5484d",
-     "score": 54.4,
-     "lo": 47.9,
-     "hi": 60.9
+     "score": 54.3,
+     "lo": 48.0,
+     "hi": 60.7
     },
     "lePen": {
      "id": "lepen",
      "name": "Le Pen",
      "color": "#6f9bff",
-     "score": 45.6,
-     "lo": 39.1,
-     "hi": 52.1
+     "score": 45.7,
+     "lo": 39.3,
+     "hi": 52.0
     },
-    "pAppariement": 0.41,
+    "pAppariement": 0.42,
     "vainqueur": "Mélenchon"
    }
   },
@@ -266,7 +266,7 @@
      "score": 14.6,
      "lo": 9.9,
      "hi": 19.4,
-     "pQualif": 0.48
+     "pQualif": 0.47
     },
     {
      "id": "philippe",
@@ -357,17 +357,17 @@
      "color": "#e5484d",
      "score": 54.9,
      "lo": 48.2,
-     "hi": 61.5
+     "hi": 61.6
     },
     "lePen": {
      "id": "lepen",
      "name": "Le Pen",
      "color": "#6f9bff",
      "score": 45.1,
-     "lo": 38.5,
+     "lo": 38.4,
      "hi": 51.8
     },
-    "pAppariement": 0.48,
+    "pAppariement": 0.47,
     "vainqueur": "Mélenchon"
    }
   },
@@ -482,17 +482,17 @@
      "id": "philippe",
      "name": "Philippe",
      "color": "#23c4a8",
-     "score": 54.9,
-     "lo": 48.8,
-     "hi": 60.9
+     "score": 54.8,
+     "lo": 48.5,
+     "hi": 61.1
     },
     "lePen": {
      "id": "lepen",
      "name": "Le Pen",
      "color": "#6f9bff",
-     "score": 45.1,
-     "lo": 39.1,
-     "hi": 51.2
+     "score": 45.2,
+     "lo": 38.9,
+     "hi": 51.5
     },
     "pAppariement": 0.86,
     "vainqueur": "Philippe"
@@ -538,7 +538,7 @@
      "score": 12.0,
      "lo": 7.7,
      "hi": 16.3,
-     "pQualif": 0.13
+     "pQualif": 0.14
     },
     {
      "id": "retailleau",
@@ -609,17 +609,17 @@
      "id": "attal",
      "name": "Attal",
      "color": "#e8b13a",
-     "score": 54.4,
-     "lo": 48.1,
+     "score": 54.5,
+     "lo": 48.0,
      "hi": 60.8
     },
     "lePen": {
      "id": "lepen",
      "name": "Le Pen",
      "color": "#6f9bff",
-     "score": 45.6,
+     "score": 45.5,
      "lo": 39.2,
-     "hi": 51.9
+     "hi": 52.0
     },
     "pAppariement": 0.52,
     "vainqueur": "Attal"
