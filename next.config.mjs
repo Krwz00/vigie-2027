@@ -7,6 +7,15 @@ const nextConfig = {
       { protocol: "https", hostname: "commons.wikimedia.org" },
     ],
   },
+  // noindex au niveau CDN (pas de middleware edge), la beta ne doit jamais etre indexee
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
