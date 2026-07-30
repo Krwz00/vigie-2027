@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
+import BetaBanner from "@/components/BetaBanner";
 
 // Design Claude Design : Bricolage Grotesque (titres) + Hanken Grotesk (texte
 // courant et chiffres tabulaires).
@@ -19,9 +20,9 @@ const hanken = Hanken_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "VIGIE 2027 · Agrégateur de sondages · Le Millénaire",
-  description:
-    "Tous les sondages de l'élection présidentielle française de 2027, agrégés et lissés. Un observatoire indépendant du think tank Le Millénaire.",
+  title: "VIGIE 2027 · Beta interne",
+  description: "Version de travail interne, non publique.",
+  robots: { index: false, follow: false },
   authors: [{ name: "Le Millénaire" }],
   openGraph: {
     title: "VIGIE 2027 · Agrégateur de sondages",
@@ -33,17 +34,30 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+async function lastRun(): Promise<string | null> {
+  try {
+    const { readFile } = await import("fs/promises");
+    const path = await import("path");
+    const raw = await readFile(path.join(process.cwd(), "public", "forecast.json"), "utf8");
+    return (JSON.parse(raw) as { updatedAt?: string }).updatedAt ?? null;
+  } catch {
+    return null;
+  }
+}
+
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const date = await lastRun();
   return (
     <html
       lang="fr"
       className={`${bricolage.variable} ${hanken.variable}`}
     >
       <body>
+        <BetaBanner date={date} />
         <div id="app-root">{children}</div>
       </body>
     </html>
