@@ -24,6 +24,9 @@ export const metadata: Metadata = {
   description: "Version de travail interne, non publique.",
   robots: { index: false, follow: false },
   authors: [{ name: "Le Millénaire" }],
+  // Marqueur de build beta, sert a verifier qu'un commit sur beta declenche
+  // bien une reconstruction Vercel et se retrouve sur l'URL en ligne.
+  other: { "beta-build": "git-connected-test" },
   openGraph: {
     title: "VIGIE 2027 · Agrégateur de sondages",
     description:
