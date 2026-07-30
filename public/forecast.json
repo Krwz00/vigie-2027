@@ -111,7 +111,7 @@
      "name": "Philippe",
      "color": "#23c4a8",
      "score": 51.8,
-     "lo": 45.8,
+     "lo": 45.7,
      "hi": 57.9
     },
     "lePen": {
@@ -120,7 +120,7 @@
      "color": "#6f9bff",
      "score": 48.2,
      "lo": 42.1,
-     "hi": 54.2
+     "hi": 54.3
     },
     "pAppariement": 0.78,
     "vainqueur": "Philippe"
@@ -741,7 +741,7 @@
      "score": 10.7,
      "lo": 6.7,
      "hi": 14.8,
-     "pQualif": 0.07
+     "pQualif": 0.08
     },
     {
      "id": "zemmour",
@@ -795,16 +795,16 @@
      "name": "Mélenchon",
      "color": "#e5484d",
      "score": 54.3,
-     "lo": 47.9,
-     "hi": 60.8
+     "lo": 47.8,
+     "hi": 60.9
     },
     "lePen": {
      "id": "lepen",
      "name": "Le Pen",
      "color": "#6f9bff",
      "score": 45.7,
-     "lo": 39.2,
-     "hi": 52.1
+     "lo": 39.1,
+     "hi": 52.2
     },
     "pAppariement": 0.42,
     "vainqueur": "Mélenchon"
@@ -1489,14 +1489,14 @@
      "color": "#e5484d",
      "score": 54.8,
      "lo": 48.2,
-     "hi": 61.3
+     "hi": 61.5
     },
     "lePen": {
      "id": "lepen",
      "name": "Le Pen",
      "color": "#6f9bff",
      "score": 45.2,
-     "lo": 38.7,
+     "lo": 38.5,
      "hi": 51.8
     },
     "pAppariement": 0.48,
@@ -2180,17 +2180,17 @@
      "id": "philippe",
      "name": "Philippe",
      "color": "#23c4a8",
-     "score": 54.8,
-     "lo": 48.7,
-     "hi": 61.0
+     "score": 54.9,
+     "lo": 48.8,
+     "hi": 61.1
     },
     "lePen": {
      "id": "lepen",
      "name": "Le Pen",
      "color": "#6f9bff",
-     "score": 45.2,
-     "lo": 39.0,
-     "hi": 51.3
+     "score": 45.1,
+     "lo": 38.9,
+     "hi": 51.2
     },
     "pAppariement": 0.86,
     "vainqueur": "Philippe"
@@ -2873,17 +2873,17 @@
      "id": "attal",
      "name": "Attal",
      "color": "#e8b13a",
-     "score": 54.4,
-     "lo": 48.1,
-     "hi": 60.7
+     "score": 54.5,
+     "lo": 48.2,
+     "hi": 61.0
     },
     "lePen": {
      "id": "lepen",
      "name": "Le Pen",
      "color": "#6f9bff",
-     "score": 45.6,
-     "lo": 39.3,
-     "hi": 51.9
+     "score": 45.5,
+     "lo": 39.0,
+     "hi": 51.8
     },
     "pAppariement": 0.52,
     "vainqueur": "Attal"
